@@ -43,10 +43,33 @@ const axis = (key) => ADPX.axes.find((item) => item.key === key)
 /** 문구 창 [시작, 끝] 초. 컷 경계보다 안쪽이라 컷이 바뀌기 전에 문구가 먼저 빠진다. */
 const WINDOWS = { D: [2.05, 3.15], A: [3.5, 4.2], X: [5.8, 6.5], P: [6.8, 7.75] }
 
+/*
+ * 문구 자리를 컷마다 다르게 둔다.
+ *
+ * toss 를 여섯 단계로 찍어보면 행마다 구도가 바뀐다 — 사진 위 왼쪽 아래,
+ * 흰 바탕에 카피 왼쪽·제품 오른쪽, 제품 왼쪽·카피 오른쪽, 헤드라인 밑 카드 줄.
+ * 우리는 히어로가 페이지의 60% 인데 일곱 화면이 전부 같은 구도였다. 전면
+ * 어두운 영상에 왼쪽 아래 문구. 스크롤해도 같은 화면을 보는 느낌이 든다.
+ *
+ * 자리는 임의로 고르지 않고 그 컷에 무엇이 어디 있는지를 따랐다.
+ *   bottom-left   피사체가 위쪽이나 오른쪽에 있어 왼쪽 아래가 비는 컷
+ *   bottom-right  로봇 팔이 왼쪽에 있어 오른쪽이 비는 컷
+ *   center        입자 구름처럼 피사체가 한가운데이면서 성기어 글자를 덮지
+ *                 않는 컷. 가운데 정렬한 문구가 피사체와 같은 축에 선다.
+ *                 엠블럼 컷은 한가운데지만 형태가 꽉 차서 겹치면 둘 다
+ *                 안 읽힌다. 그래서 아래로 내렸다.
+ */
+const PLACE = {
+  'bottom-left': 'items-end justify-start text-left',
+  'bottom-right': 'items-end justify-end text-left',
+  center: 'items-center justify-center text-center',
+}
+
 const CHAPTERS = [
   {
     id: 'intro',
     at: [0, 1.55],
+    place: 'bottom-left', // 로봇 팔이 위쪽 절반을 차지한다
     eyebrow: HERO.badge,
     title: HERO.headline.join('\n'),
     body: HERO.sub,
@@ -56,6 +79,9 @@ const CHAPTERS = [
     return {
       id: key,
       at: WINDOWS[key],
+      // A 입자 구름은 한가운데, X 자율주행차는 오른쪽, P 로봇 팔은 왼쪽에 있다.
+      // D 데이터 비는 화면 전체가 고른 질감이라 어디든 되므로 앞뒤와 엇갈리게 뒀다.
+      place: { D: 'bottom-right', A: 'center', X: 'bottom-left', P: 'bottom-right' }[key],
       eyebrow: key + ' · ' + found.name,
       title: found.person,
       body: found.role,
@@ -65,6 +91,9 @@ const CHAPTERS = [
   {
     id: 'outro',
     at: [8.7, 10],
+    // 엠블럼이 한가운데 떠 있다. 가운데 정렬하면 글자가 엠블럼 위에 겹쳐
+    // 둘 다 안 읽힌다. 아래로 내리면 엠블럼이 위, 문구가 아래로 나뉜다.
+    place: 'bottom-left',
     eyebrow: '부산대학교',
     title: '2027년 3월,\nAI대학이 문을 엽니다',
     body: '입학정원 424명. 대학은 국내 최대 규모의 AI 단과대학이라고 밝혔어요.',
@@ -181,6 +210,12 @@ export default function HeroScene() {
   )
   const lead = weights.indexOf(Math.max(...weights))
 
+  // 가림막 두 겹의 세기. 자리를 옮기는 중에는 두 값이 함께 오르내려 넘어간다.
+  const scrimOf = (place) =>
+    clamp(CHAPTERS.reduce((sum, chapter, index) => (chapter.place === place ? sum + weights[index] : sum), 0))
+  const scrimFull = scrimOf('center')
+  const scrimBottom = clamp(1 - scrimFull * 0.5)
+
   return (
     <section
       ref={rootRef}
@@ -210,36 +245,52 @@ export default function HeroScene() {
             </video>
           )}
 
-          {/* 글자가 앉는 아래쪽만 눌러 어둡게 한다. 영상 위쪽 톤은 건드리지 않는다. */}
+          {/*
+           * 가림막이 두 겹이다. 문구가 아래에 앉는 컷은 아래쪽만 눌러 영상 위쪽
+           * 톤을 살리고, 가운데 앉는 컷은 화면 전체를 옅게 덮어야 글자가 읽힌다.
+           * 두 겹의 불투명도를 각 컷의 가중치 합으로 굴리면 자리를 옮길 때
+           * 가림막도 같이 넘어가서 번쩍이지 않는다.
+           */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-gradient-to-t from-[#05050c] via-[#05050c]/70 to-transparent"
+            style={{ opacity: scrimBottom }}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[#05050c]/45"
+            style={{ opacity: scrimFull }}
           />
 
-          <div className="absolute inset-x-0 bottom-0 px-6 pb-8 md:px-14 md:pb-12">
-            <div className="relative grid max-w-[760px]">
-              {CHAPTERS.map((chapter, index) => {
-                const weight = weights[index]
-                return (
-                  <div
-                    key={chapter.id}
-                    aria-hidden={weight === 0}
-                    className="col-start-1 row-start-1"
-                    style={{
-                      opacity: weight,
-                      filter: reduced ? 'none' : `blur(${(1 - weight) * 10}px)`,
-                      transform: reduced ? 'none' : `translateY(${(1 - weight) * 18}px)`,
-                      pointerEvents: weight > 0.9 ? 'auto' : 'none',
-                    }}
+          {CHAPTERS.map((chapter, index) => {
+            const weight = weights[index]
+            return (
+              <div
+                key={chapter.id}
+                aria-hidden={weight === 0}
+                className={`absolute inset-0 flex px-6 pb-8 pt-20 md:px-14 md:pb-12 ${PLACE[chapter.place]}`}
+                style={{ pointerEvents: weight > 0.9 ? 'auto' : 'none' }}
+              >
+                <div
+                  className="max-w-[760px]"
+                  style={{
+                    opacity: weight,
+                    filter: reduced ? 'none' : `blur(${(1 - weight) * 10}px)`,
+                    transform: reduced ? 'none' : `translateY(${(1 - weight) * 18}px)`,
+                  }}
+                >
+                  <p className="text-[13px] font-bold tracking-[0.08em] text-sky-300">{chapter.eyebrow}</p>
+                  <h1 className="mt-3 whitespace-pre-line text-[clamp(1.9rem,4.6vw,4rem)] font-extrabold leading-[1.1] tracking-[-0.035em] text-white">
+                    {chapter.title}
+                  </h1>
+                  <p
+                    className={`mt-4 max-w-[38rem] text-[15px] font-medium leading-[1.65] text-white/75 md:text-[17px] ${
+                      chapter.place === 'center' ? 'mx-auto' : ''
+                    }`}
                   >
-                    <p className="text-[13px] font-bold tracking-[0.08em] text-sky-300">{chapter.eyebrow}</p>
-                    <h1 className="mt-3 whitespace-pre-line text-[clamp(1.9rem,4.6vw,4rem)] font-extrabold leading-[1.1] tracking-[-0.035em] text-white">
-                      {chapter.title}
-                    </h1>
-                    <p className="mt-4 max-w-[38rem] text-[15px] font-medium leading-[1.65] text-white/75 md:text-[17px]">
-                      {chapter.body}
-                    </p>
-                    {chapter.meta && <p className="mt-3 text-[13px] font-semibold text-white/55">{chapter.meta}</p>}
+                    {chapter.body}
+                  </p>
+                  {chapter.meta && <p className="mt-3 text-[13px] font-semibold text-white/55">{chapter.meta}</p>}
                     {/*
                      * 두 버튼 다 라벨과 목적지가 어긋나 있었다. 첫 버튼은
                      * 「한눈에 보기」라고 적혀 있으면서 /ai-college 로 갔고,
@@ -248,27 +299,30 @@ export default function HeroScene() {
                      * 가기를 걷어내면서 이 히어로가 AI대학 페이지로 가는
                      * 유일한 입구가 됐으니 라벨을 목적지에 맞춘다.
                      */}
-                    {chapter.cta && (
-                      <div className="mt-7 flex flex-wrap items-center gap-4">
-                        <Link
-                          to="/ai-college"
-                          className="rounded-[--radius-pill] bg-white px-6 py-3 text-[15px] font-bold text-gray-950 transition-transform duration-[--dur-base] hover:-translate-y-0.5"
-                        >
-                          AI대학 살펴보기
-                        </Link>
-                        <a
-                          href="#summary"
-                          className="text-[15px] font-semibold text-white/80 underline-offset-4 hover:underline"
-                        >
-                          한눈에 보기
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+                  {chapter.cta && (
+                    <div
+                      className={`mt-7 flex flex-wrap items-center gap-4 ${
+                        chapter.place === 'center' ? 'justify-center' : ''
+                      }`}
+                    >
+                      <Link
+                        to="/ai-college"
+                        className="rounded-[--radius-pill] bg-white px-6 py-3 text-[15px] font-bold text-gray-950 transition-transform duration-[--dur-base] hover:-translate-y-0.5"
+                      >
+                        AI대학 살펴보기
+                      </Link>
+                      <a
+                        href="#summary"
+                        className="text-[15px] font-semibold text-white/80 underline-offset-4 hover:underline"
+                      >
+                        한눈에 보기
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )
+          })}
 
           <div aria-hidden="true" className="absolute left-4 top-1/2 hidden -translate-y-1/2 flex-col gap-2 md:flex">
             {CHAPTERS.map((chapter, index) => (

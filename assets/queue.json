@@ -12,5 +12,64 @@
     "kind": "video",
     "jobId": "302ea4c2-ff5c-47a8-99c7-e2e7c10edd8f",
     "args": []
+  },
+  {
+    "slug": "port_crane",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "A container terminal at night seen from the quayside. Towering gantry cranes lift a shipping container; stacked container rows recede into haze. Faint cyan holographic route lines and node markers float over the yard, as if the port were being scheduled by a system. Cinematic photoreal 3D render. Deep navy-black environment, volumetric haze, cyan and magenta rim light, glowing translucent holographic data overlays with thin cyan linework. Shallow depth of field, anamorphic highlights, 24mm wide lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "98c5136f-e8fa-4f6e-b78e-582237911fb5",
+    "status": "done"
+  },
+  {
+    "slug": "gpu_rack",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "A close low-angle view down a row of dense server racks in a cold aisle. Rows of small cyan status indicators glow along each chassis; fiber cabling sweeps through the frame in soft focus. A faint magenta glow spills from the far end of the aisle. Cinematic photoreal 3D render. Deep navy-black environment, volumetric haze, cyan and magenta rim light, glowing translucent holographic data overlays with thin cyan linework. Shallow depth of field, anamorphic highlights, 24mm wide lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "bb989f67-5b63-4abe-9528-b39700ddd34c",
+    "status": "done"
+  },
+  {
+    "slug": "lecture",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "A tiered university lecture hall seen from the very back, entirely from behind. Rows of seated students are dark silhouettes against a huge glowing display at the front showing abstract cyan data visualisation. Warm rim light along the seat backs, cool light from the screen. Backs of heads only. Cinematic photoreal 3D render. Deep navy-black environment, volumetric haze, cyan and magenta rim light, glowing translucent holographic data overlays with thin cyan linework. Shallow depth of field, anamorphic highlights, 24mm wide lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "0a3af315-5633-40c5-b56a-5eafa7543b9f",
+    "status": "done"
+  },
+  {
+    "slug": "shipyard",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "A shipbuilding dry dock at night. The vast steel hull of a vessel under construction fills the frame, gantry lights above, sparks of welding far off. Thin cyan holographic measurement lines trace the hull curvature. Cinematic photoreal 3D render. Deep navy-black environment, volumetric haze, cyan and magenta rim light, glowing translucent holographic data overlays with thin cyan linework. Shallow depth of field, anamorphic highlights, 24mm wide lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "ad77765e-86c2-4d00-bb5e-de05b69e011b"
   }
 ]
