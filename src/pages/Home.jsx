@@ -5,6 +5,7 @@ import BreatherScene from '../scenes/BreatherScene'
 import SchoolRailScene from '../scenes/SchoolRailScene'
 import FacultyScene from '../scenes/FacultyScene'
 import ImpactScene from '../scenes/ImpactScene'
+import ProgramScene from '../scenes/ProgramScene'
 import RoadmapScene from '../scenes/RoadmapScene'
 import ClosingScene from '../scenes/ClosingScene'
 
@@ -27,6 +28,8 @@ export default function Home() {
       <FacultyScene />
 
       <ImpactScene />
+
+      <ProgramScene />
 
       <RoadmapScene />
 

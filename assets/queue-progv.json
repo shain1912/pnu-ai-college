@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "prog_pathway_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "The camera drifts extremely slowly forward along the routes. The blue light streams flow steadily and the junction markers pulse gently in sequence. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/prog_pathway.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "41ff5101-6b95-40e7-a650-982b34ba5ad9",
+    "status": "done"
+  },
+  {
+    "slug": "prog_funnel_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "The blue particles drift downward continuously, gathering into the bright column at the bottom. The camera holds almost still. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/prog_funnel.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "0ef2cf45-e08b-4363-9a4b-90cb4f926e25",
+    "status": "done"
+  },
+  {
+    "slug": "prog_startup_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "The hovering device rotates very slowly and rises a little further; the light rings beneath it expand and fade in sequence. The camera holds almost still. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/prog_startup.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "431c4008-e5d8-4f4c-8217-17794f0bb8ad",
+    "status": "done"
+  }
+]

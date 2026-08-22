@@ -1,0 +1,53 @@
+[
+  {
+    "slug": "prog_pathway",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "Inside a dark void, several luminous blue routes run forward, splitting apart and rejoining, with a small glowing marker at each junction. One route is brighter than the rest, as if chosen. Lit almost entirely in azure blue and deep royal blue, matching the reference palette. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO magenta, NO purple, NO green, NO orange, NO white background. Very dark blue-black environment, volumetric haze, shallow depth of field, cinematic photoreal 3D render. Absolutely no text, no lettering, no signage, no brand marks, no people.",
+      "--image-references",
+      "assets/raw/_palette.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "8b3a2817-4c41-4bf4-be12-044d248e4f63",
+    "status": "done"
+  },
+  {
+    "slug": "prog_funnel",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "A wide field of faint blue particles high in frame gathers and narrows downward into a single dense bright column at the bottom. Broad and diffuse above, tight and brilliant below. Lit almost entirely in azure blue and deep royal blue, matching the reference palette. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO magenta, NO purple, NO green, NO orange, NO white background. Very dark blue-black environment, volumetric haze, shallow depth of field, cinematic photoreal 3D render. Absolutely no text, no lettering, no signage, no brand marks, no people.",
+      "--image-references",
+      "assets/raw/_palette.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "4363d9ad-a99d-4683-9243-b49fefa7645f",
+    "status": "done"
+  },
+  {
+    "slug": "prog_startup",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "A dark laboratory workbench. A compact blue holographic device hovers just above the bench surface, lifting slowly, with thin light rings beneath it and instrument silhouettes out of focus behind. Lit almost entirely in azure blue and deep royal blue, matching the reference palette. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO magenta, NO purple, NO green, NO orange, NO white background. Very dark blue-black environment, volumetric haze, shallow depth of field, cinematic photoreal 3D render. Absolutely no text, no lettering, no signage, no brand marks, no people.",
+      "--image-references",
+      "assets/raw/_palette.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "690b42c8-ecf2-475c-a89d-48a8dd497913",
+    "status": "done"
+  }
+]
