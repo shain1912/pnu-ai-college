@@ -1,0 +1,8 @@
+lattice|58024e61-cc6b-4073-8cf2-73e4748dad17
+r_logistics|3e2fda25-e21c-447f-9eeb-1501359e1dba
+r_finance|6bec9189-41ce-45ca-9cbb-8855463b1cc6
+r_factory|5c73c89c-6d2c-4e3f-9c6d-474623425b08
+r_health|1a7efffa-4ee0-44b4-b393-7f732501afac
+lab|63cbe7a3-e997-4dc6-a7b2-38f2eb815d2b
+campus|b420e586-9acd-4125-b6e6-080ac20bb417
+hero|9878c0ec-b320-42ac-a158-51700f7084a2

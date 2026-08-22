@@ -1,0 +1,195 @@
+@import 'tailwindcss';
+
+/*
+ * Palette and scale reverse-engineered from toss.im's deployed CSS
+ * (see docs/TOSS_ANALYSIS.md for sources and confidence levels).
+ * These are project tokens modelled on Toss, not a copy of Toss's internal TDS.
+ */
+@theme {
+  --color-blue-50: #e8f3ff;
+  --color-blue-100: #c9e2ff;
+  --color-blue-300: #90c2ff;
+  --color-blue-500: #3182f6;
+  --color-blue-600: #2272eb;
+  --color-blue-700: #1b64da;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f2f4f6;
+  --color-gray-200: #e5e8eb;
+  --color-gray-300: #d1d6db;
+  --color-gray-400: #b0b8c1;
+  --color-gray-500: #8b95a1;
+  --color-gray-600: #6b7684;
+  --color-gray-700: #4e5968;
+  --color-gray-800: #333d4b;
+  --color-gray-900: #191f28;
+
+  --color-danger: #f04452;
+  --color-success: #03b26c;
+
+  /* semantic — components reference these, never the raw ramp */
+  --color-canvas: #ffffff;
+  --color-canvas-subtle: #f9fafb;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f2f4f6;
+  --color-ink: #191f28;
+  --color-ink-muted: #4e5968;
+  --color-ink-subtle: #6b7684;
+  --color-ink-faint: #8b95a1;
+  --color-line: #e5e8eb;
+  /*
+   * Two brand blues, split by contrast duty.
+   * #3182F6 against white is 3.71:1 — fine as a decorative accent or for large
+   * display type, but it fails WCAG AA (4.5:1) under the white label of a
+   * button. Anything carrying small white text uses the darker one (5.41:1).
+   */
+  --color-brand: #3182f6;
+  --color-brand-strong: #1b64da;
+
+  /* Toss Product Sans is not redistributable; Pretendard is the closest
+     freely-licensed Korean face (SIL OFL 1.1). */
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Segoe UI', sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-enter: 400ms;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-canvas);
+    /* the sticky header must not cover an anchored section's heading */
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    /*
+     * keep-all stops Korean from breaking mid-word, which is what we want for
+     * prose. It also means a long unspaced token (a compound department name,
+     * a URL) has no break opportunity at all, so pair it with an escape hatch
+     * that only engages when the token genuinely cannot fit.
+     */
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-blue-100);
+    color: var(--color-gray-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /*
+   * Korean headlines: tracking loosens as size grows. Tightening a 64px
+   * Hangul title the way Latin display type is tightened closes the counters.
+   */
+  h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+}
+
+@layer utilities {
+  .edge {
+    @apply mx-auto w-full max-w-[1120px] px-5 md:px-8 lg:px-12;
+  }
+
+  .edge-wide {
+    @apply mx-auto w-full max-w-[1280px] px-5 md:px-8 lg:px-12;
+  }
+
+  /* the site's vertical rhythm — sections only ever pick one of these */
+  .band {
+    @apply py-20 md:py-28 lg:py-40;
+  }
+
+  .band-tight {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .display {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  .h1 {
+    font-size: clamp(2.25rem, 4.6vw, 3.25rem);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+  }
+
+  .h2 {
+    font-size: clamp(1.875rem, 3.4vw, 2.5rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  .h3 {
+    font-size: clamp(1.5rem, 2.2vw, 1.75rem);
+    line-height: 1.32;
+    letter-spacing: -0.015em;
+  }
+
+  .lead {
+    font-size: clamp(1.1875rem, 1.6vw, 1.375rem);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: var(--color-ink-muted);
+  }
+
+  .card {
+    @apply rounded-[--radius-xl] bg-surface;
+    box-shadow: 0 1px 2px rgb(25 31 40 / 0.04), 0 4px 16px rgb(25 31 40 / 0.06);
+  }
+}
+
+/*
+ * Reveal-on-scroll. Elements start hidden and are released by an
+ * IntersectionObserver adding [data-shown]; if the observer never runs,
+ * the no-JS fallback below still shows everything.
+ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--dur-enter) var(--ease-enter),
+    transform var(--dur-enter) var(--ease-enter);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

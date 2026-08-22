@@ -1,0 +1,21 @@
+node_modules/
+dist/
+
+# Generated originals and research captures — the optimised web copies in
+# public/ are what the site actually serves.
+assets/raw/
+assets/rejected/
+assets/motion/
+assets/video/
+assets/*.jpg
+assets/gauntlet-log.json
+
+# Source documents contain the university's unreleased planning material.
+docs/_extract/
+docs/*.hwp
+docs/*.hwpx
+docs/*.xlsx
+docs/*.pdf
+
+*.log
+.DS_Store

@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "hero",
+    "model": "nano_banana_pro",
+    "params": ["--aspect-ratio", "21:9", "--resolution", "4k"],
+    "use": "Full-bleed hero background behind a large Korean headline. The left third is covered by a dark scrim, so the composition must survive being half-obscured.",
+    "goldStandard": "EPFL AI Center — one calm declarative frame, architectural rather than sci-fi, restraint over spectacle.",
+    "criteria": [
+      "Reads as real architectural photography, not a 3D render or concept art",
+      "Has a genuine light source and believable falloff; no uniform ambient glow",
+      "Deep enough on the left half that white text will sit on it at AA contrast",
+      "Cyan appears as accent lighting only, never as an overall colour wash",
+      "Contains no people, no readable signage, no UI, no lens dirt overlays"
+    ],
+    "prompt": "Ultra wide architectural photograph of a vast empty modern university library hall at dusk. Dark polished concrete floor, tall glass curtain wall, thin horizontal LED light lines receding into deep one-point perspective, soft blue evening light outside. A faint geometric wireframe of connected dots glows softly in the air, blurred. Anamorphic lens, gentle atmospheric haze, shallow depth of field, subtle film grain, muted deep navy graphite palette with a cool cyan accent. Empty of people. No text, no letters, no signage, no logos, no watermark."
+  },
+  {
+    "slug": "r_factory",
+    "model": "nano_banana_pro",
+    "params": ["--aspect-ratio", "4:5", "--resolution", "2k"],
+    "use": "Portrait card image for the smart-factory research domain, seen at roughly 420x520 with a gradient over its lower third.",
+    "goldStandard": "MIT Schwarzman College of Computing — evidence of real facilities, not decoration.",
+    "criteria": [
+      "The subject is legible at card size, not a wash of abstract light",
+      "Reads specifically as manufacturing, not as generic technology",
+      "Lower third stays simple enough for a gradient and title to sit over it",
+      "Palette matches the site: navy and graphite with a single cyan accent",
+      "No people, no text, no logos"
+    ],
+    "prompt": "Abstract smart-factory visualization: a robotic arm silhouette in a dark automated plant, cyan laser scan lines sweeping across a conveyor, sparse glowing sensor nodes connected by thin lines. Cinematic still, anamorphic lens, volumetric haze, shallow depth of field, fine film grain, deep navy graphite palette with cool cyan-teal accent light. No text, no letters, no logos, no watermark."
+  }
+]

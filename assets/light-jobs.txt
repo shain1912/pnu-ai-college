@@ -1,0 +1,5 @@
+hero_light|a1cc8ccf-0fc0-4407-99e7-fde278a4dd66
+axis_a|91722548-d674-4fd4-9132-6ba302f85f92
+axis_d|3ec9f006-1876-4a70-bb8e-118d02a57cbe
+axis_p|1f596527-d1dd-4c85-8f01-8e22d9e533fd
+axis_x|ebb4ce7a-2faa-41b7-8ea8-01d01a730ba0

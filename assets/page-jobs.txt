@@ -1,0 +1,8 @@
+dept_ai|527ee7ce-cf0c-414a-913f-48ba4b1d81f7
+dept_ax|a8bf804d-427f-4bc5-a20d-709e5dee0120
+dept_data|7bf26251-98a0-4962-a6bd-3f979ab50d3d
+dept_ie|533a0cb5-defd-475e-a5cc-6a735b6dd09f
+dept_stat|c1ced590-f9b0-48d5-8be7-b386731ebbe2
+infra_gpu|3467f4e8-16db-4a2e-be16-1c7441a26349
+roadmap_campus|1042288a-5254-47f9-8ae5-2081141facbb
+why_converge|c2958c1d-f420-4c6f-93db-ebfc12b23773
