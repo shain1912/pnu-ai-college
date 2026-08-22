@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "obj_outgrow",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "A single large smooth rounded geometric form rests on a small pedestal that is plainly too small for it, the form overhanging the base on every side. Shot slightly from below so the mismatch in scale reads immediately. Product photography look on a seamless very light warm-grey studio backdrop. Soft broad top light, long soft contact shadow beneath, gentle gradient falloff. The object is smooth matte deep navy with a single azure blue edge light. Clean, calm, uncluttered. STRICTLY NO dark background, NO neon, NO cyan, NO magenta, NO green. Absolutely no text, no lettering, no brand marks, no people.",
+      "--aspect_ratio",
+      "4:3",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "3056a4f3-9d90-4d80-8bd2-38046d0dd25e",
+    "status": "done"
+  },
+  {
+    "slug": "obj_gather",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "Five smooth rounded forms of different sizes sit close together on the surface, interlocking into one continuous silhouette. Seen from a low three-quarter angle. Product photography look on a seamless very light warm-grey studio backdrop. Soft broad top light, long soft contact shadow beneath, gentle gradient falloff. The object is smooth matte deep navy with a single azure blue edge light. Clean, calm, uncluttered. STRICTLY NO dark background, NO neon, NO cyan, NO magenta, NO green. Absolutely no text, no lettering, no brand marks, no people.",
+      "--aspect_ratio",
+      "4:3",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "ac9f2f7a-ecd8-4d2b-ad82-3283946a1e7e",
+    "status": "done"
+  }
+]

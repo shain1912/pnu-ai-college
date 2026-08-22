@@ -1,4 +1,5 @@
 import { WHY } from '../data/content'
+import SceneVideo from '../components/SceneVideo'
 
 /*
  * ── toss 출처 기록 ────────────────────────────────────────────────────────
@@ -32,13 +33,30 @@ import { WHY } from '../data/content'
 export default function BreatherScene() {
   return (
     <section className="bg-canvas" aria-labelledby="why-line">
-      <div className="edge flex min-h-[74svh] items-center py-16">
+      <div className="edge grid min-h-[74svh] items-center gap-10 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:gap-14">
         <h2
           id="why-line"
           className="max-w-[16ch] whitespace-pre-line text-[clamp(2rem,5vw,4rem)] font-extrabold leading-[1.18] tracking-[-0.035em] text-ink"
         >
           {WHY.title}
         </h2>
+
+        {/*
+          25회차에 붙였다. toss 의 조용한 화면(「온오프라인 경계 없이」)에는 흰
+          바탕 한가운데에 검은 오브젝트가 서 있는데, 우리 화면에는 문장뿐이라
+          오른쪽 절반이 비어 있었다.
+
+          자산 스무 개가 전부 어두운 환경이라 밝은 바탕에 놓을 물체가 하나도
+          없었다. 그래서 받침보다 큰 덩어리를 새로 만들었다 — 「한 학과가
+          감당할 수 있는 크기를 넘었다」를 형태로 그대로 옮긴 것이다.
+        */}
+        <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[--radius-xl] md:max-w-none">
+          <SceneVideo
+            slug="obj_outgrow_v"
+            alt="받침보다 훨씬 큰 짙은 남색 덩어리가 작은 받침 위에 얹혀 사방으로 넘쳐 있다."
+            className="h-full w-full"
+          />
+        </div>
       </div>
     </section>
   )

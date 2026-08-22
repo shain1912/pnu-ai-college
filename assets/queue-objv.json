@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "obj_outgrow_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1120,
+    "args": [
+      "--prompt",
+      "The form turns extremely slowly on its base and the soft top light drifts across its surface. The shadow shifts a little. Nothing else moves. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/obj_outgrow.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "491e4475-6331-47d7-a552-d64dd66ed634",
+    "status": "done"
+  },
+  {
+    "slug": "obj_gather_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1120,
+    "args": [
+      "--prompt",
+      "The camera drifts extremely slowly around the cluster and the soft light moves across the forms. The shapes stay where they are. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/obj_gather.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "64e9d8fa-1b14-4d40-8ce2-3590aba14506",
+    "status": "done"
+  }
+]

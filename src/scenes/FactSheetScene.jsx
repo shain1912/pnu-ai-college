@@ -67,7 +67,8 @@ export default function FactSheetScene() {
     <>
       {/* 쉬는 화면 — 숫자 하나와 그 내역만 */}
       <section id="summary" className="scroll-mt-24 bg-canvas" aria-labelledby="summary-title">
-        <div className="edge flex min-h-[82svh] flex-col justify-center py-24">
+        <div className="edge grid min-h-[82svh] items-center gap-10 py-24 md:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] md:gap-14">
+          <div>
           <p className="text-[15px] font-semibold text-brand">{SUMMARY.eyebrow}</p>
 
           <p className="mt-8 flex items-baseline gap-3">
@@ -100,6 +101,16 @@ export default function FactSheetScene() {
               </li>
             ))}
           </ul>
+          </div>
+
+          {/* 다섯 덩이가 맞물려 하나가 된다 — 「424명이 이 다섯 곳으로」의 형태 */}
+          <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[--radius-xl] md:max-w-none">
+            <SceneVideo
+              slug="obj_gather_v"
+              alt="크기가 다른 짙은 남색 덩어리 다섯이 맞물려 하나의 윤곽을 이룬다."
+              className="h-full w-full"
+            />
+          </div>
         </div>
       </section>
 
