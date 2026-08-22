@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "industry_night_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1600,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic drift forward across the city at night. Window lights flicker faintly, haze drifts, and the blue links between buildings pulse gently along their length. Camera motion only, no cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/industry_night.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "14bcec10-0301-4e5c-90dc-0ae7cc08121f",
+    "status": "done"
+  }
+]

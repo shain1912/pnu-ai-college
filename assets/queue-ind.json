@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "industry_night",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "A wide night view across an industrial coastal city seen from a high vantage point. Factory blocks, port cranes and office towers recede into haze, their windows lit. Thin blue links arc between the buildings as if the whole district were connected into one system. Lit almost entirely in azure blue and deep royal blue, matching the reference palette. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO magenta, NO purple, NO green, NO orange. Very dark blue-black night, volumetric haze, shallow depth of field, cinematic photoreal 3D render, wide lens. Absolutely no text, no lettering, no signage, no brand marks, no logos, no people.",
+      "--image-references",
+      "assets/raw/_palette.png",
+      "--aspect_ratio",
+      "21:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "a4512268-188e-4b8b-a722-4d33589e7520",
+    "status": "done"
+  }
+]
