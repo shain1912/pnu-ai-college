@@ -19,13 +19,15 @@
     "kind": "image",
     "args": [
       "--prompt",
-      "A container terminal at night seen from the quayside. Towering gantry cranes lift a shipping container; stacked container rows recede into haze. Faint cyan holographic route lines and node markers float over the yard, as if the port were being scheduled by a system. Cinematic photoreal 3D render. Deep navy-black environment, volumetric haze, cyan and magenta rim light, glowing translucent holographic data overlays with thin cyan linework. Shallow depth of field, anamorphic highlights, 24mm wide lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "A container terminal at night from the quayside. Towering gantry cranes lift a shipping container; stacked container rows recede into haze. Faint blue holographic route lines and node markers float over the yard. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
       "2k"
     ],
-    "jobId": "98c5136f-e8fa-4f6e-b78e-582237911fb5",
+    "jobId": "0a3d6bbe-8d6d-46b0-a2de-9964ae81b1b6",
     "status": "done"
   },
   {
@@ -34,13 +36,15 @@
     "kind": "image",
     "args": [
       "--prompt",
-      "A close low-angle view down a row of dense server racks in a cold aisle. Rows of small cyan status indicators glow along each chassis; fiber cabling sweeps through the frame in soft focus. A faint magenta glow spills from the far end of the aisle. Cinematic photoreal 3D render. Deep navy-black environment, volumetric haze, cyan and magenta rim light, glowing translucent holographic data overlays with thin cyan linework. Shallow depth of field, anamorphic highlights, 24mm wide lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "A close low-angle view down a row of dense server racks in a cold aisle. Rows of small blue status indicators glow along each chassis; fiber cabling sweeps through the frame in soft focus. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
       "2k"
     ],
-    "jobId": "bb989f67-5b63-4abe-9528-b39700ddd34c",
+    "jobId": "96fb5886-a927-4cbc-a16b-fc11ce12d6e0",
     "status": "done"
   },
   {
@@ -49,14 +53,15 @@
     "kind": "image",
     "args": [
       "--prompt",
-      "A tiered university lecture hall seen from the very back, entirely from behind. Rows of seated students are dark silhouettes against a huge glowing display at the front showing abstract cyan data visualisation. Warm rim light along the seat backs, cool light from the screen. Backs of heads only. Cinematic photoreal 3D render. Deep navy-black environment, volumetric haze, cyan and magenta rim light, glowing translucent holographic data overlays with thin cyan linework. Shallow depth of field, anamorphic highlights, 24mm wide lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "A tiered university lecture hall seen from the very back, entirely from behind. Rows of seated students are dark silhouettes against a huge glowing display showing abstract blue data visualisation. Backs of heads only. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
       "2k"
     ],
-    "jobId": "0a3af315-5633-40c5-b56a-5eafa7543b9f",
-    "status": "done"
+    "jobId": "83485e17-7d6c-4a12-84a6-2348082d76ec"
   },
   {
     "slug": "shipyard",
@@ -64,93 +69,73 @@
     "kind": "image",
     "args": [
       "--prompt",
-      "A shipbuilding dry dock at night. The vast steel hull of a vessel under construction fills the frame, gantry lights above, sparks of welding far off. Thin cyan holographic measurement lines trace the hull curvature. Cinematic photoreal 3D render. Deep navy-black environment, volumetric haze, cyan and magenta rim light, glowing translucent holographic data overlays with thin cyan linework. Shallow depth of field, anamorphic highlights, 24mm wide lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "A shipbuilding dry dock at night. The vast steel hull of a vessel under construction fills the frame, gantry lights above. Thin blue holographic measurement lines trace the hull curvature. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
       "2k"
-    ],
-    "jobId": "ad77765e-86c2-4d00-bb5e-de05b69e011b",
-    "status": "done"
+    ]
   },
   {
-    "slug": "port_crane_v",
-    "model": "kling3_0_turbo",
-    "kind": "video",
-    "width": 1280,
+    "slug": "campus_night",
+    "model": "nano_banana_pro",
+    "kind": "image",
     "args": [
       "--prompt",
-      "Extremely slow cinematic dolly forward down the container lane. The gantry crane lowers its container a little. Cyan holographic route lines drift and pulse gently. Camera motion only, no cuts, no new objects, no text.",
-      "--start-image",
-      "assets/raw/port_crane.png",
+      "A modern university engineering building at blue hour seen from the courtyard. Glass facade glowing from within, long horizontal window bands, a broad empty plaza in front, low mist. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
-      "1080p",
-      "--duration",
-      "5"
-    ],
-    "jobId": "13897891-4a41-41bf-9f8d-a91ce75bf149",
-    "status": "done"
+      "2k"
+    ]
   },
   {
-    "slug": "gpu_rack_v",
-    "model": "kling3_0_turbo",
-    "kind": "video",
-    "width": 1280,
+    "slug": "studio_team",
+    "model": "nano_banana_pro",
+    "kind": "image",
     "args": [
       "--prompt",
-      "Extremely slow cinematic dolly forward down the cold aisle. Cyan status indicators blink softly in sequence; the fiber strands shimmer. Camera motion only, no cuts, no new objects, no text.",
-      "--start-image",
-      "assets/raw/gpu_rack.png",
+      "Four graduate students seen entirely from behind, standing at a large wall-mounted display in a dark studio, gesturing at an abstract blue network diagram. Backs only, no faces. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
-      "1080p",
-      "--duration",
-      "5"
-    ],
-    "jobId": "8bf41dba-63f7-4d73-8e28-91ae8303090c",
-    "status": "done"
+      "2k"
+    ]
   },
   {
-    "slug": "lecture_v",
-    "model": "kling3_0_turbo",
-    "kind": "video",
-    "width": 1280,
+    "slug": "data_wall",
+    "model": "nano_banana_pro",
+    "kind": "image",
     "args": [
       "--prompt",
-      "Extremely slow cinematic push in toward the display from the back of the hall. The abstract cyan visualisation on the screen drifts and morphs slowly. Students stay seated and still, seen from behind. No cuts, no new objects, no text.",
-      "--start-image",
-      "assets/raw/lecture.png",
+      "A vast wall of abstract blue data visualisation filling the frame — flowing line charts, scatter fields and slowly drifting node graphs rendered as glowing volumetric light in a dark room. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
-      "1080p",
-      "--duration",
-      "5"
-    ],
-    "jobId": "ccaac95d-98bd-4d00-bfb4-47b1aed122e5",
-    "status": "done"
+      "2k"
+    ]
   },
   {
-    "slug": "shipyard_v",
-    "model": "kling3_0_turbo",
-    "kind": "video",
-    "width": 1280,
+    "slug": "roadmap_path",
+    "model": "nano_banana_pro",
+    "kind": "image",
     "args": [
       "--prompt",
-      "Extremely slow cinematic dolly along the hull. Distant welding sparks flicker; cyan measurement lines trace slowly along the curvature. Camera motion only, no cuts, no new objects, no text.",
-      "--start-image",
-      "assets/raw/shipyard.png",
+      "An abstract wide shot of a single luminous blue path receding into deep haze, with five glowing waypoint markers spaced along it, each slightly larger than the last. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
-      "1080p",
-      "--duration",
-      "5"
-    ],
-    "jobId": "b10d563e-f798-4718-8aae-f91cc5ea4d1b",
-    "status": "done"
+      "2k"
+    ]
   }
 ]
