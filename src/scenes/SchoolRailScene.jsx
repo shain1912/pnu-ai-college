@@ -90,6 +90,30 @@ export default function SchoolRailScene() {
     }
   }, [driven])
 
+  /*
+   * 탭으로 카드에 초점이 갔을 때 그 카드가 보이는 자리로 페이지를 옮긴다.
+   *
+   * 데스크톱 레일은 overflow-hidden 위에 transform 을 얹은 구조라, 초점이 밀려난
+   * 카드로 가도 브라우저가 화면 안으로 끌어올 방법이 없다 — 스크롤 컨테이너가
+   * 아니고 transform 은 페이지 스크롤이 굴리기 때문이다. 키보드로만 다니면
+   * 세 번째 카드에 초점이 있는데 화면에는 아무 표시도 안 보인다.
+   *
+   * shift = 진행률 x 넘침 이므로 역으로 필요한 진행률을 구해 페이지 스크롤을
+   * 정한다. 터치·동작 줄이기 쪽은 진짜 스크롤 컨테이너라 브라우저가 알아서 한다.
+   */
+  const revealOnFocus = (event) => {
+    if (!driven) return
+    const card = event.target.closest('li')
+    const rail = railRef.current
+    const root = rootRef.current
+    if (!card || !rail || !root) return
+    const overflow = Math.max(0, rail.scrollWidth - rail.clientWidth)
+    const range = root.offsetHeight - window.innerHeight
+    if (!overflow || range <= 0) return
+    const need = clamp(card.offsetLeft - 24, 0, overflow) / overflow
+    window.scrollTo({ top: root.offsetTop + need * range, behavior: 'instant' })
+  }
+
   return (
     <section
       ref={rootRef}
@@ -115,6 +139,7 @@ export default function SchoolRailScene() {
          */}
         <div
           ref={railRef}
+          onFocusCapture={revealOnFocus}
           className={`mt-10 md:mt-12 ${
             driven ? 'overflow-hidden' : 'snap-x snap-mandatory scroll-pl-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
           }`}
