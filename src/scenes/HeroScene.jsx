@@ -240,15 +240,15 @@ export default function HeroScene() {
                       {chapter.body}
                     </p>
                     {chapter.meta && <p className="mt-3 text-[13px] font-semibold text-white/55">{chapter.meta}</p>}
+                    {/*
+                     * 두 버튼 다 라벨과 목적지가 어긋나 있었다. 첫 버튼은
+                     * 「한눈에 보기」라고 적혀 있으면서 /ai-college 로 갔고,
+                     * 둘째는 #adpx 를 가리키는데 홈에는 그런 요소가 없다
+                     * (ADP+X 절은 /ai-college 에 있다). 홈 상단의 3열 바로
+                     * 가기를 걷어내면서 이 히어로가 AI대학 페이지로 가는
+                     * 유일한 입구가 됐으니 라벨을 목적지에 맞춘다.
+                     */}
                     {chapter.cta && (
-                      {/*
-                       * 두 버튼 다 라벨과 목적지가 어긋나 있었다. 첫 버튼은
-                       * 「한눈에 보기」라고 적혀 있으면서 /ai-college 로 갔고,
-                       * 둘째는 #adpx 를 가리키는데 홈에는 그런 요소가 없다
-                       * (ADP+X 절은 /ai-college 에 있다). 홈 상단의 3열 바로
-                       * 가기를 걷어내면서 이 히어로가 AI대학 페이지로 가는
-                       * 유일한 입구가 됐으니 라벨을 목적지에 맞춘다.
-                       */}
                       <div className="mt-7 flex flex-wrap items-center gap-4">
                         <Link
                           to="/ai-college"
