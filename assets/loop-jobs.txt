@@ -1,8 +1,14 @@
 axis_a|f801ac5b-5ad5-4580-a2c5-f1896453890e
 axis_d|9ebc9022-916f-488c-b524-d25f15408ae7
-axis_p|2ceda961-5d47-4cb3-8554-a8e547b336b5
 axis_x|318cd1fa-a02e-46c0-981b-9d32ba30677c
-axis_stat|29009f28-1339-4cf2-89a8-063210c6f5b8
 why_converge|db61e5fc-a14b-4fd4-865e-49c016cccae7
 infra_gpu|46099690-700b-4f00-9b43-cb6ca4a187de
-roadmap_path|55a09710-46ac-44b3-a250-1a05788c5d34
+axis_p|4870d3d8-1647-40f8-98aa-eb4c52fc583d
+axis_stat|8f5f2932-596e-4a87-afe2-07a77d7a065a
+roadmap_path|4acf462a-f13b-43d6-94be-0c8d1c435d11
+apex|5e0fb68f-b585-4370-b32e-559662ed45a1
+chain|b4d11cea-f6cb-4ce7-8011-1a8125088c3b
+schools|f1fcbb8f-65e7-4325-b696-5d3a99ba647a
+governance|a7ebed2f-54ca-4a3d-afb3-19c51a2e9ed6
+programs|1a7d668c-0c0d-420a-bc4a-09e44c37817b
+partners|6c8159c0-1faf-413d-9463-bd291a5bda7d
