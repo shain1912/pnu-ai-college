@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import HeroScene from '../scenes/HeroScene'
 import FactSheetScene from '../scenes/FactSheetScene'
+import BreatherScene from '../scenes/BreatherScene'
 import SchoolRailScene from '../scenes/SchoolRailScene'
 import ImpactScene from '../scenes/ImpactScene'
 
@@ -15,6 +16,8 @@ export default function Home() {
       <HeroScene />
 
       <FactSheetScene />
+
+      <BreatherScene />
 
       <SchoolRailScene />
 

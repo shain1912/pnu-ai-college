@@ -121,7 +121,7 @@ export default function FactSheetScene() {
       </div>
 
       {/* 표 — 세 묶음, 전부 또렷하게 */}
-      <section className="band bg-canvas">
+      <section className="bg-canvas pb-8 pt-20 md:pt-28 lg:pt-40">
         <div className="edge">
           {GROUPS.map((group) => (
             <div
