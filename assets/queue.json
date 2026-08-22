@@ -70,6 +70,80 @@
       "--resolution",
       "2k"
     ],
-    "jobId": "ad77765e-86c2-4d00-bb5e-de05b69e011b"
+    "jobId": "ad77765e-86c2-4d00-bb5e-de05b69e011b",
+    "status": "done"
+  },
+  {
+    "slug": "port_crane_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic dolly forward down the container lane. The gantry crane lowers its container a little. Cyan holographic route lines drift and pulse gently. Camera motion only, no cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/port_crane.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "13897891-4a41-41bf-9f8d-a91ce75bf149"
+  },
+  {
+    "slug": "gpu_rack_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic dolly forward down the cold aisle. Cyan status indicators blink softly in sequence; the fiber strands shimmer. Camera motion only, no cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/gpu_rack.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ]
+  },
+  {
+    "slug": "lecture_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic push in toward the display from the back of the hall. The abstract cyan visualisation on the screen drifts and morphs slowly. Students stay seated and still, seen from behind. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/lecture.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ]
+  },
+  {
+    "slug": "shipyard_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic dolly along the hull. Distant welding sparks flicker; cyan measurement lines trace slowly along the curvature. Camera motion only, no cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/shipyard.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ]
   }
 ]
