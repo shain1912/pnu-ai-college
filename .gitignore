@@ -19,3 +19,8 @@ docs/*.pdf
 
 *.log
 .DS_Store
+
+# Throwaway probes from analysis runs
+_probe*.mjs
+scratch-*.mjs
+scripts/_*.mjs
