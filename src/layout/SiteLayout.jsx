@@ -101,7 +101,34 @@ function Footer() {
           </nav>
         </div>
 
+        {/*
+         * CORE.md 가 요구한 세 관문 중 둘. 홈 상단의 3열 카드로 있었는데
+         * 클라이언트가 그 블록을 걷어내라고 해서 링크만 여기로 옮겼다.
+         * 둘 다 이미 arise-ai.pusan.ac.kr 에 있는 페이지라 다시 만들지 않고
+         * 어디로 가는지 밝히고 넘긴다.
+         */}
         <div className="mt-12 border-t border-line pt-8">
+          <p className="text-[13px] font-semibold text-ink-subtle">함께 보기</p>
+          <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+            {[
+              { href: 'https://arise-ai.pusan.ac.kr/bymonolog', label: 'A.U.R.A 마스터플랜 및 데이터룸' },
+              { href: 'https://arise-ai.pusan.ac.kr/', label: 'PNU × Google for Education' },
+            ].map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[14px] font-medium text-ink-muted underline underline-offset-4 transition-colors hover:text-brand"
+                >
+                  {item.label} ↗<span className="sr-only">새 창에서 열려요</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-10 border-t border-line pt-8">
           <div className="space-y-3 text-[13px] leading-[1.7] text-ink-faint">
             <p>
               <strong className="font-semibold text-ink-subtle">승인 전 계획안입니다.</strong>{' '}

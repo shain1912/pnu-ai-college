@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import { SUMMARY } from '../data/content'
 import { asset } from '../lib/asset'
 import { useReducedMotion } from '../hooks/useMedia'
@@ -6,188 +5,149 @@ import { useReducedMotion } from '../hooks/useMedia'
 /*
  * ── toss 출처 기록 ────────────────────────────────────────────────────────
  *
- * [구조 1] 정보 구간 앞에 화면을 채우는 선언 한 장을 둔다
- *   toss 씬        : §2-8 온·오프라인 결제 인터스티셜
- *   캡처 파일       : assets/gap/home.jpg 행 3 (toss 열)
- *   원본에서 본 것  : 다른 요소가 거의 없는 화면에 "온오프라인 경계 없이" 한
- *                    문장만 크게 놓인다. 밀도 높은 구간 사이의 숨 쉬는 화면이다.
- *   바꾼 것과 이유  : toss 는 검정 배경, 우리는 브랜드 블루. 국립대 페이지에
- *                    검정 인터스티셜은 톤이 맞지 않는다.
+ * [숨 쉬는 화면] 밀도 높은 구간 앞에 문장 하나만 놓인 화면을 둔다
+ *   toss 씬        : §2-8 「온오프라인 경계 없이」
+ *   캡처 파일       : assets/motion/toss-rail-sheet2.jpg 프레임 014
+ *   원본에서 본 것  : 흰 화면에 검은 오브젝트 하나와 문장 하나뿐이다. 다른
+ *                    요소가 없다. 앞뒤가 빽빽해서 이 화면이 쉬는 자리가 된다.
+ *   바꾼 것과 이유  : toss 는 오브젝트를 놓지만 우리는 숫자를 놓는다. 424 는
+ *                    이 페이지에서 가장 강한 증거인데 표의 한 행에 묻혀 있었다.
  *   근거 강도       : 직접관찰(프레임)
  *
- * [구조 2] 무대는 고정하고 항목만 교체한다
- *   toss 씬        : §2-2 자산관리 / 3D 폰 렌더
- *   캡처 파일       : assets/motion/toss-scroll-64-120-sheet1.jpg 프레임 009~012
- *   원본에서 본 것  : 폰 렌더가 화면 오른쪽 같은 자리에 고정된 채, 왼쪽 카피만
- *                    단계적으로 바뀐다. 스크롤해도 무대는 움직이지 않는다.
- *   그대로 가져온 것: 한쪽을 sticky 로 고정하고 반대쪽 목록이 지나가는 배치,
- *                    그리고 현재 항목만 선명하고 나머지는 물러나는 처리
- *   바꾼 것과 이유  : toss 는 제품 목업을 고정하지만 우리는 유리 오브젝트를
- *                    고정한다. 우리에게는 보여줄 제품 화면이 없다.
+ * [큰 숫자 밑 작은 숫자 줄] 헤드라인 숫자 아래 내역을 한 줄로 깐다
+ *   toss 씬        : Toss Ads 「토스의 3,000만 고객이 내 고객이 될 때까지」
+ *   캡처 파일       : assets/motion/toss-rail-move.jpg (0.530 프레임)
+ *   원본에서 본 것  : 큰 문장 아래 날짜·지표·데이터 종류가 작은 글씨로 가로
+ *                    한 줄에 늘어서 있다. 큰 숫자의 근거를 같은 화면에서 받는다.
  *   근거 강도       : 직접관찰(프레임)
  *
- * [숫자 취급] 424 가 화면 하나를 받는다
- *   toss 씬        : 대응 없음 — 우리 고유
- *   이유           : toss 는 스펙 표가 없는 제품 사이트라 대응할 챕터가 없다.
- *                    424 는 이 페이지에서 가장 강한 증거인데 표의 한 행으로
- *                    묻혀 있었다.
+ * [전면 이미지 띠] 정보 구간 사이에 글자 없는 이미지를 통으로 넣는다
+ *   toss 씬        : 제품 사진 구간
+ *   캡처 파일       : assets/motion/toss-rail-sheet2.jpg 프레임 015~018
+ *   원본에서 본 것  : 화면을 꽉 채운 사진 위에 문구가 왼쪽 아래에만 있고,
+ *                    사진이 한 장면을 통째로 차지한다.
+ *   바꾼 것과 이유  : 우리는 문구까지 뺐다. 앞이 숫자, 뒤가 표라 글자가 연달아
+ *                    세 번 나오면 읽히지 않는다.
  *
- * ── 영상 ──────────────────────────────────────────────────────────────
- * /video/schools, /video/apex — Higgsfield 생성. toss 영상 연출 참조는 없다.
+ * ── 이전 버전에서 걷어낸 것 ──────────────────────────────────────────────
+ * 1. 평평한 파란 사각형 + 엠블럼 워터마크. 히어로는 여백을 둔 둥근 카드인데
+ *    이건 각진 전면 사각형이라 기하가 충돌했다. 파란 면 자체도 빈 판이었다.
+ * 2. 읽고 있지 않은 행을 0.4 로 죽이던 처리. 여덟 줄 중 일곱 줄이 회색이라
+ *    강조가 아니라 로드 실패로 보였다. toss 는 본문을 죽이지 않는다.
+ * 3. 왼쪽에 고정하던 정사각 영상. 오른쪽 표가 훨씬 길어 영상 아래로 빈 공간이
+ *    화면 절반 넘게 남았다.
+ * 4. 제목 「부산대학교 AI대학」. 사이트 이름이지 절 제목이 아니고, 고정 내비에
+ *    걸려 잘렸다. 묶음 제목 셋으로 대신한다.
+ * ────────────────────────────────────────────────────────────────────────
  */
 
-const STAGE = [
-  { slug: 'schools', keys: ['출범', '입학정원', '모집단위'] },
-  { slug: 'apex', keys: ['대학이 밝힌 구성', '설계 원칙', '운영 체계'] },
-  { slug: 'infra_gpu', keys: ['핵심 인프라', '2027학년도 수시 원서접수'] },
+/** 424 를 이루는 네 모집단위. 큰 숫자 바로 밑에서 근거를 받는다. */
+const BREAKDOWN = [
+  { n: 214, label: 'AI컴퓨터공학부' },
+  { n: 114, label: '데이터사이언스학부 · 통계학과' },
+  { n: 69, label: '산업공학부' },
+  { n: 27, label: 'AX융합학부' },
 ]
 
-const stageFor = (key) => {
-  const i = STAGE.findIndex((s) => s.keys.some((k) => key.startsWith(k)))
-  return i === -1 ? 0 : i
-}
+/*
+ * 여덟 줄을 세 묶음으로 나눈다. 한 줄씩 나열하면 무엇이 규모고 무엇이 구조인지
+ * 구분이 없어 전부 같은 무게로 읽힌다. content.js 의 키를 참조해 문구가 바뀌어도
+ * 여기서 다시 적지 않는다.
+ */
+const GROUPS = [
+  { title: '규모', keys: ['출범', '입학정원', '모집단위'] },
+  { title: '구조', keys: ['대학이 밝힌 구성', '설계 원칙', '운영 체계'] },
+  { title: '준비 상황', keys: ['핵심 인프라', '2027학년도 수시 원서접수'] },
+]
+
+const rowsOf = (group) => SUMMARY.rows.filter((row) => group.keys.some((key) => row.k.startsWith(key)))
 
 export default function FactSheetScene() {
   const reduced = useReducedMotion()
-  const rowRefs = useRef([])
-  const [current, setCurrent] = useState(0)
-
-  /*
-   * The stage follows whichever row is nearest the middle of the viewport.
-   * Reading position, not scroll percentage — the rows are uneven heights and a
-   * percentage would swap the object while the reader is still on the row that
-   * belongs to the previous one.
-   */
-  useEffect(() => {
-    if (reduced) return
-    let frame = 0
-    const update = () => {
-      frame = 0
-      const mid = window.innerHeight / 2
-      let best = 0
-      let bestDist = Infinity
-      rowRefs.current.forEach((el, i) => {
-        if (!el) return
-        const r = el.getBoundingClientRect()
-        const d = Math.abs(r.top + r.height / 2 - mid)
-        if (d < bestDist) {
-          bestDist = d
-          best = i
-        }
-      })
-      setCurrent(best)
-    }
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update)
-    }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      if (frame) cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-    }
-  }, [reduced])
-
-  const activeStage = stageFor(SUMMARY.rows[current]?.k ?? '')
 
   return (
     <>
-      {/* the breathing screen before the dense part */}
-      <section id="summary" className="relative overflow-hidden bg-brand-strong">
-        <div className="edge flex min-h-[78svh] flex-col justify-center py-24">
-          <p className="text-[15px] font-semibold text-blue-100">한눈에 보기</p>
+      {/* 쉬는 화면 — 숫자 하나와 그 내역만 */}
+      <section id="summary" className="scroll-mt-24 bg-canvas">
+        <div className="edge flex min-h-[82svh] flex-col justify-center py-24">
+          <p className="text-[15px] font-semibold text-brand">{SUMMARY.eyebrow}</p>
 
-          <p className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-2">
-            <span className="text-[clamp(4.5rem,15vw,11rem)] font-extrabold leading-[0.9] tracking-[-0.04em] text-white">
+          <p className="mt-8 flex items-baseline gap-3">
+            <span className="text-[clamp(5rem,17vw,13rem)] font-extrabold leading-[0.86] tracking-[-0.045em] text-ink">
               424
             </span>
-            <span className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold text-blue-100">명</span>
+            <span className="text-[clamp(1.75rem,4vw,3rem)] font-bold text-ink-subtle">명</span>
           </p>
 
-          <p className="mt-8 max-w-[34rem] text-[clamp(1.25rem,2.6vw,1.75rem)] font-bold leading-[1.45] text-white">
+          <p className="mt-10 max-w-[30rem] text-[clamp(1.375rem,2.8vw,2rem)] font-bold leading-[1.4] text-ink">
             대학이 밝힌 국내 최대 규모의 AI 단과대학이에요.
           </p>
-          <p className="mt-4 max-w-[32rem] text-[16px] leading-[1.7] text-blue-50">
-            AI컴퓨터공학부 214명, 데이터사이언스학부·통계학과 114명, 산업공학부 69명,
-            AX융합학부 27명을 더한 숫자예요.
-          </p>
-        </div>
 
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -bottom-8 -right-8 h-[58%] w-[58%] max-w-[560px] opacity-70 mix-blend-screen"
-        >
-          <img
-            src={asset('img/emblem@2x.webp')}
-            alt=""
-            className="h-full w-full object-contain object-bottom"
-          />
+          <ul className="mt-14 grid gap-x-10 gap-y-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
+            {BREAKDOWN.map((item) => (
+              <li key={item.label}>
+                <p className="text-[clamp(1.75rem,3vw,2.25rem)] font-extrabold leading-none tracking-[-0.02em] text-ink">
+                  {item.n}
+                  <span className="ml-1 text-[15px] font-bold text-ink-faint">명</span>
+                </p>
+                <p className="mt-2.5 text-[14px] font-medium leading-[1.5] text-ink-subtle">{item.label}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* stage holds on the left, the facts move past it on the right */}
-      <section className="bg-canvas py-20 md:py-28">
-        <div className="edge">
-          <h2 className="h2 text-ink">{SUMMARY.title}</h2>
+      {/* 글자 없는 이미지 한 장. 앞은 숫자, 뒤는 표라 사이에 눈이 쉴 자리를 둔다. */}
+      <div className="px-[10px] md:px-5">
+        <div className="relative aspect-[16/7] overflow-hidden rounded-[18px] bg-[#0a0a14] md:aspect-[21/7] md:rounded-[28px]">
+          {reduced ? (
+            <img src={asset('img/band_lab@2x.webp')} alt="" className="h-full w-full object-cover" />
+          ) : (
+            <video
+              aria-hidden="true"
+              className="h-full w-full object-cover"
+              poster={asset('img/band_lab@2x.webp')}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            >
+              <source src={asset('video/band_lab.webm')} type="video/webm" />
+              <source src={asset('video/band_lab.mp4')} type="video/mp4" />
+            </video>
+          )}
+        </div>
+      </div>
 
-          <div className="mt-12 md:mt-16 md:grid md:grid-cols-[minmax(0,420px)_1fr] md:items-start md:gap-16">
-            <div className="hidden md:block md:sticky md:top-32">
-              <div className="relative aspect-square overflow-hidden rounded-[--radius-xl] bg-[#0a0a14]">
-                {STAGE.map((s, i) => (
-                  <div
-                    key={s.slug}
-                    aria-hidden="true"
-                    className="absolute inset-0 transition-[opacity,filter] duration-[600ms] ease-[--ease-enter]"
-                    style={{
-                      opacity: i === activeStage ? 1 : 0,
-                      filter: i === activeStage ? 'blur(0px)' : 'blur(12px)',
-                    }}
-                  >
-                    {reduced ? (
-                      <img
-                        src={asset(`img/${s.slug}@2x.webp`)}
-                        alt=""
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <video
-                        className="h-full w-full object-cover"
-                        poster={asset(`img/${s.slug}@2x.webp`)}
-                        autoPlay={i === activeStage}
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                      >
-                        <source src={asset(`video/${s.slug}.webm`)} type="video/webm" />
-                        <source src={asset(`video/${s.slug}.mp4`)} type="video/mp4" />
-                      </video>
-                    )}
+      {/* 표 — 세 묶음, 전부 또렷하게 */}
+      <section className="band bg-canvas">
+        <div className="edge">
+          {GROUPS.map((group) => (
+            <div
+              key={group.title}
+              className="grid gap-6 border-t border-line py-10 md:grid-cols-[minmax(0,200px)_1fr] md:gap-12 md:py-14"
+            >
+              <h3 className="text-[clamp(1.25rem,2vw,1.5rem)] font-bold tracking-[-0.015em] text-ink">
+                {group.title}
+              </h3>
+
+              <dl className="grid gap-8 md:gap-10">
+                {rowsOf(group).map((row) => (
+                  <div key={row.k} className="grid gap-2 sm:grid-cols-[minmax(0,148px)_1fr] sm:gap-6">
+                    <dt className="text-[14px] font-semibold leading-[1.5] text-ink-faint">{row.k}</dt>
+                    <dd className="text-[clamp(1.0625rem,1.5vw,1.25rem)] font-bold leading-[1.5] text-ink">
+                      {row.v}
+                    </dd>
                   </div>
                 ))}
-              </div>
+              </dl>
             </div>
+          ))}
 
-            <dl className="border-t border-line">
-              {SUMMARY.rows.map((row, i) => (
-                <div
-                  key={row.k}
-                  ref={(el) => (rowRefs.current[i] = el)}
-                  className="border-b border-line py-8 transition-opacity duration-[--dur-base] md:py-10"
-                  style={{ opacity: reduced || i === current ? 1 : 0.4 }}
-                >
-                  <dt className="text-[14px] font-bold text-brand">{row.k}</dt>
-                  <dd className="mt-3 text-[20px] font-bold leading-[1.45] text-ink md:text-[24px]">
-                    {row.v}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <p className="mt-10 text-[14px] leading-[1.7] text-ink-faint">{SUMMARY.note}</p>
+          <p className="mt-10 border-t border-line pt-8 text-[14px] leading-[1.7] text-ink-faint">
+            {SUMMARY.note}
+          </p>
         </div>
       </section>
     </>
