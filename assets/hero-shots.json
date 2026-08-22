@@ -33,5 +33,10 @@
     "kind": "image",
     "jobId": "305a6b26-5ed3-4c29-8310-f40734ab0dc2",
     "args": ["--prompt", "Wide premium 3D editorial render for a Korean national university AI college hero. Clean modular grid of floating angular translucent frosted-glass panels and geometric interface blocks assembled in mid-air, four subtly distinct clusters converging toward one central composition, Bauhaus-inspired balance and elegant negative space. Warm-white seamless studio, soft contact shadows, restrained Pusan blue #3182F6 accents, high-key daylight from upper left, subtle reflections and refraction, precise institutional product-render finish. No text, no letters, no numbers, no buttons, no UI labels, no logo, no symbol, no watermark, no people, no dark background, no neon cyan.", "--aspect-ratio", "16:9", "--resolution", "2k"]
-  }
+  },
+  {"slug":"hero_s1","model":"kling3_0_turbo","kind":"video","jobId":"537c9e37-cb2b-43af-be63-66c11848a7d3","args":[]},
+  {"slug":"hero_s2","model":"seedance_2_5","kind":"video","jobId":"22f05751-5427-4512-b3e8-fd2ec39bd9f3","args":[]},
+  {"slug":"hero_s3","model":"seedance_2_5","kind":"video","jobId":"b3592b28-8fb7-433a-b8a4-5164022f7ae1","args":[]},
+  {"slug":"hero_s4","model":"kling3_0_turbo","kind":"video","jobId":"66e729d9-b9d0-4292-8e3f-5aac411c92dc","args":[]},
+  {"slug":"hero_s5","model":"kling3_0_turbo","kind":"video","jobId":"fbb6fe57-4e0d-46aa-8711-db59608c34e6","args":[]}
 ]
