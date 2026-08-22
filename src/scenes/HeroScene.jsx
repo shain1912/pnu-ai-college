@@ -46,7 +46,7 @@ const WINDOWS = { D: [2.05, 3.15], A: [3.5, 4.2], X: [5.8, 6.5], P: [6.8, 7.75] 
 const CHAPTERS = [
   {
     id: 'intro',
-    at: [0.1, 1.55],
+    at: [0, 1.55],
     eyebrow: HERO.badge,
     title: HERO.headline.join('\n'),
     body: HERO.sub,
@@ -149,7 +149,9 @@ export default function HeroScene() {
       style={{ height: reduced ? 'auto' : '700svh' }}
     >
       <div className="sticky top-16 px-[10px] pb-[10px] md:top-[72px] md:px-5 md:pb-5">
-        <div className="relative h-[calc(100svh-84px)] overflow-hidden rounded-[18px] bg-[#0a0a14] md:h-[calc(100svh-96px)] md:rounded-[28px]">
+        <div className="relative h-[calc(100svh-84px)] overflow-hidden rounded-[18px] bg-[#0a0a14] bg-cover bg-center md:h-[calc(100svh-96px)] md:rounded-[28px]"
+          style={{ backgroundImage: `url(${asset('img/hero_reel@2x.webp')})` }}
+        >
           {reduced ? (
             <img src={asset('img/hero_reel@2x.webp')} alt="" className="h-full w-full object-cover" />
           ) : (
