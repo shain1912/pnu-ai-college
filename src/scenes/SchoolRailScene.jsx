@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SCHOOLS, D_AXIS_SEATS, facultyOf } from '../data/schools'
 import { useIsMobile, useIsTouch, useReducedMotion } from '../hooks/useMedia'
-import { asset } from '../lib/asset'
+import SceneVideo from '../components/SceneVideo'
 
 /*
  * ── toss 출처 기록 ──────────────────────────────────────────────────────────
@@ -130,29 +130,7 @@ export default function SchoolRailScene() {
                   className="card group flex h-full flex-col overflow-hidden p-0"
                 >
                   <span className="relative block aspect-[4/3] overflow-hidden bg-[#0a0a14]">
-                    {reduced ? (
-                      <img
-                        src={asset(`img/${school.image}@2x.webp`)}
-                        alt=""
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ) : (
-                      <video
-                        className="h-full w-full object-cover"
-                        poster={asset(`img/${school.image}@2x.webp`)}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                        aria-hidden="true"
-                      >
-                        <source src={asset(`video/${school.image}.webm`)} type="video/webm" />
-                        <source src={asset(`video/${school.image}.mp4`)} type="video/mp4" />
-                      </video>
-                    )}
+                    <SceneVideo slug={school.image} className="h-full w-full object-cover" />
                     <span className="absolute left-3 top-3 rounded-[--radius-sm] bg-white/90 px-2 py-1 text-[12px] font-bold text-ink">
                       {school.axis} · {school.axisName}
                     </span>

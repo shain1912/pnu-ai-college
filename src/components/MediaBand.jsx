@@ -1,5 +1,4 @@
-import { asset } from '../lib/asset'
-import { useReducedMotion } from '../hooks/useMedia'
+import SceneVideo from './SceneVideo'
 
 /**
  * 글자 없는 전면 이미지 띠.
@@ -17,30 +16,10 @@ import { useReducedMotion } from '../hooks/useMedia'
  * 길도 무엇인지 알아볼 수 없는 조각이 된다. 손안에서는 3:2 로 세워 둔다.
  */
 export default function MediaBand({ slug, ratio = 'aspect-[3/2] sm:aspect-[16/7] md:aspect-[21/7]', alt = '' }) {
-  const reduced = useReducedMotion()
-  const poster = asset(`img/${slug}@2x.webp`)
-
   return (
     <div className="px-[10px] md:px-5">
       <div className={`relative overflow-hidden rounded-[18px] bg-[#0a0a14] md:rounded-[28px] ${ratio}`}>
-        {reduced ? (
-          <img src={poster} alt={alt} className="h-full w-full object-cover" loading="lazy" decoding="async" />
-        ) : (
-          <video
-            className="h-full w-full object-cover"
-            poster={poster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label={alt || undefined}
-            aria-hidden={alt ? undefined : 'true'}
-          >
-            <source src={asset(`video/${slug}.webm`)} type="video/webm" />
-            <source src={asset(`video/${slug}.mp4`)} type="video/mp4" />
-          </video>
-        )}
+        <SceneVideo slug={slug} alt={alt} className="h-full w-full object-cover" />
       </div>
     </div>
   )

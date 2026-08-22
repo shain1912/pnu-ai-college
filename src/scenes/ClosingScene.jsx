@@ -1,5 +1,4 @@
-import { asset } from '../lib/asset'
-import { useReducedMotion } from '../hooks/useMedia'
+import SceneVideo from '../components/SceneVideo'
 
 /*
  * ── toss 출처 기록 ────────────────────────────────────────────────────────
@@ -22,34 +21,11 @@ import { useReducedMotion } from '../hooks/useMedia'
  */
 
 export default function ClosingScene() {
-  const reduced = useReducedMotion()
 
   return (
     <section className="relative isolate overflow-hidden bg-[#0a0a14]" aria-labelledby="closing-title">
       <div className="absolute inset-0">
-        {reduced ? (
-          <img
-            src={asset('img/lecture_v@2x.webp')}
-            alt=""
-            className="h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <video
-            aria-hidden="true"
-            className="h-full w-full object-cover"
-            poster={asset('img/lecture_v@2x.webp')}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          >
-            <source src={asset('video/lecture_v.webm')} type="video/webm" />
-            <source src={asset('video/lecture_v.mp4')} type="video/mp4" />
-          </video>
-        )}
+        <SceneVideo slug="lecture_v" className="h-full w-full object-cover" />
       </div>
 
       <div aria-hidden="true" className="absolute inset-0 bg-[#05050c]/65" />

@@ -1,56 +1,12 @@
-import { useReducedMotion } from '../hooks/useMedia'
-import { asset } from '../lib/asset'
+import SceneVideo from './SceneVideo'
 
 /**
- * A generated object rendered as its five-second loop, falling back to the
- * still it was generated from.
+ * 생성된 오브젝트를 5초 루프로, 안 되면 같은 프레임의 정지컷으로 보여준다.
  *
- * Every object in the set ships as both a webm/mp4 loop and a poster webp. The
- * still is not a placeholder — it is the same frame, so a viewer who blocks
- * autoplay, is on a slow connection, or has reduced motion turned on sees the
- * identical composition rather than an empty box.
+ * 22회차에 SceneVideo 로 속을 갈았다. 그전에는 autoPlay + preload="metadata" 라
+ * 문서에 있기만 하면 화면 밖이어도 곧바로 받아왔다. 이제 뷰포트에 닿기 한 화면
+ * 앞에서 받는다. 바깥에서 쓰는 방식은 그대로다.
  */
-export default function LoopMedia({
-  slug,
-  alt = '',
-  className = '',
-  width,
-  height,
-  eager = false,
-}) {
-  const reduced = useReducedMotion()
-  const poster = asset(`img/${slug}@2x.webp`)
-
-  if (reduced) {
-    return (
-      <img
-        src={poster}
-        alt={alt}
-        width={width}
-        height={height}
-        className={className}
-        loading={eager ? 'eager' : 'lazy'}
-        decoding="async"
-      />
-    )
-  }
-
-  return (
-    <video
-      className={className}
-      poster={poster}
-      width={width}
-      height={height}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload={eager ? 'auto' : 'metadata'}
-      aria-label={alt || undefined}
-      aria-hidden={alt ? undefined : 'true'}
-    >
-      <source src={asset(`video/${slug}.webm`)} type="video/webm" />
-      <source src={asset(`video/${slug}.mp4`)} type="video/mp4" />
-    </video>
-  )
+export default function LoopMedia({ slug, alt = '', className = '', eager = false }) {
+  return <SceneVideo slug={slug} alt={alt} className={className} eager={eager} />
 }

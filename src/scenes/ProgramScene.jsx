@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { PROGRAMS } from '../data/content'
-import { asset } from '../lib/asset'
 import { useReducedMotion } from '../hooks/useMedia'
+import SceneVideo from '../components/SceneVideo'
 
 /*
  * ── toss 출처 기록 ────────────────────────────────────────────────────────
@@ -100,29 +100,12 @@ export default function ProgramScene() {
                     filter: index === active ? 'blur(0px)' : 'blur(14px)',
                   }}
                 >
-                  {reduced ? (
-                    <img
-                      src={asset(`img/${MEDIA[index]}@2x.webp`)}
-                      alt={ALT[index]}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <video
-                      className="h-full w-full object-cover"
-                      poster={asset(`img/${MEDIA[index]}@2x.webp`)}
-                      autoPlay={index === active}
-                      muted
-                      loop
-                      playsInline
-                      preload={index === 0 ? 'metadata' : 'none'}
-                      aria-label={ALT[index]}
-                    >
-                      <source src={asset(`video/${MEDIA[index]}.webm`)} type="video/webm" />
-                      <source src={asset(`video/${MEDIA[index]}.mp4`)} type="video/mp4" />
-                    </video>
-                  )}
+                  <SceneVideo
+                    slug={MEDIA[index]}
+                    alt={ALT[index]}
+                    className="h-full w-full object-cover"
+                    play={index === active}
+                  />
                 </div>
               ))}
             </div>

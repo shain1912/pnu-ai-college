@@ -1,6 +1,5 @@
 import { PARTNERS } from '../data/content'
-import { asset } from '../lib/asset'
-import { useReducedMotion } from '../hooks/useMedia'
+import SceneVideo from '../components/SceneVideo'
 
 /*
  * ── 왜 이 절이 필요했나 ──────────────────────────────────────────────────
@@ -24,37 +23,13 @@ import { useReducedMotion } from '../hooks/useMedia'
  */
 
 export default function PartnerScene() {
-  const reduced = useReducedMotion()
   const alt =
     '밤의 임해 산업도시를 높은 곳에서 내려다본 화면. 공장과 항만 크레인, 사무동이 안개 속으로 물러나고 건물 사이를 파란 선이 잇는다.'
 
   return (
     <section className="relative isolate overflow-hidden bg-[#0a0a14]" aria-labelledby="partners-title">
       <div className="absolute inset-0">
-        {reduced ? (
-          <img
-            src={asset('img/industry_night_v@2x.webp')}
-            alt=""
-            className="h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        ) : (
-          <video
-            aria-hidden="true"
-            className="h-full w-full object-cover"
-            poster={asset('img/industry_night_v@2x.webp')}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            aria-label={alt}
-          >
-            <source src={asset('video/industry_night_v.webm')} type="video/webm" />
-            <source src={asset('video/industry_night_v.mp4')} type="video/mp4" />
-          </video>
-        )}
+        <SceneVideo slug="industry_night_v" alt={alt} className="h-full w-full object-cover" />
       </div>
 
       <div aria-hidden="true" className="absolute inset-0 bg-[#05050c]/60" />

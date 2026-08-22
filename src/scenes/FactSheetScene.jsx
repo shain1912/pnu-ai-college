@@ -1,6 +1,5 @@
 import { SUMMARY } from '../data/content'
-import { asset } from '../lib/asset'
-import { useReducedMotion } from '../hooks/useMedia'
+import SceneVideo from '../components/SceneVideo'
 
 /*
  * ── toss 출처 기록 ────────────────────────────────────────────────────────
@@ -63,7 +62,6 @@ const GROUPS = [
 const rowsOf = (group) => SUMMARY.rows.filter((row) => group.keys.some((key) => row.k.startsWith(key)))
 
 export default function FactSheetScene() {
-  const reduced = useReducedMotion()
 
   return (
     <>
@@ -100,23 +98,7 @@ export default function FactSheetScene() {
       {/* 글자 없는 이미지 한 장. 앞은 숫자, 뒤는 표라 사이에 눈이 쉴 자리를 둔다. */}
       <div className="px-[10px] md:px-5">
         <div className="relative aspect-[3/2] overflow-hidden rounded-[18px] bg-[#0a0a14] sm:aspect-[16/7] md:aspect-[21/7] md:rounded-[28px]">
-          {reduced ? (
-            <img src={asset('img/band_lab@2x.webp')} alt="" className="h-full w-full object-cover" />
-          ) : (
-            <video
-              aria-hidden="true"
-              className="h-full w-full object-cover"
-              poster={asset('img/band_lab@2x.webp')}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            >
-              <source src={asset('video/band_lab.webm')} type="video/webm" />
-              <source src={asset('video/band_lab.mp4')} type="video/mp4" />
-            </video>
-          )}
+          <SceneVideo slug="band_lab" className="h-full w-full object-cover" />
         </div>
       </div>
 

@@ -1,6 +1,5 @@
 import { CHAIN } from '../data/content'
-import { asset } from '../lib/asset'
-import { useReducedMotion } from '../hooks/useMedia'
+import SceneVideo from '../components/SceneVideo'
 
 /*
  * ── toss 출처 기록 ────────────────────────────────────────────────────────
@@ -41,33 +40,15 @@ const MEDIA = {
   X: { slug: 'shipyard_v', alt: '야간 조선소 도크. 건조 중인 선체를 파란 계측선이 따라 훑는다.' },
 }
 
-function Tile({ media, reduced }) {
-  const poster = asset(`img/${media.slug}@2x.webp`)
+function Tile({ media }) {
   return (
     <div className="relative aspect-[16/10] overflow-hidden rounded-[--radius-xl] bg-[#0a0a14]">
-      {reduced ? (
-        <img src={poster} alt={media.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" />
-      ) : (
-        <video
-          className="h-full w-full object-cover"
-          poster={poster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label={media.alt}
-        >
-          <source src={asset(`video/${media.slug}.webm`)} type="video/webm" />
-          <source src={asset(`video/${media.slug}.mp4`)} type="video/mp4" />
-        </video>
-      )}
+      <SceneVideo slug={media.slug} alt={media.alt} className="h-full w-full object-cover" />
     </div>
   )
 }
 
 export default function ImpactScene() {
-  const reduced = useReducedMotion()
 
   return (
       <section id="impact" className="band scroll-mt-24 bg-canvas" aria-labelledby="impact-title">
@@ -87,7 +68,7 @@ export default function ImpactScene() {
               return (
                 <div key={step.key} className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
                   <div className={flip ? 'md:order-2' : ''}>
-                    <Tile media={media} reduced={reduced} />
+                    <Tile media={media} />
                   </div>
 
                   <div className={flip ? 'md:order-1' : ''}>
