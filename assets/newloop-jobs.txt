@@ -1,0 +1,6 @@
+apex|5e0fb68f-b585-4370-b32e-559662ed45a1
+chain|b4d11cea-f6cb-4ce7-8011-1a8125088c3b
+schools|f1fcbb8f-65e7-4325-b696-5d3a99ba647a
+governance|a7ebed2f-54ca-4a3d-afb3-19c51a2e9ed6
+programs|1a7d668c-0c0d-420a-bc4a-09e44c37817b
+partners|6c8159c0-1faf-413d-9463-bd291a5bda7d

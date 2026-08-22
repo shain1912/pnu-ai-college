@@ -1,38 +1,9 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import GatewayScene from '../scenes/GatewayScene'
 import { HERO, SUMMARY } from '../data/content'
 import { useReducedMotion } from '../hooks/useMedia'
 import { revealDelay } from '../hooks/useReveal'
-
-/**
- * The three doors the sponsor asked for, in the order they asked for:
- * AI대학 first, then A.U.R.A, then Google for Education. The latter two live
- * on the existing arise-ai site and are linked, not rebuilt.
- */
-const DOORS = [
-  {
-    n: '01',
-    to: '/ai-college',
-    kicker: '2027년 3월 출범',
-    title: 'AI대학',
-    body: 'ADP+X 구조와 편제 대상 학부·학과, 소속 교원을 정리했어요.',
-    primary: true,
-  },
-  {
-    n: '02',
-    href: 'https://arise-ai.pusan.ac.kr/bymonolog',
-    kicker: 'AI 거점대학육성사업단',
-    title: 'A.U.R.A 마스터플랜 및 데이터룸',
-    body: '부산대학교 AI 대전환 추진 전략과 성과 분석 데이터룸이에요.',
-  },
-  {
-    n: '03',
-    href: 'https://arise-ai.pusan.ac.kr/',
-    kicker: '교육 협력',
-    title: 'PNU × Google for Education',
-    body: 'Google과 함께하는 AI 교육·연구 협력 파트너십이에요.',
-  },
-]
 
 export default function Home() {
   const reduced = useReducedMotion()
@@ -124,66 +95,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* the three doors */}
-      <section className="band-tight bg-canvas">
-        <div className="edge">
-          <ul className="grid gap-3 md:grid-cols-3">
-            {DOORS.map((d, i) => {
-              const inner = (
-                <>
-                  <span
-                    className={`text-[13px] font-bold ${d.primary ? 'text-blue-100' : 'text-ink-faint'}`}
-                  >
-                    {d.n}
-                  </span>
-                  <span
-                    className={`mt-4 block text-[13px] font-semibold ${
-                      d.primary ? 'text-blue-100' : 'text-brand'
-                    }`}
-                  >
-                    {d.kicker}
-                  </span>
-                  <span
-                    className={`mt-1.5 block text-[21px] font-bold leading-[1.35] ${
-                      d.primary ? 'text-white' : 'text-ink'
-                    }`}
-                  >
-                    {d.title}
-                  </span>
-                  <span
-                    className={`mt-3 block text-[15px] leading-[1.6] ${
-                      d.primary ? 'text-blue-50' : 'text-ink-subtle'
-                    }`}
-                  >
-                    {d.body}
-                  </span>
-                </>
-              )
-
-              const cls = `flex h-full flex-col rounded-[--radius-xl] p-6 transition-colors
-                duration-[--dur-base] md:p-7 ${
-                  d.primary
-                    ? 'bg-brand-strong hover:bg-blue-700'
-                    : 'bg-gray-100 hover:bg-gray-200'
-                }`
-
-              return (
-                <li key={d.n} data-reveal style={revealDelay(i)}>
-                  {d.to ? (
-                    <Link to={d.to} className={cls}>
-                      {inner}
-                    </Link>
-                  ) : (
-                    <a href={d.href} target="_blank" rel="noopener noreferrer" className={cls}>
-                      {inner}
-                    </a>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </section>
+      <GatewayScene />
 
       {/* fact sheet */}
       <section id="summary" className="band bg-canvas-subtle">

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import PageHead from '../components/PageHead'
-import { WHY, NUMBERS, APEX, PROGRAMS, PARTNERS } from '../data/content'
+import BackgroundScene from '../scenes/BackgroundScene'
+import ScaleScene from '../scenes/ScaleScene'
+import { APEX, PROGRAMS, PARTNERS } from '../data/content'
 import { SCHOOLS } from '../data/schools'
 import { revealDelay } from '../hooks/useReveal'
 
@@ -14,58 +16,7 @@ export default function AiCollege() {
         crumbs={[{ to: '/', label: '홈' }]}
       />
 
-      {/* 설립 배경 */}
-      <section className="band bg-canvas">
-        <div className="edge">
-          <p data-reveal className="text-[15px] font-semibold text-brand">
-            {WHY.eyebrow}
-          </p>
-          <h2 data-reveal style={revealDelay(1)} className="h2 mt-4 whitespace-pre-line text-ink">
-            {WHY.title}
-          </h2>
-          <div className="mt-6 grid items-center gap-8 md:grid-cols-[1fr_340px] md:gap-14">
-            <p data-reveal style={revealDelay(2)} className="lead max-w-[38rem]">
-              {WHY.body}
-            </p>
-            <figure data-reveal style={revealDelay(3)} className="rounded-[--radius-xl] bg-gray-50 p-4 md:p-6">
-              <img
-                src="/img/why_converge@2x.webp"
-                alt="흩어져 있던 세 갈래가 하나로 합쳐지는 형태의 도형"
-                width={340}
-                height={215}
-                loading="lazy"
-                decoding="async"
-                className="w-full"
-              />
-            </figure>
-          </div>
-
-          <ul className="mt-12 flex flex-col gap-3 md:mt-16">
-            {WHY.rows.map((row, i) => (
-              <li
-                key={row.label}
-                data-reveal
-                style={revealDelay(i)}
-                className="card grid gap-5 p-6 md:grid-cols-[132px_1fr_1fr] md:items-start md:gap-8 md:p-7"
-              >
-                <span className="text-[15px] font-bold text-ink">{row.label}</span>
-                <div className="flex gap-3">
-                  <span className="mt-[3px] shrink-0 rounded-[--radius-sm] bg-gray-100 px-2 py-0.5 text-[12px] font-semibold text-ink-faint">
-                    지금
-                  </span>
-                  <p className="text-[15px] leading-[1.6] text-ink-subtle">{row.before}</p>
-                </div>
-                <div className="flex gap-3">
-                  <span className="mt-[3px] shrink-0 rounded-[--radius-sm] bg-blue-50 px-2 py-0.5 text-[12px] font-semibold text-blue-700">
-                    앞으로
-                  </span>
-                  <p className="text-[15px] font-medium leading-[1.6] text-ink">{row.after}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <BackgroundScene />
 
       {/* 학사 구조 요약 → 상세로 보내기 */}
       <section className="band bg-canvas-subtle">
@@ -126,44 +77,7 @@ export default function AiCollege() {
         </div>
       </section>
 
-      {/* 규모와 인프라 */}
-      <section id="numbers" className="band bg-canvas">
-        <div className="edge">
-          <p data-reveal className="text-[15px] font-semibold text-brand">
-            {NUMBERS.eyebrow}
-          </p>
-          <h2 data-reveal style={revealDelay(1)} className="h2 mt-4 text-ink">
-            {NUMBERS.title}
-          </h2>
-
-          <figure data-reveal style={revealDelay(2)} className="mt-10 max-w-[520px] rounded-[--radius-xl] bg-gray-50 p-4 md:p-6">
-            <img
-              src="/img/infra_gpu@2x.webp"
-              alt="촘촘히 쌓인 연산 모듈을 형상화한 도형. 일부가 밝게 빛나요."
-              width={520}
-              height={330}
-              loading="lazy"
-              decoding="async"
-              className="w-full"
-            />
-          </figure>
-
-          <dl className="mt-10 grid grid-cols-2 gap-3 md:mt-12 md:grid-cols-4">
-            {NUMBERS.items.map((n, i) => (
-              <div key={n.label} data-reveal style={revealDelay(i)} className="card p-6 md:p-7">
-                <dd className="flex items-baseline gap-1">
-                  <span className="text-[40px] font-bold leading-none tracking-[-0.03em] text-ink md:text-[48px]">
-                    {n.value}
-                  </span>
-                  <span className="text-[20px] font-bold text-brand">{n.unit}</span>
-                </dd>
-                <dt className="mt-4 text-[16px] font-bold text-ink">{n.label}</dt>
-                <p className="mt-1.5 text-[14px] leading-[1.5] text-ink-subtle">{n.note}</p>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <ScaleScene />
 
       {/* 운영 체계 */}
       <section id="apex" className="band bg-canvas-subtle">

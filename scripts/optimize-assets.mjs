@@ -12,6 +12,18 @@ const WIDTHS = {
   why_converge: [1200, 760],
   infra_gpu: [1200, 760],
   roadmap_path: [1200, 760],
+  // wide concept renders added for the empty sections
+  apex: [1200, 760],
+  programs: [1200, 760],
+  partners: [1200, 760],
+  schools: [1200, 760],
+  chain: [1200, 760],
+  governance: [1200, 760],
+  summary_sheet: [1200, 760],
+  admissions: [1200, 760],
+  // the as-is / to-be pair sits side by side at half width
+  asis: [920, 520],
+  tobe: [920, 520],
   // axis objects never render wider than ~460px, so 2x tops out at 920
   default: [920, 520],
 }
