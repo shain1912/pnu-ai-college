@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "hero_anchor_1",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "jobId": "a9e9521d-92b0-4bbb-9468-b5dff1c153cf",
+    "args": ["--prompt", "Wide premium 3D editorial render for a Korean national university AI college hero. Thousands of tiny faceted translucent frosted-glass particles float in a calm dispersed cloud above a seamless warm-white studio surface, with soft contact shadows and generous clean negative space. A few particles carry restrained Pusan blue #3182F6 tint, never neon. High-key daylight from upper left, subtle volumetric haze, shallow depth of field, precise angular glass material, elegant institutional restraint, symmetric crop-safe composition. No text, no letters, no numbers, no logo, no symbol, no watermark, no people, no face, no dark background, no cyan glow, no clutter.", "--aspect-ratio", "16:9", "--resolution", "2k"]
+  },
+  {
+    "slug": "hero_anchor_2",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "jobId": "fd1bf0ee-9bea-44bd-a371-870b967c6c3f",
+    "args": ["--prompt", "Wide premium 3D editorial render for a Korean national university AI college hero. The same tiny faceted translucent frosted-glass particles have self-organized into many clean parallel horizontal streams suggesting algorithmic code without any characters, labels, glyphs or writing. Warm-white seamless studio, soft contact shadows, restrained Pusan blue #3182F6 accents, high-key daylight from upper left, subtle volumetric haze, shallow depth of field, angular glass material, minimal institutional elegance, center crop safe. No text, no letters, no numbers, no logo, no symbol, no watermark, no people, no face, no dark background, no neon cyan, no clutter.", "--aspect-ratio", "16:9", "--resolution", "2k"]
+  },
+  {
+    "slug": "hero_anchor_3",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "jobId": "ad85da6a-cc4f-4ca0-96ce-4358d7e2505f",
+    "args": ["--prompt", "Wide premium 3D editorial render for a Korean national university AI college hero. The same tiny faceted translucent frosted-glass particles branch into an elegant abstract data-network tree with translucent angular membranes and fine vessel-like connections, clearly computational and non-biological. Warm-white seamless studio, soft contact shadows, restrained Pusan blue #3182F6 accents, high-key daylight from upper left, subtle volumetric haze, macro depth, precise angular glass, minimal institutional elegance. No text, no letters, no numbers, no logo, no symbol, no watermark, no people, no face, no organ, no gore, no medical instrument, no dark background, no neon cyan.", "--aspect-ratio", "16:9", "--resolution", "2k"]
+  },
+  {
+    "slug": "hero_anchor_4",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "jobId": "f993fcc2-40fa-4294-8668-76ada3b1e5a9",
+    "args": ["--prompt", "Wide premium 3D editorial render for a Korean national university AI college hero. The same frosted-glass particles form a smooth unlabeled probability bell curve and a precise regression line while scattered glass points settle on a faint abstract grid plane, mathematical elegance without visible axes or notation. Warm-white seamless studio, soft contact shadows, restrained Pusan blue #3182F6 accents, high-key daylight from upper left, subtle volumetric rays, precise angular glass, ample negative space. No text, no letters, no numbers, no chart labels, no logo, no watermark, no people, no dark background, no neon cyan, no cluttered UI.", "--aspect-ratio", "16:9", "--resolution", "2k"]
+  },
+  {
+    "slug": "hero_anchor_5",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "jobId": "305a6b26-5ed3-4c29-8310-f40734ab0dc2",
+    "args": ["--prompt", "Wide premium 3D editorial render for a Korean national university AI college hero. Clean modular grid of floating angular translucent frosted-glass panels and geometric interface blocks assembled in mid-air, four subtly distinct clusters converging toward one central composition, Bauhaus-inspired balance and elegant negative space. Warm-white seamless studio, soft contact shadows, restrained Pusan blue #3182F6 accents, high-key daylight from upper left, subtle reflections and refraction, precise institutional product-render finish. No text, no letters, no numbers, no buttons, no UI labels, no logo, no symbol, no watermark, no people, no dark background, no neon cyan.", "--aspect-ratio", "16:9", "--resolution", "2k"]
+  }
+]

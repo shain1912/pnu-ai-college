@@ -74,15 +74,31 @@ const settle = async (id) => {
   throw new Error(`${id}: 시간 초과`)
 }
 
+/*
+ * Two passes. The first collects anything already finished, the second submits
+ * what is left. A single pass processes in list order, so one item waiting on a
+ * concurrency slot blocks every completed job behind it from ever being
+ * downloaded — which is exactly what happened.
+ */
+const pending = []
 for (const item of queue) {
-  const done =
-    item.kind === 'video' ? existsSync(`public/video/${item.slug}.webm`) : existsSync(`assets/raw/${item.slug}.png`)
-  if (done) {
-    console.log(`✓ ${item.slug} (이미 있음)`)
+  if (!item.jobId) {
+    pending.push(item)
     continue
   }
+  await handle(item)
+}
+for (const item of pending) await handle(item)
+
+console.log('\n대기열 완료')
+
+async function handle(item) {
+  const done =
+    item.kind === 'video' ? existsSync(`public/video/${item.slug}.webm`) : existsSync(`assets/raw/${item.slug}.png`)
+  if (done) return console.log(`✓ ${item.slug} (이미 있음)`)
 
   if (!item.jobId) {
+    if (!item.args?.length) return console.log(`- ${item.slug} (제출 인자 없음, 건너뜀)`)
     item.jobId = await submit(item)
     await save()
     console.log(`→ ${item.slug} 제출 ${item.jobId}`)
@@ -93,8 +109,7 @@ for (const item of queue) {
     item.status = job.status
     item.jobId = null // let a re-run resubmit
     await save()
-    console.log(`✗ ${item.slug}: ${job.status}`)
-    continue
+    return console.log(`✗ ${item.slug}: ${job.status}`)
   }
 
   const dest = item.kind === 'video' ? `assets/video/${item.slug}.mp4` : `assets/raw/${item.slug}.png`
