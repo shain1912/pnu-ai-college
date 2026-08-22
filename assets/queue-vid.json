@@ -1,0 +1,142 @@
+[
+  {
+    "slug": "port_crane_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic dolly forward down the container lane. The gantry crane lowers its container slightly. Blue route lines drift and pulse gently. Camera motion only, no cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/port_crane.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "75db6514-c410-4318-a021-fbd45519c4a0",
+    "status": "done"
+  },
+  {
+    "slug": "gpu_rack_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic dolly forward down the cold aisle. Blue status indicators blink softly in sequence; the fiber strands shimmer. Camera motion only, no cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/gpu_rack.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "c4aef868-d40f-4ed6-b402-1f0c2ef142b7",
+    "status": "done"
+  },
+  {
+    "slug": "lecture_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic push in toward the display from the back of the hall. The abstract blue visualisation on the screen drifts and morphs slowly. Students stay seated and still, seen from behind. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/lecture.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "d9d05ca4-19cf-4698-a2d7-21aaae51b3b0",
+    "status": "done"
+  },
+  {
+    "slug": "shipyard_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic dolly along the hull. Blue measurement lines trace slowly along the curvature. Camera motion only, no cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/shipyard.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "1cc954fc-1e75-44b8-be36-4dac214fafd6",
+    "status": "done"
+  },
+  {
+    "slug": "campus_night_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic dolly forward across the empty plaza toward the building. Window lights hold steady, thin mist drifts low. Camera motion only, no cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/campus_night.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "e93efbb2-6093-445c-b19b-fca1a8f2a251",
+    "status": "done"
+  },
+  {
+    "slug": "data_wall_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "The abstract blue charts and node graphs drift and morph slowly across the wall while the camera holds almost still. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/data_wall.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "026b8e89-4f56-41fe-be39-a30a0af03139",
+    "status": "done"
+  },
+  {
+    "slug": "warp_blue_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "The blue light streaks stretch and rush outward from the centre point at a steady pace, the core pulsing softly. Nothing else changes. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/warp_blue.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "90fdda48-b93f-42c5-9e0f-5b3a08599018",
+    "status": "done"
+  }
+]

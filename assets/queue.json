@@ -61,7 +61,8 @@
       "--resolution",
       "2k"
     ],
-    "jobId": "83485e17-7d6c-4a12-84a6-2348082d76ec"
+    "jobId": "83485e17-7d6c-4a12-84a6-2348082d76ec",
+    "status": "done"
   },
   {
     "slug": "shipyard",
@@ -76,7 +77,9 @@
       "16:9",
       "--resolution",
       "2k"
-    ]
+    ],
+    "jobId": "f1ad0b87-d0ef-4add-91f2-13f11f1500a1",
+    "status": "done"
   },
   {
     "slug": "campus_night",
@@ -91,22 +94,9 @@
       "16:9",
       "--resolution",
       "2k"
-    ]
-  },
-  {
-    "slug": "studio_team",
-    "model": "nano_banana_pro",
-    "kind": "image",
-    "args": [
-      "--prompt",
-      "Four graduate students seen entirely from behind, standing at a large wall-mounted display in a dark studio, gesturing at an abstract blue network diagram. Backs only, no faces. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
-      "--image-references",
-      "assets/raw/_palette.png",
-      "--aspect_ratio",
-      "16:9",
-      "--resolution",
-      "2k"
-    ]
+    ],
+    "jobId": "1f0a33e0-8e87-40ca-b670-b47670e771fd",
+    "status": "done"
   },
   {
     "slug": "data_wall",
@@ -121,7 +111,26 @@
       "16:9",
       "--resolution",
       "2k"
-    ]
+    ],
+    "jobId": "e4d4beb9-e7fb-43c8-b360-3887fbe2ba95",
+    "status": "done"
+  },
+  {
+    "slug": "studio_team",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "Four university students in ordinary everyday clothes — hoodies, shirts, backpacks on chairs — seen entirely from behind, standing and pointing at a large wall-mounted display in a dark studio lab showing an abstract blue network diagram. Casual студенческая posture. Backs only. NO graduation gowns, NO academic caps, NO robes, NO uniforms. Lit almost entirely in azure blue and deep royal blue, matching the reference palette. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange, NO white background. Very dark blue-black environment, volumetric haze, shallow depth of field, cinematic photoreal 3D render. Absolutely no text, no lettering, no signage, no brand marks. No visible faces.",
+      "--image-references",
+      "assets/raw/_palette.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "9398a262-a207-435c-90b4-9f2450dbb7f0",
+    "status": "done"
   },
   {
     "slug": "roadmap_path",
@@ -129,13 +138,55 @@
     "kind": "image",
     "args": [
       "--prompt",
-      "An abstract wide shot of a single luminous blue path receding into deep haze, with five glowing waypoint markers spaced along it, each slightly larger than the last. Lit almost entirely in azure blue and deep royal blue, matching the reference palette exactly. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange. Deep blue-black background, volumetric haze, shallow depth of field, anamorphic highlights, cinematic photoreal 3D render, 24mm lens. Absolutely no text, no lettering, no signage, no brand marks, no readable characters anywhere. No visible human faces.",
+      "An abstract wide shot inside a very dark blue-black void: a single luminous blue path recedes into deep haze, with five glowing waypoint markers spaced along it, each slightly larger than the last. Nothing else in frame. Lit almost entirely in azure blue and deep royal blue, matching the reference palette. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO turquoise, NO magenta, NO purple, NO pink, NO green, NO orange, NO white background. Very dark blue-black environment, volumetric haze, shallow depth of field, cinematic photoreal 3D render. Absolutely no text, no lettering, no signage, no brand marks. No visible faces.",
       "--image-references",
       "assets/raw/_palette.png",
       "--aspect_ratio",
       "16:9",
       "--resolution",
       "2k"
-    ]
+    ],
+    "jobId": "03a8d2fe-a44c-4e9f-bf72-741ec1dc14c7",
+    "status": "done"
+  },
+  {
+    "slug": "studio_team_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "Extremely slow cinematic push toward the display. The students hold their posture with tiny natural shifts; the blue network lines on the screen drift slowly. Seen from behind throughout. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/studio_team.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "997fd06e-e3bb-4c8d-82e5-10da5203ea36",
+    "status": "done"
+  },
+  {
+    "slug": "roadmap_path_v",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "width": 1280,
+    "args": [
+      "--prompt",
+      "The camera drifts extremely slowly along the luminous path. The five waypoint markers pulse gently in sequence, nearest first. Haze drifts. No cuts, no new objects, no text.",
+      "--start-image",
+      "assets/raw/roadmap_path.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "1080p",
+      "--duration",
+      "5"
+    ],
+    "jobId": "592c7ac1-d1bd-4c91-899b-13da352dda30",
+    "status": "done"
   }
 ]

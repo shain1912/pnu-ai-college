@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageHead from '../components/PageHead'
 import BackgroundScene from '../scenes/BackgroundScene'
+import MediaBand from '../components/MediaBand'
 import ScaleScene from '../scenes/ScaleScene'
 import { APEX, PROGRAMS, PARTNERS } from '../data/content'
 import { SCHOOLS } from '../data/schools'
@@ -15,6 +16,9 @@ export default function AiCollege() {
         lead="세 개 단과대학에 흩어져 있던 AI 학문단위를 하나로 모읍니다. 입학정원 424명, 국내에서 가장 큰 AI 단과대학이에요."
         crumbs={[{ to: '/', label: '홈' }]}
       />
+
+      {/* 글이 계속 이어지던 자리에 쉬는 화면 하나 */}
+      <MediaBand slug="campus_night_v" alt="블루아워의 대학 공학관. 유리 파사드 안쪽에서 빛이 새어 나오고 앞마당은 비어 있다." />
 
       <BackgroundScene />
 
@@ -124,6 +128,8 @@ export default function AiCollege() {
           </p>
         </div>
       </section>
+
+      <MediaBand slug="studio_team_v" alt="어두운 스튜디오에서 학생 넷이 뒷모습으로 서서 대형 화면의 파란 네트워크 도표를 가리키고 있다." />
 
       {/* 특화 프로그램 + 기업 */}
       <section className="band bg-canvas">

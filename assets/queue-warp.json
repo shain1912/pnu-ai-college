@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "warp_blue",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "Long streaks of blue light radiating outward from a single bright point at the centre of a dark room, motion blurred into tapering trails. Deep royal blue and azure with a pale blue core. Cinematic photoreal render.",
+      "--image-references",
+      "assets/raw/_palette.png",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "d98ba693-0acd-4717-b766-24fd9093c8d6",
+    "status": "done"
+  }
+]

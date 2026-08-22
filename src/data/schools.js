@@ -46,7 +46,7 @@ export const SCHOOLS = [
     majors: ['통계학'],
     change: '자연과학대학에서 AI대학으로 소속이 이전돼요.',
     deptKeys: ['통계학과'],
-    image: 'axis_stat',
+    image: 'data_wall_v',
   },
   {
     slug: 'industrial',
