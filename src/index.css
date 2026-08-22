@@ -168,19 +168,78 @@
  * Reveal-on-scroll. Elements start hidden and are released by an
  * IntersectionObserver adding [data-shown]; if the observer never runs,
  * the no-JS fallback below still shows everything.
+ *
+ * The blur is the part worth copying from toss.im: frame capture of their home
+ * (docs/motion/toss.md §3) shows copy entering and leaving on blur *and*
+ * opacity together, never opacity alone. Text resolving into focus reads as
+ * arriving; text merely fading reads as a slow image load.
  */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(18px);
+  filter: blur(6px);
   transition:
     opacity var(--dur-enter) var(--ease-enter),
-    transform var(--dur-enter) var(--ease-enter);
+    transform var(--dur-enter) var(--ease-enter),
+    filter var(--dur-enter) var(--ease-enter);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
 [data-reveal][data-shown] {
   opacity: 1;
   transform: none;
+  filter: none;
+}
+
+/*
+ * Hero media: starts inset with a large radius and grows to the container edge,
+ * mirroring the 001→003 expansion measured on toss.im (docs/motion/toss.md §1).
+ *
+ * Shares the reveal mechanism rather than using a load-time @keyframes: an
+ * animation's start time depends on when React commits the element, which makes
+ * it both unobservable in frame capture and liable to sit paused at time 0 when
+ * the tab is backgrounded. A class toggle lands in a known state either way.
+ */
+[data-reveal='media'] {
+  opacity: 0;
+  transform: scale(0.93);
+  border-radius: 40px;
+  filter: none;
+  transition:
+    opacity 700ms var(--ease-enter),
+    transform 700ms var(--ease-enter),
+    border-radius 700ms var(--ease-enter);
+}
+
+[data-reveal='media'][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Global scroll progress — toss keeps a persistent vertical indicator pinned to
+   the left edge across every chapter (docs/motion/toss.md §4). */
+.scroll-rail {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  z-index: 60;
+  background: transparent;
+  pointer-events: none;
+}
+
+.scroll-rail span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: top;
+  transform: scaleY(var(--progress, 0));
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-brand) 35%, transparent),
+    var(--color-brand)
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -190,6 +249,10 @@
   [data-reveal] {
     opacity: 1;
     transform: none;
+    filter: none;
     transition: none;
+  }
+  .hero-media {
+    animation: none;
   }
 }

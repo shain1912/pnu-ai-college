@@ -88,8 +88,12 @@ export default function Home() {
           </div>
         </div>
 
-        <div data-reveal style={revealDelay(6)} className="edge-wide mt-16 md:mt-20">
-          <figure className="overflow-hidden rounded-[20px] md:rounded-[28px]">
+        <div className="edge-wide mt-16 md:mt-20">
+          <figure
+            data-reveal="media"
+            style={revealDelay(3)}
+            className="overflow-hidden rounded-[20px] will-change-transform md:rounded-[28px]"
+          >
             {reduced ? (
               <img
                 src="/img/hero_light@2x.webp"

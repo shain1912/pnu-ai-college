@@ -34,7 +34,24 @@ export function useReveal(key) {
     )
 
     els.forEach((el) => io.observe(el))
-    return () => io.disconnect()
+
+    // An IntersectionObserver callback is scheduled, not synchronous. Anything
+    // already on screen at mount would otherwise sit in its hidden state for a
+    // frame or two, which reads as a flash.
+    const kick = requestAnimationFrame(() => {
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect()
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          el.setAttribute('data-shown', '')
+          io.unobserve(el)
+        }
+      })
+    })
+
+    return () => {
+      cancelAnimationFrame(kick)
+      io.disconnect()
+    }
   }, [key])
 }
 

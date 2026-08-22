@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useReveal } from '../hooks/useReveal'
+import ScrollRail from '../components/ScrollRail'
 
 const NAV = [
   { to: '/ai-college', label: 'AI대학' },
@@ -148,6 +149,7 @@ export default function SiteLayout() {
   return (
     <>
       <ScrollToTop />
+      <ScrollRail />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100]
