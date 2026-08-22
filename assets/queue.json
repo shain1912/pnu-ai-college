@@ -1,0 +1,70 @@
+[
+  {
+    "slug": "t_px",
+    "model": "seedance_2_5",
+    "kind": "video",
+    "jobId": null,
+    "args": [
+      "--mode",
+      "omni_reference",
+      "--prompt",
+      "The turning glass rings open outward and straighten into long glass channels extending away in four directions, each reaching a small glass platform that lights faintly as it is met. One mechanism spreading into four places. The camera stays completely locked and static throughout. White studio background, soft contact shadows and exposure stay constant. One continuous transformation with no cuts, no zoom, no camera movement. No people, no text, no letters, no logos, no watermark.",
+      "--start-image",
+      "assets/raw/scene_p.png",
+      "--end-image",
+      "assets/raw/scene_x.png",
+      "--aspect-ratio",
+      "16:9",
+      "--duration",
+      "5",
+      "--resolution",
+      "1080p",
+      "--bitrate-mode",
+      "high",
+      "--generate-audio",
+      "false"
+    ]
+  },
+  {
+    "slug": "t_da",
+    "model": "seedance_2_5",
+    "kind": "video",
+    "jobId": "b2aab08b-3c46-42d1-92f1-17293a71f694",
+    "args": []
+  },
+  {
+    "slug": "t_ap",
+    "model": "seedance_2_5",
+    "kind": "video",
+    "jobId": "302ea4c2-ff5c-47a8-99c7-e2e7c10edd8f",
+    "args": []
+  },
+  {
+    "slug": "scene_d",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "jobId": "079cfb4b-1a8a-41ed-8ad6-dfbe98cf5160",
+    "args": []
+  },
+  {
+    "slug": "scene_a",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "jobId": "b3071fb3-3620-42f0-9a71-d64ba6a10173",
+    "args": []
+  },
+  {
+    "slug": "scene_p",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "jobId": "c26f3811-d97f-4d4d-9b7a-ef3ab83ae6c9",
+    "args": []
+  },
+  {
+    "slug": "scene_x",
+    "model": "kling3_0_turbo",
+    "kind": "video",
+    "jobId": "f1490d72-41c5-42e9-aab4-8ab73bfe1436",
+    "args": []
+  }
+]

@@ -293,6 +293,23 @@
   }
 }
 
+/* The college overview opens as a chapter, not as a compact documentation
+   banner. The large quiet field gives its single premise the same visual
+   weight as the full-viewport stages on the home route. */
+main:has(#why) > div:first-child > .edge {
+  min-height: 72svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+main:has(#why) > div:first-child h1 {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  line-height: 1.04;
+}
+
 /* Interaction motion stays local to the changing content. The header remains
    stable, and no full-screen transition curtain delays navigation. */
 main {

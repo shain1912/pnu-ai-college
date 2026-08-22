@@ -140,7 +140,7 @@ export default function HeroScene() {
       ref={rootRef}
       id="top"
       className="relative bg-canvas"
-      style={{ height: reduced ? 'auto' : `${SCENES.length * 100}svh` }}
+      style={{ height: reduced ? 'auto' : `${SCENES.length * 48}svh` }}
     >
       <div className="sticky top-16 px-[10px] pb-[10px] md:top-[72px] md:px-5 md:pb-5">
         <div className="relative h-[calc(100svh-84px)] overflow-hidden rounded-[10px] bg-gray-50 md:h-[calc(100svh-96px)]">

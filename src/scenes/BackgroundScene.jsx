@@ -73,7 +73,12 @@ export default function BackgroundScene() {
               ))}
             </div>
 
-            <dl>
+            <details className="why-details group">
+              <summary className="cursor-pointer list-none px-6 py-5 text-[15px] font-semibold text-ink md:px-9">
+                비교 기준 자세히 보기
+                <span aria-hidden="true" className="ml-2 inline-block text-brand transition-transform group-open:rotate-90">›</span>
+              </summary>
+            <dl className="border-t border-line">
               {WHY.rows.map((row) => (
                 <div
                   key={row.label}
@@ -91,6 +96,7 @@ export default function BackgroundScene() {
                 </div>
               ))}
             </dl>
+            </details>
           </div>
         </div>
       </div>
