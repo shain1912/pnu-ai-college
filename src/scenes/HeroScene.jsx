@@ -102,6 +102,10 @@ const CHAPTERS = [
   },
 ]
 
+/** 챕터 제목은 h1/h2 로 갈리지만 보이는 모습은 같다. */
+const HERO_TITLE =
+  'mt-3 whitespace-pre-line text-[clamp(1.9rem,4.6vw,4rem)] font-extrabold leading-[1.1] tracking-[-0.035em] text-white'
+
 const FADE = 0.25
 const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value))
 
@@ -313,9 +317,16 @@ export default function HeroScene() {
                   }}
                 >
                   <p className="text-[13px] font-bold tracking-[0.08em] text-sky-300">{chapter.eyebrow}</p>
-                  <h1 className="mt-3 whitespace-pre-line text-[clamp(1.9rem,4.6vw,4rem)] font-extrabold leading-[1.1] tracking-[-0.035em] text-white">
-                    {chapter.title}
-                  </h1>
+                  {/*
+                    첫 챕터만 h1 이다. 여섯 챕터를 전부 h1 으로 두면 낭독기의
+                    제목 목록에 h1 이 여섯 개 뜨는데 그중 다섯은 화면에 없다.
+                    나머지는 페이지 제목 아래 이어지는 내용이므로 h2 다.
+                  */}
+                  {index === 0 ? (
+                    <h1 className={HERO_TITLE}>{chapter.title}</h1>
+                  ) : (
+                    <h2 className={HERO_TITLE}>{chapter.title}</h2>
+                  )}
                   <p
                     className={`mt-4 max-w-[38rem] text-[15px] font-medium leading-[1.65] text-white/75 md:text-[17px] ${
                       chapter.place === 'center' ? 'mx-auto' : ''

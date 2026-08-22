@@ -66,7 +66,7 @@ export default function FactSheetScene() {
   return (
     <>
       {/* 쉬는 화면 — 숫자 하나와 그 내역만 */}
-      <section id="summary" className="scroll-mt-24 bg-canvas">
+      <section id="summary" className="scroll-mt-24 bg-canvas" aria-labelledby="summary-title">
         <div className="edge flex min-h-[82svh] flex-col justify-center py-24">
           <p className="text-[15px] font-semibold text-brand">{SUMMARY.eyebrow}</p>
 
@@ -77,9 +77,17 @@ export default function FactSheetScene() {
             <span className="text-[clamp(1.75rem,4vw,3rem)] font-bold text-ink-subtle">명</span>
           </p>
 
-          <p className="mt-10 max-w-[30rem] text-[clamp(1.375rem,2.8vw,2rem)] font-bold leading-[1.4] text-ink">
+          {/*
+            이 문장이 이 구간의 제목이다. 전에는 p 였고 424 화면에 제목이 하나도
+            없었다. 그래서 아래 표의 묶음 제목(h3)이 히어로의 h1 바로 다음에
+            와서 낭독기 뼈대가 h1 → h3 로 한 단계 건너뛰었다.
+          */}
+          <h2
+            id="summary-title"
+            className="mt-10 max-w-[30rem] text-[clamp(1.375rem,2.8vw,2rem)] font-bold leading-[1.4] text-ink"
+          >
             대학이 밝힌 국내 최대 규모의 AI 단과대학이에요.
-          </p>
+          </h2>
 
           <ul className="mt-14 grid gap-x-10 gap-y-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
             {BREAKDOWN.map((item) => (

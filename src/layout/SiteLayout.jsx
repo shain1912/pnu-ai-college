@@ -33,7 +33,7 @@ function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="주요 메뉴" className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
             <NavLink
               key={item.to}
@@ -54,7 +54,7 @@ function Header() {
 
       {/* the desktop nav collapses to a horizontally scrollable rail rather than
           a hamburger — five short items fit, and a menu would hide the structure */}
-      <nav className="-mb-px flex gap-1 overflow-x-auto px-5 pb-2 lg:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <nav aria-label="주요 메뉴" className="-mb-px flex gap-1 overflow-x-auto px-5 pb-2 lg:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {NAV.map((item) => (
           <NavLink
             key={item.to}
@@ -88,7 +88,7 @@ function Footer() {
             </p>
           </div>
 
-          <nav className="flex flex-wrap gap-x-8 gap-y-3">
+          <nav aria-label="맨 아래 메뉴" className="flex flex-wrap gap-x-8 gap-y-3">
             {NAV.map((n) => (
               <Link
                 key={n.to}

@@ -149,8 +149,12 @@ export default function SchoolDetail() {
         </div>
       </section>
 
-      {/* 앞뒤 학과 */}
-      <section className="border-t border-line bg-canvas-subtle py-10">
+      {/*
+        앞뒤 학과. 제목도 라벨도 없으면 낭독기가 "구역" 이라고만 부르고 지나간다.
+        화살표만 있는 링크 둘이라 눈으로는 뜻이 통하지만 소리로는 통하지 않는다.
+        nav 로 바꾸고 이름을 준다.
+      */}
+      <nav aria-label="다른 학부·학과" className="border-t border-line bg-canvas-subtle py-10">
         <div className="edge flex flex-wrap items-center justify-between gap-4">
           {prev ? (
             <Link
@@ -173,7 +177,7 @@ export default function SchoolDetail() {
             <span />
           )}
         </div>
-      </section>
+      </nav>
     </>
   )
 }
