@@ -1,4 +1,5 @@
 import { useReducedMotion } from '../hooks/useMedia'
+import { asset } from '../lib/asset'
 
 /**
  * A generated object rendered as its five-second loop, falling back to the
@@ -18,7 +19,7 @@ export default function LoopMedia({
   eager = false,
 }) {
   const reduced = useReducedMotion()
-  const poster = `/img/${slug}@2x.webp`
+  const poster = asset(`img/${slug}@2x.webp`)
 
   if (reduced) {
     return (
@@ -48,8 +49,8 @@ export default function LoopMedia({
       aria-label={alt || undefined}
       aria-hidden={alt ? undefined : 'true'}
     >
-      <source src={`/video/${slug}.webm`} type="video/webm" />
-      <source src={`/video/${slug}.mp4`} type="video/mp4" />
+      <source src={asset(`video/${slug}.webm`)} type="video/webm" />
+      <source src={asset(`video/${slug}.mp4`)} type="video/mp4" />
     </video>
   )
 }

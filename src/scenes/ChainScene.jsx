@@ -27,6 +27,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ADPX, CHAIN } from '../data/content'
 import { useReducedMotion } from '../hooks/useMedia'
+import { asset } from '../lib/asset'
 
 /** 단계마다 그 일을 맡는 학부를 붙인다 — "손이 바뀐다"는 말이 누구의 손인지 보이게. */
 const HANDS = CHAIN.steps.map((step) => {
@@ -78,7 +79,7 @@ export default function ChainScene() {
 
           {/* 네 덩이가 한 축에 꿰여 점점 커지는 오브제 — 아래 도표의 요약이다. 장식이라 alt 는 비운다. */}
           <img
-            src="/img/chain@2x.webp"
+            src={asset('img/chain@2x.webp')}
             alt=""
             width={760}
             height={424}

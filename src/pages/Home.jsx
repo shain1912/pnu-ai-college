@@ -4,6 +4,7 @@ import GatewayScene from '../scenes/GatewayScene'
 import { HERO, SUMMARY } from '../data/content'
 import { useReducedMotion } from '../hooks/useMedia'
 import { revealDelay } from '../hooks/useReveal'
+import { asset } from '../lib/asset'
 
 export default function Home() {
   const reduced = useReducedMotion()
@@ -67,7 +68,7 @@ export default function Home() {
           >
             {reduced ? (
               <img
-                src="/img/hero_light@2x.webp"
+                src={asset('img/hero_light@2x.webp')}
                 alt="밝은 대학 아트리움 전경. 천장에 푸른 유리 조형물이 매달려 있어요."
                 className="aspect-[16/9] w-full object-cover"
                 fetchPriority="high"
@@ -76,7 +77,7 @@ export default function Home() {
             ) : (
               <video
                 className="aspect-[16/9] w-full object-cover"
-                poster="/img/hero_light@2x.webp"
+                poster={asset('img/hero_light@2x.webp')}
                 autoPlay
                 muted
                 loop
@@ -84,8 +85,8 @@ export default function Home() {
                 preload="metadata"
                 aria-label="밝은 대학 아트리움 전경. 천장의 푸른 유리 조형물이 천천히 움직여요."
               >
-                <source src="/video/atrium-loop.webm" type="video/webm" />
-                <source src="/video/atrium-loop.mp4" type="video/mp4" />
+                <source src={asset('video/atrium-loop.webm')} type="video/webm" />
+                <source src={asset('video/atrium-loop.mp4')} type="video/mp4" />
               </video>
             )}
             <figcaption className="mt-3 text-center text-[12px] text-ink-faint">

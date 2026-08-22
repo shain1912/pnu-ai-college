@@ -29,6 +29,7 @@
  */
 import { APEX } from '../data/content'
 import { revealDelay } from '../hooks/useReveal'
+import { asset } from '../lib/asset'
 
 /* 오브젝트가 말하는 것과 조직도가 말하는 것이 같아야 해서, alt 도 같은 문장을 써요. */
 const APEX_OBJECT_ALT = '코어 하나에 팔 세 개가 곧장 붙고, 블록 하나가 옆에서 따로 이어지는 도형.'
@@ -75,7 +76,7 @@ export default function ApexScene() {
         <div data-reveal style={revealDelay(3)} className="apex-map mt-14 md:mt-20">
           <div className="apex-core card">
             <img
-              src="/img/apex@2x.webp"
+              src={asset('img/apex@2x.webp')}
               alt={APEX_OBJECT_ALT}
               width={380}
               height={212}

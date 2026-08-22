@@ -16,7 +16,12 @@ const POSTER = 'public/img'
 
 // slug -> played-back width. Square object loops sit in a ~460px figure, so
 // 900 covers 2x; the 16:9 concept loops sit in a wider figure.
-const WIDTHS = { why_converge: 1200, infra_gpu: 1200, roadmap_path: 1200, default: 900 }
+const WIDTHS = {
+  why_converge: 1200, infra_gpu: 1200, roadmap_path: 1200,
+  apex: 1200, chain: 1200, schools: 1200, governance: 1200,
+  programs: 1200, partners: 1200,
+  default: 900,
+}
 
 // Kling does not always bring the last frame back to the first, so these clips
 // visibly jump at the loop point. Playing them forward then reversed hides the

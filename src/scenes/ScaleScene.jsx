@@ -26,6 +26,7 @@ import { useId, useState } from 'react'
 import { NUMBERS } from '../data/content'
 import { revealDelay } from '../hooks/useReveal'
 import { useReducedMotion } from '../hooks/useMedia'
+import { asset } from '../lib/asset'
 
 const [LEAD, ...REST] = NUMBERS.items
 
@@ -107,7 +108,7 @@ export default function ScaleScene() {
           <figure className="flex items-center justify-center rounded-[var(--radius-xl)] bg-gray-50 p-4 md:p-6">
             {reduced ? (
               <img
-                src="/img/infra_gpu-poster.webp"
+                src={asset('img/infra_gpu-poster.webp')}
                 alt={INFRA_ALT}
                 width={1200}
                 height={670}
@@ -120,7 +121,7 @@ export default function ScaleScene() {
                 className="h-auto w-full max-w-[540px] rounded-[var(--radius-lg)]"
                 width={1200}
                 height={670}
-                poster="/img/infra_gpu-poster.webp"
+                poster={asset('img/infra_gpu-poster.webp')}
                 autoPlay
                 muted
                 loop
@@ -128,8 +129,8 @@ export default function ScaleScene() {
                 preload="metadata"
                 aria-label={INFRA_ALT}
               >
-                <source src="/video/infra_gpu.webm" type="video/webm" />
-                <source src="/video/infra_gpu.mp4" type="video/mp4" />
+                <source src={asset('video/infra_gpu.webm')} type="video/webm" />
+                <source src={asset('video/infra_gpu.mp4')} type="video/mp4" />
               </video>
             )}
           </figure>

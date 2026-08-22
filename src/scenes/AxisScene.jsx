@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import { ADPX } from '../data/content'
 import { D_AXIS_SEATS, SCHOOLS } from '../data/schools'
 import { useReducedMotion } from '../hooks/useMedia'
+import { asset } from '../lib/asset'
 
 const AXES = ADPX.axes
 
 /*
  * Keep the stage API ready for loops without changing the layout or content.
- * Add `video: `/video/axis_${axis.key.toLowerCase()}.webm`` when each loop ships.
+ * Add `video: asset(`video/axis_${axis.key.toLowerCase()}.webm`)` when each loop ships.
  */
 // Each axis object ships as a five-second loop; the still is its poster, so a
 // slow connection or reduced-motion still gets the same frame.
@@ -16,9 +17,9 @@ const AXIS_MEDIA = Object.fromEntries(
   AXES.map((axis) => [
     axis.key,
     {
-      poster: `/img/${axis.image}@2x.webp`,
-      video: `/video/${axis.image}.webm`,
-      videoMp4: `/video/${axis.image}.mp4`,
+      poster: asset(`img/${axis.image}@2x.webp`),
+      video: asset(`video/${axis.image}.webm`),
+      videoMp4: asset(`video/${axis.image}.mp4`),
     },
   ]),
 )
