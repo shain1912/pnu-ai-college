@@ -24,3 +24,4 @@ docs/*.pdf
 _probe*.mjs
 scratch-*.mjs
 scripts/_*.mjs
+.qc/

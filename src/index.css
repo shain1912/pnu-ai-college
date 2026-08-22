@@ -161,6 +161,42 @@
   .card {
     @apply rounded-[--radius-xl] bg-surface;
     box-shadow: 0 1px 2px rgb(25 31 40 / 0.04), 0 4px 16px rgb(25 31 40 / 0.06);
+    transition:
+      box-shadow var(--dur-base) var(--ease-standard),
+      transform var(--dur-base) var(--ease-standard);
+  }
+
+  /* Card lift on hover — the one motion every reference site does have, and the
+     current shadow step was too small to read as a response. */
+  a.card:hover,
+  a:hover > .card {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgb(25 31 40 / 0.06), 0 12px 32px rgb(25 31 40 / 0.10);
+  }
+
+  /* Nav underline, measured on toss.im: a rule grows from the left under the
+     label rather than the whole chip changing colour. */
+  .nav-underline {
+    position: relative;
+  }
+
+  .nav-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur-base) var(--ease-standard);
+  }
+
+  .nav-underline:hover::after,
+  .nav-underline[aria-current='page']::after {
+    transform: scaleX(1);
   }
 }
 
@@ -254,5 +290,76 @@
   }
   .hero-media {
     animation: none;
+  }
+}
+
+/* Interaction motion stays local to the changing content. The header remains
+   stable, and no full-screen transition curtain delays navigation. */
+main {
+  transition:
+    opacity var(--dur-enter) var(--ease-enter),
+    filter var(--dur-enter) var(--ease-enter),
+    transform var(--dur-enter) var(--ease-enter);
+}
+
+main[data-route-entering] {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateY(8px);
+}
+
+[role='tabpanel'] {
+  transition:
+    opacity var(--dur-base) var(--ease-enter),
+    filter var(--dur-base) var(--ease-enter),
+    transform var(--dur-base) var(--ease-enter);
+}
+
+[role='tabpanel'][data-panel-switching] {
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateY(6px);
+}
+
+ul[id^='career-'] {
+  overflow: hidden;
+  transform-origin: top;
+  animation: career-expand var(--dur-base) var(--ease-enter) both;
+}
+
+button[aria-controls^='career-']::after {
+  content: '›';
+  display: inline-block;
+  margin-left: 0.45rem;
+  transform: rotate(90deg);
+  transition: transform var(--dur-base) var(--ease-standard);
+}
+
+button[aria-controls^='career-'][aria-expanded='true']::after {
+  transform: rotate(-90deg);
+}
+
+@keyframes career-expand {
+  from { max-height: 0; opacity: 0; transform: translateY(-4px); }
+  to { max-height: 72rem; opacity: 1; transform: none; }
+}
+
+li:has(> div button[aria-controls^='career-']) > div {
+  transition: background-color var(--dur-fast) var(--ease-standard);
+}
+
+li:has(> div button[aria-controls^='career-']):hover > div {
+  background: var(--color-canvas-subtle);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main,
+  [role='tabpanel'],
+  ul[id^='career-'],
+  button[aria-controls^='career-']::after {
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+    transform: none !important;
   }
 }

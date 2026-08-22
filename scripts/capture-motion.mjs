@@ -11,12 +11,14 @@
  *   node scripts/capture-motion.mjs hover  <url> <slug> --sel "<css>" [--frames 10]
  *   node scripts/capture-motion.mjs click  <url> <slug> --sel "<css>" [--frames 12]
  *   node scripts/capture-motion.mjs load   <url> <slug> [--frames 16] [--every 90]
+ *   node scripts/capture-motion.mjs clip   <url> <slug> [--seconds 8] [--scroll 1]
  *
  * Frames land in assets/motion/<slug>/, contact sheets beside them.
+ * `clip` records a webm instead, for a reference a person can actually watch.
  */
 import { chromium } from 'playwright'
 import sharp from 'sharp'
-import { mkdir, readdir } from 'node:fs/promises'
+import { mkdir, readdir, rename } from 'node:fs/promises'
 import path from 'node:path'
 
 const [mode, url, slug, ...rest] = process.argv.slice(2)
@@ -37,10 +39,15 @@ const COLS = 3
 
 await mkdir(OUT, { recursive: true })
 
+const RECORD = mode === 'clip'
+
 const browser = await chromium.launch()
 const ctx = await browser.newContext({
   viewport: VIEWPORT,
   deviceScaleFactor: 1,
+  // Playwright writes one webm per page, named by hash, so the clip is renamed
+  // to the slug once the context closes and the file is finalised.
+  ...(RECORD ? { recordVideo: { dir: OUT, size: VIEWPORT } } : {}),
   // real UA so sites do not serve a stripped-down page to headless
   userAgent:
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36',
@@ -92,13 +99,38 @@ if (mode === 'load') {
     await page.waitForTimeout(i < 5 ? 45 : 120)
     await shot(count++)
   }
+} else if (mode === 'clip') {
+  const seconds = Number(flag('seconds', 8))
+  const doScroll = flag('scroll', '1') !== '0'
+  await page.waitForTimeout(1500)
+  if (doScroll) {
+    // one slow continuous pass, the way a person reads the page
+    const height = await page.evaluate(() => document.documentElement.scrollHeight)
+    const span = Math.max(0, height - VIEWPORT.height)
+    const steps = seconds * 20
+    for (let i = 0; i <= steps; i++) {
+      await page.evaluate((to) => window.scrollTo({ top: to, behavior: 'instant' }), Math.round((span * i) / steps))
+      await page.waitForTimeout(50)
+    }
+  } else {
+    await page.waitForTimeout(seconds * 1000)
+  }
 } else {
   throw new Error(`unknown mode ${mode}`)
 }
 
+const videoPath = RECORD ? await page.video()?.path() : null
+await ctx.close()
 await browser.close()
 
+if (videoPath) {
+  const dest = path.join('assets/motion', `${slug}.webm`)
+  await rename(videoPath, dest)
+  console.log(`  clip → ${dest}`)
+}
+
 // contact sheets, numbered so a reader can name a specific frame
+if (RECORD) process.exit(0)
 const files = (await readdir(OUT)).filter((f) => /^\d{3}\.png$/.test(f)).sort()
 const perSheet = COLS * 4
 for (let s = 0; s * perSheet < files.length; s++) {

@@ -14,12 +14,55 @@ import { useEffect } from 'react'
  */
 export function useReveal(key) {
   useEffect(() => {
-    const els = document.querySelectorAll('[data-reveal]:not([data-shown])')
-    if (!els.length) return
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const main = document.querySelector('main')
+    let routeFrame = 0
+
+    if (main && !reduced) {
+      main.setAttribute('data-route-entering', '')
+      routeFrame = requestAnimationFrame(() => {
+        routeFrame = requestAnimationFrame(() => main.removeAttribute('data-route-entering'))
+      })
+    }
+
+    const onTabClick = (event) => {
+      const tab = event.target.closest('button[role="tab"]')
+      if (!tab || reduced) return
+      const panel = document.getElementById(tab.getAttribute('aria-controls'))
+      if (!panel) return
+      panel.setAttribute('data-panel-switching', '')
+      requestAnimationFrame(() => requestAnimationFrame(() => panel.removeAttribute('data-panel-switching')))
+    }
+    document.addEventListener('click', onTabClick, true)
+
+    const cleanupMotion = () => {
+      if (routeFrame) cancelAnimationFrame(routeFrame)
+      document.removeEventListener('click', onTabClick, true)
+    }
+    /*
+     * Only the first screen animates.
+     *
+     * Frame capture of Linear, Stripe, MIT and EPFL found no scroll-entrance
+     * animation on any of them: the same scroll offset shot twice at different
+     * settle times came back pixel-identical (delta 0.00) on most samples, and
+     * the rest differed only by image decode timing. Linear does use a
+     * blur+fade stagger, but once, on first paint. Repeating a reveal at every
+     * section is a habit with no precedent in the references, and it delays
+     * information the reader has already scrolled to.
+     */
+    const all = [...document.querySelectorAll('[data-reveal]:not([data-shown])')]
+    const fold = window.innerHeight
+
+    const els = []
+    all.forEach((el) => {
+      if (el.getBoundingClientRect().top < fold) els.push(el)
+      else el.setAttribute('data-shown', '') // below the fold: just be there
+    })
+    if (!els.length) return cleanupMotion
 
     if (!('IntersectionObserver' in window)) {
       els.forEach((el) => el.setAttribute('data-shown', ''))
-      return
+      return cleanupMotion
     }
 
     const io = new IntersectionObserver(
@@ -51,6 +94,7 @@ export function useReveal(key) {
     return () => {
       cancelAnimationFrame(kick)
       io.disconnect()
+      cleanupMotion()
     }
   }, [key])
 }
