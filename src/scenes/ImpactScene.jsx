@@ -16,16 +16,6 @@ import { useReducedMotion } from '../hooks/useMedia'
  *                    타일이다. 보여줄 제품 화면이 없다.
  *   근거 강도       : 직접관찰(프레임)
  *
- * [사람으로 닫는다] 마지막에 실제 사람이 있는 장면을 통으로 넣는다
- *   toss 씬        : 「토스가 바꾼 일상」
- *   캡처 파일       : assets/gap/home.jpg 행 6 (toss 열)
- *   원본에서 본 것  : 기능 설명이 끝난 뒤 마지막 화면이 사람 사진 넉 장이다.
- *                    앞의 모든 화면이 제품인데 끝은 사람이다.
- *   바꾼 것과 이유  : 우리 페이지에는 사람이 한 명도 없었다. 대학 홍보
- *                    페이지에서 이건 그 자체로 결함이다. toss 는 사진 넉 장을
- *                    쓰지만 우리는 강의실 한 장면을 통으로 쓴다. 앞 절이 이미
- *                    카드 줄이라 카드를 또 놓으면 같은 화면이 두 번 된다.
- *   근거 강도       : 직접관찰(프레임)
  *
  * ── 왜 이 절이 필요했나 ──────────────────────────────────────────────────
  * 배포본을 7단계로 재니 우리 행 0~3 이 전부 어두운 전면 영상이었다. 네 화면
@@ -45,10 +35,10 @@ import { useReducedMotion } from '../hooks/useMedia'
  *   X 조선소로 확산  → 조선소 도크
  */
 const MEDIA = {
-  D: { slug: 'port_crane_v', alt: '야간 컨테이너 터미널. 갠트리 크레인이 컨테이너를 내리고 청록 경로선이 야드 위를 흐른다.' },
-  A: { slug: 'gpu_rack_v', alt: '서버랙이 늘어선 냉복도. 청록 상태 표시등이 줄지어 깜빡인다.' },
+  D: { slug: 'port_crane_v', alt: '야간 컨테이너 터미널. 갠트리 크레인이 컨테이너를 내리고 파란 경로선이 야드 위를 흐른다.' },
+  A: { slug: 'gpu_rack_v', alt: '서버랙이 늘어선 냉복도. 파란 상태 표시등이 줄지어 깜빡인다.' },
   P: { slug: 'axis_p', alt: '산업용 로봇 팔이 기어를 제자리에 내려놓는다.' },
-  X: { slug: 'shipyard_v', alt: '야간 조선소 도크. 건조 중인 선체를 청록 계측선이 따라 훑는다.' },
+  X: { slug: 'shipyard_v', alt: '야간 조선소 도크. 건조 중인 선체를 파란 계측선이 따라 훑는다.' },
 }
 
 function Tile({ media, reduced }) {
@@ -80,7 +70,6 @@ export default function ImpactScene() {
   const reduced = useReducedMotion()
 
   return (
-    <>
       <section id="impact" className="band scroll-mt-24 bg-canvas" aria-labelledby="impact-title">
         <div className="edge">
           <p className="text-[15px] font-semibold text-brand">{CHAIN.eyebrow}</p>
@@ -121,50 +110,5 @@ export default function ImpactScene() {
           <p className="mt-16 max-w-[42rem] text-[14px] leading-[1.7] text-ink-faint">{CHAIN.caveat}</p>
         </div>
       </section>
-
-      {/* 사람으로 닫는다 */}
-      <section className="relative isolate overflow-hidden bg-[#0a0a14]" aria-labelledby="closing-title">
-        <div className="absolute inset-0">
-          {reduced ? (
-            <img
-              src={asset('img/lecture_v@2x.webp')}
-              alt=""
-              className="h-full w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <video
-              aria-hidden="true"
-              className="h-full w-full object-cover"
-              poster={asset('img/lecture_v@2x.webp')}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            >
-              <source src={asset('video/lecture_v.webm')} type="video/webm" />
-              <source src={asset('video/lecture_v.mp4')} type="video/mp4" />
-            </video>
-          )}
-        </div>
-
-        <div aria-hidden="true" className="absolute inset-0 bg-[#05050c]/65" />
-
-        <div className="edge relative flex min-h-[70svh] flex-col justify-end py-24">
-          <p className="text-[13px] font-bold tracking-[0.08em] text-sky-300">2027년 3월</p>
-          <h2
-            id="closing-title"
-            className="mt-4 max-w-[26rem] text-[clamp(1.875rem,4.4vw,3.25rem)] font-extrabold leading-[1.15] tracking-[-0.03em] text-white"
-          >
-            그 모든 게 강의실에서 시작해요
-          </h2>
-          <p className="mt-5 max-w-[34rem] text-[16px] leading-[1.7] text-white/75">
-            424명이 한 단과대학 안에서 데이터부터 현장까지 한 바퀴를 다 돌아봐요.
-          </p>
-        </div>
-      </section>
-    </>
   )
 }
