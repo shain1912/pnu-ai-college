@@ -75,6 +75,46 @@ const CHAPTERS = [
 const FADE = 0.25
 const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value))
 
+/*
+ * 스크롤을 영상 시간에 그대로 비례시키면 워프가 스크롤을 너무 많이 먹는다.
+ * 4.40–5.67 구간은 1.27초뿐이지만 전체의 12.7%, 700svh 중 89svh 라 문구 없는
+ * 화면이 한 스크린 가까이 이어졌다. toss 에는 문구 없는 화면이 하나도 없다.
+ *
+ * 그래서 컷마다 스크롤 배분을 따로 준다. weight 는 그 컷이 자기 길이만큼
+ * 스크롤을 받을지의 비율이다. 워프는 0.28 이라 28svh 만에 지나간다 — 화면을
+ * 한 번 넘기는 손짓 정도의 시간이고, 영상 안에서 원래 그 정도 속도였다.
+ * 편집 자체는 그대로다. 바뀌는 것은 스크롤 한 칸이 몇 초를 넘기느냐다.
+ */
+const SEGMENTS = [
+  { to: 1.9, weight: 1 }, // 로봇 팔 연구실
+  { to: 3.38, weight: 1 }, // 데이터 비
+  { to: 4.4, weight: 1 }, // 입자 구름
+  { to: 5.67, weight: 0.28 }, // 워프
+  { to: 6.67, weight: 1 }, // 자율주행차
+  { to: 7.96, weight: 1 }, // 산업 로봇
+  { to: 8.4, weight: 0.28 }, // 워프
+  { to: 10, weight: 1 }, // 엠블럼
+]
+
+const CURVE = (() => {
+  let from = 0
+  let total = 0
+  const rows = SEGMENTS.map((segment) => {
+    const row = { from, to: segment.to, start: total, span: (segment.to - from) * segment.weight }
+    from = segment.to
+    total += row.span
+    return row
+  })
+  return rows.map((row) => ({ ...row, start: row.start / total, end: (row.start + row.span) / total }))
+})()
+
+/** 스크롤 진행률 → 영상 시간. 구간별로 기울기가 다른 꺾은선이다. */
+const timeAt = (progress) => {
+  const row = CURVE.find((item) => progress <= item.end) ?? CURVE[CURVE.length - 1]
+  const local = row.end > row.start ? (progress - row.start) / (row.end - row.start) : 1
+  return row.from + clamp(local) * (row.to - row.from)
+}
+
 /** 챕터 창 안이면 1, 창 밖 FADE 구간에 걸쳐 0 으로 떨어진다. */
 const weightAt = (time, bounds) => {
   const [start, end] = bounds
@@ -105,7 +145,7 @@ export default function HeroScene() {
       const progress = range > 0 ? clamp(-root.getBoundingClientRect().top / range) : 0
       const video = videoRef.current
       const duration = video && Number.isFinite(video.duration) ? video.duration : 10
-      const next = progress * Math.max(0, duration - 0.05)
+      const next = Math.min(timeAt(progress), duration - 0.05)
       setTime(next)
       // 25ms 미만 차이로는 탐색을 걸지 않는다. 매 프레임 seek 를 걸면 디코더가
       // 앞선 탐색을 끝내기 전에 다음 요청이 들어와 영상이 멈춘 것처럼 보인다.
