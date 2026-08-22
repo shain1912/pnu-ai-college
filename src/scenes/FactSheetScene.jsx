@@ -117,10 +117,10 @@ export default function FactSheetScene() {
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-8 -right-8 h-[52%] w-[52%] max-w-[560px] opacity-40 mix-blend-screen"
+          className="pointer-events-none absolute -bottom-8 -right-8 h-[58%] w-[58%] max-w-[560px] opacity-70 mix-blend-screen"
         >
           <img
-            src={asset('img/schools@2x.webp')}
+            src={asset('img/emblem@2x.webp')}
             alt=""
             className="h-full w-full object-contain object-bottom"
           />
@@ -134,7 +134,7 @@ export default function FactSheetScene() {
 
           <div className="mt-12 md:mt-16 md:grid md:grid-cols-[minmax(0,420px)_1fr] md:items-start md:gap-16">
             <div className="hidden md:block md:sticky md:top-32">
-              <div className="relative aspect-square overflow-hidden rounded-[--radius-xl] bg-gray-50">
+              <div className="relative aspect-square overflow-hidden rounded-[--radius-xl] bg-[#0a0a14]">
                 {STAGE.map((s, i) => (
                   <div
                     key={s.slug}
@@ -149,11 +149,11 @@ export default function FactSheetScene() {
                       <img
                         src={asset(`img/${s.slug}@2x.webp`)}
                         alt=""
-                        className="h-full w-full object-contain"
+                        className="h-full w-full object-cover"
                       />
                     ) : (
                       <video
-                        className="h-full w-full object-contain"
+                        className="h-full w-full object-cover"
                         poster={asset(`img/${s.slug}@2x.webp`)}
                         autoPlay={i === activeStage}
                         muted

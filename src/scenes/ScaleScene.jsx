@@ -105,13 +105,13 @@ export default function ScaleScene() {
           style={revealDelay(5)}
           className="mt-3 grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]"
         >
-          <figure className="flex items-center justify-center rounded-[var(--radius-xl)] bg-gray-50 p-4 md:p-6">
+          <figure className="flex items-center justify-center rounded-[var(--radius-xl)] bg-[#0a0a14] p-4 md:p-6">
             {reduced ? (
               <img
                 src={asset('img/infra_gpu-poster.webp')}
                 alt={INFRA_ALT}
                 width={1200}
-                height={670}
+                height={630}
                 loading="lazy"
                 decoding="async"
                 className="h-auto w-full max-w-[540px] rounded-[var(--radius-lg)]"
@@ -120,7 +120,7 @@ export default function ScaleScene() {
               <video
                 className="h-auto w-full max-w-[540px] rounded-[var(--radius-lg)]"
                 width={1200}
-                height={670}
+                height={630}
                 poster={asset('img/infra_gpu-poster.webp')}
                 autoPlay
                 muted

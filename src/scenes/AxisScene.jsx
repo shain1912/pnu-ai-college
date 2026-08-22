@@ -36,7 +36,7 @@ function AxisObject({ axis, active, reducedMotion }) {
         muted
         playsInline
         poster={media.poster}
-        className="h-full w-full object-contain"
+        className="h-full w-full object-cover"
       >
         <source src={media.video} type="video/webm" />
         <source src={media.videoMp4} type="video/mp4" />
@@ -52,7 +52,7 @@ function AxisObject({ axis, active, reducedMotion }) {
       height={320}
       loading="lazy"
       decoding="async"
-      className="h-full w-full object-contain"
+      className="h-full w-full object-cover"
     />
   )
 }
@@ -191,7 +191,7 @@ export default function AxisScene() {
                     </div>
                   </div>
 
-                  <div className="axis-object mx-auto aspect-square w-full max-w-[220px] md:max-w-[280px]">
+                  <div className="axis-object mx-auto aspect-square w-full max-w-[220px] overflow-hidden rounded-[--radius-lg] bg-[#0a0a14] md:max-w-[280px]">
                     <AxisObject axis={axis} active={selected} reducedMotion={reducedMotion} />
                   </div>
                 </div>
