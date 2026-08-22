@@ -11,11 +11,13 @@ import { mkdir } from 'node:fs/promises'
 
 const url = process.argv[2] ?? 'https://shain1912.github.io/pnu-ai-college/'
 const STEPS = Number(process.argv[3] ?? 10)
-const VIEW = { width: 390, height: 844 }
+// 폭을 인자로 받는다. 390 은 손안, 820 은 태블릿 세로, 1024 는 태블릿 가로다.
+const W = Number(process.argv[4] ?? 390)
+const VIEW = { width: W, height: W >= 768 ? 1180 : 844 }
 
 await mkdir('assets/mobile', { recursive: true })
 const browser = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] })
-const page = await browser.newPage({ viewport: VIEW, deviceScaleFactor: 2, isMobile: true, hasTouch: true })
+const page = await browser.newPage({ viewport: VIEW, deviceScaleFactor: 2, isMobile: W < 768, hasTouch: true })
 await page.goto(url, { waitUntil: 'networkidle', timeout: 60_000 })
 await page.waitForTimeout(2500)
 
@@ -49,9 +51,9 @@ for (let i = 0; i < STEPS; i++) {
 }
 await browser.close()
 
-const TW = 300
-const TH = 650
-const cols = 5
+const TW = W >= 768 ? 380 : 300
+const TH = W >= 768 ? 546 : 650
+const cols = W >= 768 ? 4 : 5
 const tiles = []
 for (let i = 0; i < shots.length; i++) {
   tiles.push({
@@ -63,5 +65,5 @@ for (let i = 0; i < shots.length; i++) {
 await sharp({ create: { width: TW * cols, height: TH * Math.ceil(shots.length / cols), channels: 3, background: '#111' } })
   .composite(tiles)
   .jpeg({ quality: 84 })
-  .toFile('assets/mobile/sheet.jpg')
-console.log('assets/mobile/sheet.jpg')
+  .toFile(`assets/mobile/sheet-${W}.jpg`)
+console.log(`assets/mobile/sheet-${W}.jpg`)

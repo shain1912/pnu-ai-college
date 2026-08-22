@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SCHOOLS, D_AXIS_SEATS, facultyOf } from '../data/schools'
-import { useIsMobile, useReducedMotion } from '../hooks/useMedia'
+import { useIsMobile, useIsTouch, useReducedMotion } from '../hooks/useMedia'
 import { asset } from '../lib/asset'
 
 /*
@@ -39,6 +39,7 @@ const seatLabel = (school) =>
 export default function SchoolRailScene() {
   const reduced = useReducedMotion()
   const mobile = useIsMobile()
+  const touch = useIsTouch()
   const rootRef = useRef(null)
   const railRef = useRef(null)
   const [shift, setShift] = useState(0)
@@ -51,8 +52,12 @@ export default function SchoolRailScene() {
    *
    * 데스크톱은 그대로 둔다. 마우스에는 가로로 밀 방법이 마땅치 않아서 세로
    * 스크롤이 미는 편이 낫고, 잘린 카드가 "더 있다"는 신호도 거기서는 유효하다.
+   *
+   * 기준을 폭이 아니라 포인터로도 본다. 태블릿은 768px 를 넘어 데스크톱으로
+   * 잡히는데 손가락으로 미는 기기다. 밀 수 있느냐는 화면 크기가 아니라 포인터
+   * 종류의 문제다.
    */
-  const driven = !reduced && !mobile
+  const driven = !reduced && !mobile && !touch
 
   /*
    * 레일이 실제로 넘치는 만큼만 민다. 카드 폭과 화면 폭은 뷰포트마다 달라서

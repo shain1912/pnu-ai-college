@@ -87,9 +87,9 @@ export default function ProgramScene() {
             {PROGRAMS.title}
           </h2>
 
-          <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] md:items-center md:gap-16">
+          <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16">
             {/* 무대. 항목이 바뀌면 화면도 같이 넘어간다. */}
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[--radius-xl] bg-[#0a0a14] md:order-2">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[--radius-xl] bg-[#0a0a14] lg:order-2">
               {PROGRAMS.items.map((item, index) => (
                 <div
                   key={item.name}
@@ -128,11 +128,15 @@ export default function ProgramScene() {
             </div>
 
             {/*
+             * 좌우 두 칸은 lg(1024) 부터다. 768 에서 나누면 820x1180 태블릿에서
+             * 무대가 화면 높이의 17% 로 쪼그라든다 — 한 화면에 하나를 보여주는
+             * 자리인데 네 폭 중 가장 작다. 세로로 쌓으면 41% 를 받는다.
+             *
              * 문구도 무대와 같은 자리에서 갈아 끼운다. 셋을 세로로 쌓아두고
              * 현재 것만 보이게 하면 자리가 흔들리지 않는다. 목록으로 늘어놓지
              * 않는 것이 이 절의 요점이다 — 한 번에 하나.
              */}
-            <div className="relative grid md:order-1">
+            <div className="relative grid lg:order-1">
               {PROGRAMS.items.map((item, index) => {
                 const shown = reduced ? true : index === active
                 return (
