@@ -104,7 +104,7 @@ export default function ScaleScene() {
           style={revealDelay(5)}
           className="mt-3 grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]"
         >
-          <figure className="flex items-center justify-center rounded-[var(--radius-xl)] bg-gray-50 p-4 md:p-8">
+          <figure className="flex items-center justify-center rounded-[var(--radius-xl)] bg-gray-50 p-4 md:p-6">
             {reduced ? (
               <img
                 src="/img/infra_gpu@2x.webp"

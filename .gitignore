@@ -25,3 +25,6 @@ _probe*.mjs
 scratch-*.mjs
 scripts/_*.mjs
 .qc/
+__*.mjs
+__*.html
+_*preview.*
