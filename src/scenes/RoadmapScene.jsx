@@ -33,7 +33,7 @@ export default function RoadmapScene() {
     <>
       <MediaBand
         slug="roadmap_path_v"
-        ratio="aspect-[16/8] md:aspect-[21/8]"
+        ratio="aspect-[3/2] sm:aspect-[16/8] md:aspect-[21/8]"
         alt="어두운 공간에 파란 길이 안쪽으로 이어지고, 그 위에 다섯 개의 표식이 점점 커지며 놓여 있다."
       />
 

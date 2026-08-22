@@ -18,8 +18,16 @@ export default function RoadmapPage() {
 
       <section className="band bg-canvas">
         <div className="edge">
-          <figure data-reveal className="mb-14 max-w-[560px] rounded-[--radius-xl] bg-gray-50 p-4 md:p-6">
-            <LoopMedia slug="roadmap_path" alt="점점 커지는 다섯 개의 표식이 하나의 오르막 띠를 따라 놓인 도형" className="w-full" />
+          {/*
+            슬러그가 roadmap_path 였는데 그 영상은 편집본에서 잘라낸 자율주행차다.
+            11회차에 이 자리에 맞는 그림(어두운 공간을 지나는 파란 길, 점점 커지는
+            다섯 표식)을 roadmap_path_v 로 새로 만들었지만 포스터만 갈아 끼우고
+            영상 슬러그를 두고 갔다. 그래서 「추진 일정」 옆에 차가 달리고 있었다.
+
+            액자 배경도 회색이었다. 밝은 상자에 짙은 화면을 넣으면 레터박스가 생긴다.
+          */}
+          <figure data-reveal className="mb-14 max-w-[560px] overflow-hidden rounded-[--radius-xl] bg-[#0a0a14]">
+            <LoopMedia slug="roadmap_path_v" alt="어두운 공간에 파란 길이 안쪽으로 이어지고, 그 위에 다섯 개의 표식이 점점 커지며 놓여 있다." className="w-full" />
           </figure>
 
           <ol>

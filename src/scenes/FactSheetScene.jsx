@@ -99,7 +99,7 @@ export default function FactSheetScene() {
 
       {/* 글자 없는 이미지 한 장. 앞은 숫자, 뒤는 표라 사이에 눈이 쉴 자리를 둔다. */}
       <div className="px-[10px] md:px-5">
-        <div className="relative aspect-[16/7] overflow-hidden rounded-[18px] bg-[#0a0a14] md:aspect-[21/7] md:rounded-[28px]">
+        <div className="relative aspect-[3/2] overflow-hidden rounded-[18px] bg-[#0a0a14] sm:aspect-[16/7] md:aspect-[21/7] md:rounded-[28px]">
           {reduced ? (
             <img src={asset('img/band_lab@2x.webp')} alt="" className="h-full w-full object-cover" />
           ) : (

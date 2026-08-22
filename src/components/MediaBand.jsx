@@ -11,7 +11,12 @@ import { useReducedMotion } from '../hooks/useMedia'
  * 히어로와 같은 둥근 카드 기하를 쓴다. 각진 전면 사각형을 섞으면 히어로와
  * 기하가 충돌한다 (8회차에 파란 사각형을 걷어낸 이유).
  */
-export default function MediaBand({ slug, ratio = 'aspect-[16/7] md:aspect-[21/7]', alt = '' }) {
+/*
+ * 기본 비율에 모바일 단계를 따로 둔다. 21:7 을 그대로 좁은 화면에 쓰면
+ * 370px 폭에서 높이가 123px 밖에 안 된다. 390px 실측에서 162px 였고, 건물도
+ * 길도 무엇인지 알아볼 수 없는 조각이 된다. 손안에서는 3:2 로 세워 둔다.
+ */
+export default function MediaBand({ slug, ratio = 'aspect-[3/2] sm:aspect-[16/7] md:aspect-[21/7]', alt = '' }) {
   const reduced = useReducedMotion()
   const poster = asset(`img/${slug}@2x.webp`)
 
