@@ -14,12 +14,15 @@
  * State is written back to the same file, so re-running resumes rather than
  * re-spending credits on work already done.
  */
-import { execFile } from 'node:child_process'
+import { exec as execCb } from 'node:child_process'
 import { promisify } from 'node:util'
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 
-const exec = promisify(execFile)
+// execFile 은 첫 인자를 실행 파일 경로로 본다. 여기서는 인자까지 붙은 한 줄을
+// 넘기므로 셸을 거치는 exec 여야 한다. execFile 로 두면 PowerShell 에서는
+// 우연히 통과하지만 bash 에서는 ENOENT 로 죽는다.
+const exec = promisify(execCb)
 const WIN = process.platform === 'win32'
 const sh = async (cmd, timeout = 15 * 60_000) => {
   const { stdout } = await exec(cmd, { timeout, maxBuffer: 32 * 1024 * 1024, windowsHide: true })
@@ -66,9 +69,19 @@ const submit = async (item) => {
 
 const settle = async (id) => {
   for (let i = 0; i < 120; i++) {
-    const job = JSON.parse(await sh(`higgsfield generate get ${id} --json`, 60_000))
+    // 만료됐거나 없는 작업이면 CLI 가 0 이 아닌 코드로 죽는다. 그걸 그대로
+    // 던지면 큐 전체가 멈춘다. 죽은 작업 하나로 나머지를 막지 않는다.
+    let raw
+    try {
+      raw = await sh(`higgsfield generate get ${id} --json`, 60_000)
+    } catch (error) {
+      const text = String(error.stderr ?? error.message)
+      if (/not found|404/i.test(text)) return { status: 'gone' }
+      throw error
+    }
+    const job = JSON.parse(raw)
     if (job.status === 'completed') return job
-    if (['failed', 'nsfw', 'canceled'].includes(job.status)) return job
+    if (['failed', 'nsfw', 'canceled', 'gone'].includes(job.status)) return job
     await sleep(8000)
   }
   throw new Error(`${id}: 시간 초과`)
