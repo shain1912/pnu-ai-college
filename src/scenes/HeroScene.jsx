@@ -236,7 +236,19 @@ export default function HeroScene() {
       className="relative bg-canvas"
       style={{ height: reduced ? 'auto' : '500svh' }}
     >
-      <div className="sticky top-16 px-[10px] pb-[10px] md:top-[72px] md:px-5 md:pb-5">
+      {/*
+        동작 줄이기에서는 고정을 걷는다. 스크롤로 넘길 장면이 없는데 무대만
+        붙잡혀 있으면, 아래에 편 다섯 챕터가 고정된 무대 밑으로 미끄러져 들어가
+        영영 보이지 않는다. sticky 는 흐름에서 빠지지 않으므로 뒤 형제가 그
+        아래를 지나간다.
+      */}
+      <div
+        className={
+          reduced
+            ? 'px-[10px] pb-[10px] md:px-5 md:pb-5'
+            : 'sticky top-16 px-[10px] pb-[10px] md:top-[72px] md:px-5 md:pb-5'
+        }
+      >
         <div className="relative h-[calc(100svh-84px)] overflow-hidden rounded-[18px] bg-[#0a0a14] bg-cover bg-center md:h-[calc(100svh-96px)] md:rounded-[28px]"
           style={{ backgroundImage: `url(${asset('img/hero_reel@2x.webp')})` }}
         >
@@ -290,6 +302,14 @@ export default function HeroScene() {
                     opacity: weight,
                     filter: reduced ? 'none' : `blur(${(1 - weight) * 10}px)`,
                     transform: reduced ? 'none' : `translateY(${(1 - weight) * 18}px)`,
+                    /*
+                     * 완전히 안 보이는 챕터는 visibility 로 접는다. opacity 0 만
+                     * 걸어두면 마무리 챕터의 버튼 두 개가 화면에 없는 채로 탭
+                     * 순서에 남는다. pointer-events: none 은 클릭만 막지
+                     * 키보드 포커스는 못 막는다. 동작 줄이기를 켜면 다섯 챕터가
+                     * 계속 weight 0 이라 그동안 내내 걸려 있었다.
+                     */
+                    visibility: weight === 0 ? 'hidden' : 'visible',
                   }}
                 >
                   <p className="text-[13px] font-bold tracking-[0.08em] text-sky-300">{chapter.eyebrow}</p>
@@ -351,6 +371,51 @@ export default function HeroScene() {
           배경 영상은 생성형 AI로 제작한 연출 화면이에요. 실제 시설이나 장비를 촬영한 것이 아니에요.
         </p>
       </div>
+
+      {/*
+       * 동작 줄이기를 켠 사람에게는 무대가 인트로 한 장으로 멈춘다. 스크롤로
+       * 넘기지 않으니 D·A·X·P 네 역할과 마무리가 opacity 0 인 채 영영 나오지
+       * 않고, /ai-college 로 가는 유일한 버튼도 그 마무리에 달려 있었다.
+       * 애니메이션을 줄이는 것과 내용을 빼앗는 것은 다른 얘기다.
+       *
+       * 그래서 나머지 다섯을 무대 아래에 그대로 편다. 움직임 없이 목록으로
+       * 읽으면 되고, 잃는 것은 전환뿐이다.
+       */}
+      {reduced && (
+        <div className="edge band-tight">
+          <ul className="grid gap-8 border-t border-line pt-10 md:grid-cols-2 md:gap-10">
+            {CHAPTERS.slice(1, 5).map((chapter) => (
+              <li key={chapter.id}>
+                <p className="text-[13px] font-bold tracking-[0.08em] text-brand">{chapter.eyebrow}</p>
+                <h2 className="mt-3 text-[clamp(1.25rem,2.2vw,1.625rem)] font-bold leading-[1.35] text-ink">
+                  {chapter.title}
+                </h2>
+                <p className="mt-3 text-[15px] leading-[1.7] text-ink-muted">{chapter.body}</p>
+                {chapter.meta && <p className="mt-2 text-[13px] font-semibold text-ink-faint">{chapter.meta}</p>}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-12 border-t border-line pt-10">
+            <p className="text-[13px] font-bold tracking-[0.08em] text-brand">{CHAPTERS[5].eyebrow}</p>
+            <h2 className="mt-3 whitespace-pre-line text-[clamp(1.5rem,3vw,2.25rem)] font-extrabold leading-[1.2] tracking-[-0.025em] text-ink">
+              {CHAPTERS[5].title}
+            </h2>
+            <p className="mt-4 max-w-[34rem] text-[16px] leading-[1.7] text-ink-muted">{CHAPTERS[5].body}</p>
+            <div className="mt-7 flex flex-wrap items-center gap-4">
+              <Link
+                to="/ai-college"
+                className="rounded-[--radius-pill] bg-brand-strong px-6 py-3 text-[15px] font-bold text-white"
+              >
+                AI대학 살펴보기
+              </Link>
+              <a href="#summary" className="text-[15px] font-semibold text-brand-strong underline-offset-4 hover:underline">
+                한눈에 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
