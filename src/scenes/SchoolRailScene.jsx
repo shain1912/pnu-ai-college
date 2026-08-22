@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SCHOOLS, D_AXIS_SEATS, facultyOf } from '../data/schools'
-import { useReducedMotion } from '../hooks/useMedia'
+import { useIsMobile, useReducedMotion } from '../hooks/useMedia'
 import { asset } from '../lib/asset'
 
 /*
@@ -38,9 +38,21 @@ const seatLabel = (school) =>
 
 export default function SchoolRailScene() {
   const reduced = useReducedMotion()
+  const mobile = useIsMobile()
   const rootRef = useRef(null)
   const railRef = useRef(null)
   const [shift, setShift] = useState(0)
+
+  /*
+   * 좁은 화면에서는 스크롤 구동을 끄고 손가락으로 미는 평범한 가로 스크롤로
+   * 돌린다. 390px 에서 확인해 보니 카드가 264px 라 어느 위치에서도 좌우가
+   * 잘려 있고, overflow-hidden 이라 밀어도 움직이지 않는다. 손안에서는 가로로
+   * 늘어선 것을 밀어 보는 것이 먼저 나오는 동작인데 아무 반응이 없다.
+   *
+   * 데스크톱은 그대로 둔다. 마우스에는 가로로 밀 방법이 마땅치 않아서 세로
+   * 스크롤이 미는 편이 낫고, 잘린 카드가 "더 있다"는 신호도 거기서는 유효하다.
+   */
+  const driven = !reduced && !mobile
 
   /*
    * 레일이 실제로 넘치는 만큼만 민다. 카드 폭과 화면 폭은 뷰포트마다 달라서
@@ -48,7 +60,7 @@ export default function SchoolRailScene() {
    * 빈 자리가 생긴다. 매번 재어서 넘치는 폭을 그대로 쓴다.
    */
   useEffect(() => {
-    if (reduced) return
+    if (!driven) return
     let frame = 0
     const update = () => {
       frame = 0
@@ -71,17 +83,17 @@ export default function SchoolRailScene() {
       window.removeEventListener('scroll', requestUpdate)
       window.removeEventListener('resize', requestUpdate)
     }
-  }, [reduced])
+  }, [driven])
 
   return (
     <section
       ref={rootRef}
       id="schools-rail"
       className="relative bg-canvas"
-      style={{ height: reduced ? 'auto' : '240svh' }}
+      style={{ height: driven ? '240svh' : 'auto' }}
       aria-labelledby="schools-rail-title"
     >
-      <div className={reduced ? 'py-20' : 'sticky top-0 flex h-svh flex-col justify-center overflow-hidden py-16'}>
+      <div className={driven ? 'sticky top-0 flex h-svh flex-col justify-center overflow-hidden py-16' : 'py-16 md:py-20'}>
         <div className="edge">
           <p className="text-[15px] font-semibold text-brand">편제 대상</p>
           <h2 id="schools-rail-title" className="h2 mt-4 whitespace-pre-line text-ink">
@@ -98,14 +110,16 @@ export default function SchoolRailScene() {
          */}
         <div
           ref={railRef}
-          className={`mt-10 md:mt-12 ${reduced ? 'overflow-x-auto' : 'overflow-hidden'}`}
+          className={`mt-10 md:mt-12 ${
+            driven ? 'overflow-hidden' : 'snap-x snap-mandatory scroll-pl-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+          }`}
         >
           <ul
             className="flex w-max gap-4 px-6 md:gap-5 md:px-[max(1.5rem,calc((100vw-1120px)/2))]"
-            style={reduced ? undefined : { transform: `translate3d(${-shift}px, 0, 0)` }}
+            style={driven ? { transform: `translate3d(${-shift}px, 0, 0)` } : undefined}
           >
             {SCHOOLS.map((school) => (
-              <li key={school.slug} className="w-[264px] shrink-0 md:w-[320px]">
+              <li key={school.slug} className="w-[264px] shrink-0 snap-start md:w-[320px]">
                 <Link
                   to={`/ai-college/schools/${school.slug}`}
                   className="card group flex h-full flex-col overflow-hidden p-0"
