@@ -19,9 +19,10 @@
  * - prefers-reduced-motion: 버튼을 아예 렌더하지 않고 모든 animation 을 끈다.
  *   그 경우 도표는 처음부터 끝까지 완성 상태 그대로다.
  *
- * 에셋: 요청 없음. 이 사례는 CHAIN.caveat 가 밝히듯 진행 중인 사업이 아니라
- * 설명용 시나리오라서, 부산항 사진을 깔면 실재하는 프로젝트처럼 읽힌다.
- * 도표와 활자로만 만든다.
+ * 에셋: 힉스필드 에이전트가 만든 /img/chain@2x.webp 하나만 쓴다 (한 축에 꿰인 네
+ * 덩이 오브제, 760×424). 새로 요청한 것은 없다. 부산항 사진은 일부러 쓰지 않았다 —
+ * 이 사례는 CHAIN.caveat 가 밝히듯 진행 중인 사업이 아니라 설명용 시나리오라서,
+ * 실사를 깔면 실재하는 프로젝트처럼 읽힌다. 추상 오브제라야 그 선을 넘지 않는다.
  */
 import { useEffect, useRef, useState } from 'react'
 import { ADPX, CHAIN } from '../data/content'
@@ -66,11 +67,26 @@ export default function ChainScene() {
   return (
     <section id="chain" className="band bg-canvas-subtle">
       <div className="edge">
-        <p className="text-[15px] font-semibold text-brand-strong">{CHAIN.eyebrow}</p>
+        <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_300px] md:gap-10 lg:grid-cols-[minmax(0,1fr)_380px]">
+          <div>
+            <p className="text-[15px] font-semibold text-brand-strong">{CHAIN.eyebrow}</p>
 
-        <h2 className="h2 mt-4 whitespace-pre-line text-ink">{CHAIN.title}</h2>
+            <h2 className="h2 mt-4 whitespace-pre-line text-ink">{CHAIN.title}</h2>
 
-        <p className="lead mt-6 max-w-[36rem]">{CHAIN.intro}</p>
+            <p className="lead mt-6 max-w-[36rem]">{CHAIN.intro}</p>
+          </div>
+
+          {/* 네 덩이가 한 축에 꿰여 점점 커지는 오브제 — 아래 도표의 요약이다. 장식이라 alt 는 비운다. */}
+          <img
+            src="/img/chain@2x.webp"
+            alt=""
+            width={760}
+            height={424}
+            loading="lazy"
+            decoding="async"
+            className="w-full max-w-[380px] justify-self-center rounded-[--radius-lg] md:justify-self-end"
+          />
+        </div>
 
         <div data-play={playing ? '' : undefined} className="card mt-10 p-6 md:mt-12 md:p-8 lg:p-10">
           {/*
@@ -148,9 +164,11 @@ export default function ChainScene() {
           </ol>
 
           {/* 단서는 도표와 같은 판 안에 둔다. 밖으로 빼면 "위 사례"가 무엇인지 흐려진다. */}
-          <p className="mt-9 max-w-[44rem] border-t border-line pt-5 text-[13.5px] leading-[1.75] text-ink-subtle md:mt-11">
-            {CHAIN.caveat}
-          </p>
+          <div className="mt-9 border-t border-line pt-5 md:mt-11">
+            <p className="max-w-[46rem] text-[13.5px] leading-[1.75] text-ink-subtle">
+              {CHAIN.caveat}
+            </p>
+          </div>
         </div>
 
         {/*

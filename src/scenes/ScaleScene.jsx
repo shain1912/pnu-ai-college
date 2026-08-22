@@ -18,9 +18,9 @@
  * 이 씬이 직접 만드는 모션은 §4 가 "반드시" 넣으라고 한 상호작용 쪽 — 산정 기준
  * 펼침(높이+투명도)과 그 버튼의 hover — 그리고 인프라 루프 영상뿐이에요.
  *
- * ASSET-REQUEST: infra_gpu (video) — 16:9 — /video/infra_gpu.webm + /video/infra_gpu.mp4.
- *   GPU 랙 모듈이 아주 느리게 숨 쉬듯 밝아졌다 어두워지는 무한 루프(6~10초, 컷 없음,
- *   카메라 이동 없음). poster 는 기존 /img/infra_gpu@2x.webp 를 그대로 써요.
+ * 에셋: /video/infra_gpu.webm + .mp4 (루프), poster /img/infra_gpu-poster.webp.
+ *   prefers-reduced-motion 에서는 같은 poster 를 <img> 로 대신 깔아, 정지 화면이
+ *   영상의 첫 프레임과 정확히 같은 구도가 되게 했어요.
  */
 import { useId, useState } from 'react'
 import { NUMBERS } from '../data/content'
@@ -65,7 +65,7 @@ export default function ScaleScene() {
                 {LEAD.unit}
               </span>
             </p>
-            <div className="md:max-w-[20rem] md:text-right">
+            <div className="md:max-w-[19rem] md:border-l md:border-white/25 md:pl-12 md:text-right">
               <p className="text-[22px] font-bold leading-[1.3] text-white md:text-[26px]">
                 {LEAD.label}
               </p>
@@ -107,7 +107,7 @@ export default function ScaleScene() {
           <figure className="flex items-center justify-center rounded-[var(--radius-xl)] bg-gray-50 p-4 md:p-6">
             {reduced ? (
               <img
-                src="/img/infra_gpu@2x.webp"
+                src="/img/infra_gpu-poster.webp"
                 alt={INFRA_ALT}
                 width={1200}
                 height={670}
@@ -120,7 +120,7 @@ export default function ScaleScene() {
                 className="h-auto w-full max-w-[540px] rounded-[var(--radius-lg)]"
                 width={1200}
                 height={670}
-                poster="/img/infra_gpu@2x.webp"
+                poster="/img/infra_gpu-poster.webp"
                 autoPlay
                 muted
                 loop

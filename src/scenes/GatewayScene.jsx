@@ -55,7 +55,7 @@ function DoorBody({ door }) {
         <span aria-hidden="true" className="g-arrow text-[15px] leading-none">
           {external ? '↗' : '→'}
         </span>
-        {external && <span className="sr-only">— 새 창에서 열려요</span>}
+        {external && <span className="sr-only">새 창에서 열려요</span>}
       </span>
     </>
   )
@@ -154,21 +154,23 @@ export default function GatewayScene() {
         .gateway-card:hover,
         .gateway-card:focus-visible { background: var(--g-surface-hover); }
 
-        .g-rule {
+        /* every .g-* rule stays under .gateway-card — these are short names in
+           a global stylesheet shared with every other scene */
+        .gateway-card .g-rule {
           background: var(--g-rule);
           transition: background-color var(--dur-base) var(--ease-standard);
         }
         .gateway-card:hover .g-rule,
         .gateway-card:focus-visible .g-rule { background: var(--g-rule-hover); }
 
-        .g-go {
+        .gateway-card .g-go {
           color: var(--g-go);
           transition: color var(--dur-base) var(--ease-standard);
         }
         .gateway-card:hover .g-go,
         .gateway-card:focus-visible .g-go { color: var(--g-go-hover); }
 
-        .g-arrow { transition: transform var(--dur-base) var(--ease-standard); }
+        .gateway-card .g-arrow { transition: transform var(--dur-base) var(--ease-standard); }
         .gateway-card:hover .g-arrow,
         .gateway-card:focus-visible .g-arrow { transform: translateX(3px); }
         /* An external arrow points off-site; it leaves along its own diagonal. */
@@ -177,9 +179,9 @@ export default function GatewayScene() {
 
         @media (prefers-reduced-motion: reduce) {
           .gateway-card,
-          .g-rule,
-          .g-go,
-          .g-arrow { transition: none !important; }
+          .gateway-card .g-rule,
+          .gateway-card .g-go,
+          .gateway-card .g-arrow { transition: none !important; }
           .gateway-card:hover .g-arrow,
           .gateway-card:focus-visible .g-arrow,
           .gateway-card.is-external:hover .g-arrow,

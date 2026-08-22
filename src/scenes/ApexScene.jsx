@@ -23,13 +23,15 @@
  * 노드로 가는 선만 살아나고 역할 배지가 채워져요. 어느 선이 어디로 이어지는지 짚어보게
  * 하는 게 목적이라, 정보를 감췄다 여는 연출은 쓰지 않았어요.
  *
- * ASSET-REQUEST: apex — 1:1 (권장 448×448, /img/apex@2x.webp) — 코어 블록 하나에서 팔
- *   세 개가 곧장 뻗어 나오고, 그와 닿지 않는 블록 하나가 옆에서 느슨하게(점선처럼 끊어진
- *   연결로) 붙는 형태. **팔은 반드시 세 개** — 네 개면 사실이 틀려져요. 기존 axis_* 세트와
- *   같은 언어로: 흰/연회색 배경, 파란 반투명 재질, 부드러운 바닥 그림자.
+ * 에셋 — /img/apex@2x.webp (1200×670) 은 이미 들어와 있고, 확인해 보니 코어에 짧은 팔
+ * 세 개가 직결되고 사각 블록 하나가 긴 대에 매달려 옆에서 따로 붙는 형태예요. 위 구조와
+ * 정확히 같아서 그대로 코어 노드 안에 놓았어요. 추가로 필요한 에셋은 없어요.
  */
 import { APEX } from '../data/content'
 import { revealDelay } from '../hooks/useReveal'
+
+/* 오브젝트가 말하는 것과 조직도가 말하는 것이 같아야 해서, alt 도 같은 문장을 써요. */
+const APEX_OBJECT_ALT = '코어 하나에 팔 세 개가 곧장 붙고, 블록 하나가 옆에서 따로 이어지는 도형.'
 
 /*
  * 'PNU-APEX · AI·AX Platform for Education & eXecution' → 이름과 풀네임.
@@ -72,12 +74,11 @@ export default function ApexScene() {
 
         <div data-reveal style={revealDelay(3)} className="apex-map mt-14 md:mt-20">
           <div className="apex-core card">
-            {/* 구조는 아래 텍스트가 전부 말해요. 오브젝트는 코어의 얼굴이라 alt 를 비워요. */}
             <img
               src="/img/apex@2x.webp"
-              alt=""
-              width={448}
-              height={448}
+              alt={APEX_OBJECT_ALT}
+              width={380}
+              height={212}
               loading="lazy"
               decoding="async"
               className="apex-core-object"
@@ -130,8 +131,9 @@ export default function ApexScene() {
           grid-area: core;
           position: relative;
           display: flex;
-          align-items: center;
-          gap: 18px;
+          flex-direction: column;   /* 좁은 화면에서는 오브젝트를 글 위로 */
+          align-items: flex-start;
+          gap: 14px;
           padding: 18px 20px;
         }
         .apex-core::after {
@@ -144,11 +146,14 @@ export default function ApexScene() {
           transform: translateX(-50%);
           background: var(--apex-line);
         }
+        /* 오브젝트는 배경이 살짝 회색이라, 타일로 보이도록 모서리를 둥글려 줘요. */
         .apex-core-object {
           flex: none;
-          width: 76px;
-          height: 76px;
+          width: 168px;
+          height: auto;
+          aspect-ratio: 380 / 212;
           object-fit: contain;
+          border-radius: var(--radius-lg);
         }
         .apex-core-copy { min-width: 0; }
         .apex-core-name {
@@ -248,10 +253,13 @@ export default function ApexScene() {
           align-items: flex-start;
           padding: 20px;
         }
+        /* 그림자 대신 점선 테두리. 카드는 카드인데 계열이 다르다는 표시예요. */
         .apex-node--aside {
-          background: transparent;
           box-shadow: none;
-          border: 2px dashed var(--color-gray-200);
+          border: 2px dashed var(--color-gray-300);
+          transition:
+            border-color var(--dur-base) var(--ease-standard),
+            transform var(--dur-base) var(--ease-standard);
         }
         .apex-role {
           border-radius: var(--radius-sm);
@@ -284,8 +292,13 @@ export default function ApexScene() {
 
         @media (min-width: 768px) {
           .apex-map { --apex-gap: 16px; }
-          .apex-core { gap: 26px; padding: 22px 30px; }
-          .apex-core-object { width: 104px; height: 104px; }
+          .apex-core {
+            flex-direction: row;
+            align-items: center;
+            gap: 26px;
+            padding: 22px 30px;
+          }
+          .apex-core-object { width: 176px; }
           .apex-core-name { font-size: 25px; }
           .apex-core-full { font-size: 14px; }
           .apex-node { padding: 24px; }
@@ -293,6 +306,16 @@ export default function ApexScene() {
           .apex-node-detail { font-size: 15px; }
 
           .apex-arm-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          /* 별도 계열은 한 칸 너비로 오른쪽에 붙여요. 폭까지 나란하면 같은 급으로 읽혀요. */
+          .apex-aside-list {
+            max-width: calc((100% - 2 * var(--apex-gap)) / 3);
+            margin-left: auto;
+          }
+          .apex-edge-label--aside {
+            left: auto;
+            right: calc((100% - 2 * var(--apex-gap)) / 6);
+            transform: translate(50%, -50%);
+          }
           /* 세 칸 그리드에서 첫 칸과 마지막 칸의 중심을 잇는 가로 버스 */
           .apex-arm-list::before {
             left: calc((100% - 2 * var(--apex-gap)) / 6);
@@ -324,7 +347,9 @@ export default function ApexScene() {
               'core aside'
               'arms .';
           }
-          .apex-core { align-self: stretch; }
+          /* 코어가 행 높이를 채워야 줄기가 아래 버스까지 끊김 없이 이어져요. */
+          .apex-core { align-self: stretch; padding: 26px 36px; }
+          .apex-core-object { width: 220px; }
           .apex-aside {
             align-self: center;
             margin-top: 0;
@@ -336,19 +361,23 @@ export default function ApexScene() {
             top: 50%;
             width: var(--apex-link);
           }
+          .apex-aside-list { max-width: none; margin-left: 0; }
           .apex-edge-label--aside {
             left: calc(-1 * var(--apex-link) / 2);
+            right: auto;
             top: 50%;
+            transform: translate(-50%, -50%);
           }
         }
 
         /* ---- 상호작용: 선을 짚어보게 하는 것 ---- */
         @media (hover: hover) {
-          .apex-arm:hover .apex-node,
-          .apex-aside:hover .apex-node {
+          .apex-arm:hover .apex-node {
             transform: translateY(-3px);
             box-shadow: 0 2px 6px rgb(25 31 40 / 0.06), 0 12px 32px rgb(25 31 40 / 0.1);
           }
+          /* 별도 블록은 그림자 없는 점선 카드라, 들리기만 하고 떠오르지는 않아요. */
+          .apex-aside:hover .apex-node--aside { transform: translateY(-3px); }
           .apex-arm:hover .apex-role {
             background: var(--color-brand-strong);
             color: #fff;

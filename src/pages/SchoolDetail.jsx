@@ -4,6 +4,7 @@ import FacultyList from '../components/FacultyList'
 import { SCHOOLS, bySlug, facultyOf, D_AXIS_SEATS } from '../data/schools'
 import { DEPT_INFO } from '../data/departments'
 import { revealDelay } from '../hooks/useReveal'
+import LoopMedia from '../components/LoopMedia'
 
 export default function SchoolDetail() {
   const { slug } = useParams()
@@ -56,15 +57,7 @@ export default function SchoolDetail() {
             </div>
 
             <figure className="mx-auto w-[170px] rounded-[--radius-xl] bg-gray-50 p-4 md:p-6 md:w-full">
-              <img
-                src={`/img/${school.image}@2x.webp`}
-                alt=""
-                width={200}
-                height={200}
-                loading="lazy"
-                decoding="async"
-                className="w-full"
-              />
+              <LoopMedia slug={school.image} className="w-full" />
             </figure>
           </div>
         </div>

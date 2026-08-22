@@ -1,16 +1,17 @@
 import { WHY } from '../data/content'
+import LoopMedia from '../components/LoopMedia'
 
 const COLUMNS = [
   {
     key: 'before',
     label: '지금',
-    image: '/img/asis@2x.webp',
+    slug: 'asis',
     alt: '여러 방향으로 흩어진 투명한 유리 파편',
   },
   {
     key: 'after',
     label: '앞으로',
-    image: '/img/tobe@2x.webp',
+    slug: 'tobe',
     alt: '유리 조각이 하나로 맞물려 완성된 다면체',
   },
 ]
@@ -45,15 +46,7 @@ export default function BackgroundScene() {
                 >
                   {column.label}
                 </figcaption>
-                <img
-                  src={column.image}
-                  alt={column.alt}
-                  width={480}
-                  height={320}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-[190px] w-full object-contain md:h-[260px]"
-                />
+                <LoopMedia slug={column.slug} alt={column.alt} className="w-full" />
               </figure>
             ))}
 

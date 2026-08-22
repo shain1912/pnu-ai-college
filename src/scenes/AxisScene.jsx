@@ -10,10 +10,16 @@ const AXES = ADPX.axes
  * Keep the stage API ready for loops without changing the layout or content.
  * Add `video: `/video/axis_${axis.key.toLowerCase()}.webm`` when each loop ships.
  */
+// Each axis object ships as a five-second loop; the still is its poster, so a
+// slow connection or reduced-motion still gets the same frame.
 const AXIS_MEDIA = Object.fromEntries(
   AXES.map((axis) => [
     axis.key,
-    { poster: `/img/${axis.image}@2x.webp`, video: null },
+    {
+      poster: `/img/${axis.image}@2x.webp`,
+      video: `/video/${axis.image}.webm`,
+      videoMp4: `/video/${axis.image}.mp4`,
+    },
   ]),
 )
 
@@ -32,6 +38,7 @@ function AxisObject({ axis, active, reducedMotion }) {
         className="h-full w-full object-contain"
       >
         <source src={media.video} type="video/webm" />
+        <source src={media.videoMp4} type="video/mp4" />
       </video>
     )
   }

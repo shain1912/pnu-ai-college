@@ -1,6 +1,7 @@
 import PageHead from '../components/PageHead'
 import { ROADMAP, ADMISSION } from '../data/content'
 import { revealDelay } from '../hooks/useReveal'
+import LoopMedia from '../components/LoopMedia'
 
 export default function RoadmapPage() {
   return (
@@ -18,15 +19,7 @@ export default function RoadmapPage() {
       <section className="band bg-canvas">
         <div className="edge">
           <figure data-reveal className="mb-14 max-w-[560px] rounded-[--radius-xl] bg-gray-50 p-4 md:p-6">
-            <img
-              src="/img/roadmap_path@2x.webp"
-              alt="점점 커지는 다섯 개의 표식이 하나의 오르막 띠를 따라 놓인 도형"
-              width={560}
-              height={315}
-              loading="lazy"
-              decoding="async"
-              className="w-full"
-            />
+            <LoopMedia slug="roadmap_path" alt="점점 커지는 다섯 개의 표식이 하나의 오르막 띠를 따라 놓인 도형" className="w-full" />
           </figure>
 
           <ol>
