@@ -1,121 +1,70 @@
-import { useMemo, useState } from 'react'
+import { facultyStats } from '../data/schools'
 
-const RANK_ORDER = { 교수: 0, 부교수: 1, 조교수: 2 }
-
-/**
- * Faculty roster for one academic unit.
+/*
+ * 한 학문단위의 교원 구성.
  *
- * Everything shown here — affiliation, rank, name, specialisation, AI-related
- * career — comes from the university's own 교원정보 file, which is professional
- * information of the kind a department page normally publishes. Career lines
- * are collapsed behind a toggle because several members have a dozen of them
- * and an always-open list buries the roster.
+ * 32회차 전에는 실명·직급·세부전공·개별 경력을 그대로 폈다. 그 구현의 근거는
+ * "학과 페이지가 흔히 싣는 직업 정보" 였는데, 이 자료의 출처가 다르다.
+ * faculty.json 은 대학 내부 교원정보 파일에서 왔고, 그것을 정리한
+ * docs/_extract/SOURCE_FACTS.md 가 직접 이렇게 적어뒀다.
+ *
+ *   "개인 신상이므로 사이트에는 집계 통계로만 사용할 것. 개별 교수 이름·경력을
+ *    공개 페이지에 싣는 것은 별도 동의가 필요하다."
+ *
+ * docs/EVAL_CONTENT.md 는 실명 + 소속 + 직급 + 세부전공이 동명이인까지 갈라내는
+ * 재식별 조합이라고 짚었고(같은 이름 두 명이 소속·전공으로 구분된다),
+ * docs/EVAL_GROK.md 는 이 항목을 제출 전 최소 수정 1번으로 올렸다. 저장소
+ * 어디에도 공개 동의 기록이 없다.
+ *
+ * 그래서 집계만 낸다. 인원과 직급 구성, 그리고 다섯 명 이상인 묶음에 한해
+ * 연구영역 목록. 사람을 특정하지 않으면서 "무엇을 가르치는 사람들인가" 에는
+ * 답한다.
+ *
+ * 되돌리려면 schools.js 의 FACULTY_NAMES_PUBLIC 을 true 로 두면 된다.
+ * faculty.json 도 facultyOf 도 지우지 않았다.
  */
-export default function FacultyList({ people, unitName }) {
-  const [open, setOpen] = useState(() => new Set())
+export default function FacultyList({ school }) {
+  const stats = facultyStats(school)
 
-  const sorted = useMemo(
-    () =>
-      [...people].sort(
-        (a, b) =>
-          (RANK_ORDER[a.rank] ?? 9) - (RANK_ORDER[b.rank] ?? 9) ||
-          a.name.localeCompare(b.name, 'ko'),
-      ),
-    [people],
-  )
-
-  const counts = useMemo(() => {
-    const c = {}
-    people.forEach((p) => (c[p.rank] = (c[p.rank] ?? 0) + 1))
-    return c
-  }, [people])
-
-  const toggle = (no) =>
-    setOpen((prev) => {
-      const next = new Set(prev)
-      next.has(no) ? next.delete(no) : next.add(no)
-      return next
-    })
-
-  if (!people.length) {
-    return (
-      <p className="rounded-[--radius-md] bg-gray-100 px-5 py-4 text-[15px] leading-[1.7] text-ink-subtle">
-        {unitName}은 신설 예정이라 배정된 교원 정보가 아직 공개되지 않았어요.
-      </p>
-    )
+  if (stats.total === 0) {
+    return <p className="text-[15px] leading-[1.7] text-ink-subtle">공개된 교원 정보가 아직 없어요.</p>
   }
 
   return (
     <div>
-      <p className="text-[15px] text-ink-subtle">
-        전체 <strong className="font-bold text-ink">{people.length}명</strong>
-        {Object.keys(counts).length > 0 && (
-          <>
-            {' · '}
-            {Object.entries(counts)
-              .sort((a, b) => (RANK_ORDER[a[0]] ?? 9) - (RANK_ORDER[b[0]] ?? 9))
-              .map(([rank, n]) => `${rank} ${n}명`)
-              .join(' · ')}
-          </>
-        )}
+      <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span className="text-[clamp(1.75rem,3vw,2.25rem)] font-extrabold leading-none tracking-[-0.02em] text-ink">
+          {stats.total}
+          <span className="ml-1 text-[15px] font-bold text-ink-faint">명</span>
+        </span>
+        <span className="text-[15px] font-medium text-ink-subtle">
+          {stats.byRank.map((r) => `${r.rank} ${r.n}`).join(' · ')}
+        </span>
       </p>
 
-      <ul className="mt-6 overflow-hidden rounded-[--radius-lg] border border-line">
-        {sorted.map((p, i) => {
-          const isOpen = open.has(p.no)
-          const hasCareer = p.career.length > 0
-          return (
-            <li
-              key={p.no}
-              className={`bg-canvas ${i > 0 ? 'border-t border-line' : ''}`}
-            >
-              <div className="grid gap-2 px-5 py-5 md:grid-cols-[150px_1fr_auto] md:items-baseline md:gap-6 md:px-7 md:py-6">
-                <div className="flex items-baseline gap-2.5">
-                  <span className="text-[17px] font-bold text-ink">{p.name}</span>
-                  <span className="text-[13px] font-medium text-ink-faint">{p.rank}</span>
-                </div>
+      {stats.areas.length > 0 ? (
+        <>
+          <p className="mt-8 text-[14px] font-semibold text-ink-faint">주요 연구영역</p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {stats.areas.map((area) => (
+              <li
+                key={area}
+                className="rounded-[--radius-sm] bg-gray-100 px-3 py-1.5 text-[14px] font-medium text-ink-muted"
+              >
+                {area}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p className="mt-6 text-[14px] leading-[1.7] text-ink-faint">
+          인원이 적어 연구영역은 따로 밝히지 않아요. 개인이 특정될 수 있어서예요.
+        </p>
+      )}
 
-                <p className="text-[15px] leading-[1.6] text-ink-muted">{p.major || '—'}</p>
-
-                {hasCareer && (
-                  <button
-                    type="button"
-                    onClick={() => toggle(p.no)}
-                    aria-expanded={isOpen}
-                    aria-controls={`career-${p.no}`}
-                    className="justify-self-start rounded-[--radius-sm] px-2.5 py-1.5 text-[14px] font-semibold text-brand transition-colors hover:bg-blue-50 md:justify-self-end"
-                  >
-                    {isOpen ? '경력 접기' : `경력 ${p.career.length}건`}
-                  </button>
-                )}
-              </div>
-
-              {hasCareer && isOpen && (
-                <ul
-                  id={`career-${p.no}`}
-                  className="border-t border-line bg-canvas-subtle px-5 py-5 md:px-7"
-                >
-                  {p.career.map((c, ci) => (
-                    <li
-                      key={ci}
-                      className="flex gap-2.5 py-1 text-[14px] leading-[1.65] text-ink-subtle"
-                    >
-                      <span aria-hidden="true" className="text-ink-faint">
-                        ·
-                      </span>
-                      <span>{c}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          )
-        })}
-      </ul>
-
-      <p className="mt-5 text-[13px] leading-[1.7] text-ink-faint">
-        부산대학교가 제공한 AI대학 교원정보 자료(2026년 8월 기준)를 정리했어요. 소속과 직급은
-        개편 전 현재 기준이며, 2027년 3월 편제에 따라 달라질 수 있어요.
+      <p className="mt-8 max-w-[42rem] text-[13px] leading-[1.7] text-ink-faint">
+        교원 정보는 대학이 정리한 교원정보 자료(2026년 8월 기준)를 집계한 것이에요. 개인 신상에
+        해당해서 이름과 개별 경력은 싣지 않아요.
       </p>
     </div>
   )

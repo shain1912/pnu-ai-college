@@ -84,3 +84,50 @@ export const facultyOf = (school) =>
   faculty.filter((p) => school.deptKeys.includes(p.dept))
 
 export const bySlug = (slug) => SCHOOLS.find((s) => s.slug === slug)
+
+/*
+ * ── 교원 정보를 집계로만 내보내는 이유 ────────────────────────────────────
+ *
+ * faculty.json 의 원본은 대학 내부 교원정보 파일이다. 그 파일을 정리한
+ * docs/_extract/SOURCE_FACTS.md 가 직접 이렇게 적어뒀다.
+ *
+ *   "개인 신상이므로 사이트에는 집계 통계로만 사용할 것. 개별 교수 이름·경력을
+ *    공개 페이지에 싣는 것은 별도 동의가 필요하다."
+ *
+ * docs/EVAL_CONTENT.md 는 한 걸음 더 나가 실명 + 소속 + 직급 + 세부전공의
+ * 4중 조합이 동명이인까지 갈라내는 재식별 키가 된다고 짚었고,
+ * docs/EVAL_GROK.md 는 이 항목을 제출 전 최소 수정 1번으로 올렸다.
+ * 저장소 어디에도 공개 동의 기록은 없다.
+ *
+ * 그래서 이름·개별 경력은 화면에 내보내지 않고 집계만 낸다. 대학 담당 부서의
+ * 명시적 공개 동의를 확보하면 아래 상수 하나만 true 로 돌리면 된다 —
+ * faculty.json 도 facultyOf 도 그대로 남겨뒀다.
+ */
+export const FACULTY_NAMES_PUBLIC = false
+
+const RANKS = ['교수', '부교수', '조교수']
+
+/** 사람 수가 적은 묶음은 연구영역만으로도 누구인지 좁혀진다. 다섯 미만은 감춘다. */
+const AREA_MIN = 5
+
+export const facultyStats = (school) => {
+  const people = facultyOf(school)
+  const byRank = RANKS.map((rank) => ({ rank, n: people.filter((p) => p.rank === rank).length })).filter(
+    (r) => r.n > 0,
+  )
+
+  const tally = new Map()
+  for (const person of people) {
+    for (const raw of String(person.major ?? '').split(/[,·/]/)) {
+      const area = raw.trim().replace(/\(.*\)/, '').trim()
+      if (area.length < 2) continue
+      tally.set(area, (tally.get(area) ?? 0) + 1)
+    }
+  }
+  const areas =
+    people.length >= AREA_MIN
+      ? [...tally].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'ko')).slice(0, 8).map(([a]) => a)
+      : []
+
+  return { total: people.length, byRank, areas }
+}

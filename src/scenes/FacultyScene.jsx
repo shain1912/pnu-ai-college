@@ -1,5 +1,5 @@
 import { NUMBERS } from '../data/content'
-import { SCHOOLS, facultyOf } from '../data/schools'
+import { SCHOOLS, facultyStats } from '../data/schools'
 
 /*
  * ── 왜 이 절이 필요했나 ──────────────────────────────────────────────────
@@ -16,9 +16,18 @@ import { SCHOOLS, facultyOf } from '../data/schools'
  * 라벨-값 표 / 문장 하나 / 가로 카드 레일 / 좌우 교대 / 계단 목록 /
  * 전면 영상 + 문구. 여기에 또 카드를 놓으면 겹친다.
  *
- * 그래서 **이름을 그대로 벽처럼 편다.** 60명을 학부별로 묶어 촘촘한 격자에
- * 넣는다. 숫자 60 을 쓰는 것보다 이름 60 개가 놓인 화면이 더 강한 증거다.
- * 지면 전체가 글자인 화면은 이 페이지에 아직 없다.
+ * 처음에는 **이름을 그대로 벽처럼 폈다.** 60명을 학부별로 묶어 촘촘한 격자에
+ * 넣었다 — 숫자 60 을 쓰는 것보다 이름 60 개가 놓인 화면이 더 강한 증거라서다.
+ *
+ * 32회차에 내렸다. faculty.json 의 원본은 대학 내부 교원정보 파일이고,
+ * 그것을 정리한 docs/_extract/SOURCE_FACTS.md 가 "개인 신상이므로 사이트에는
+ * 집계 통계로만 사용할 것" 이라고 직접 적어뒀다. 실명 + 소속 + 직급 +
+ * 세부전공은 동명이인까지 갈라내는 조합이다 (docs/EVAL_CONTENT.md).
+ * 공개 동의 기록은 저장소에 없다.
+ *
+ * 대신 학부별 인원과 직급 구성, 그리고 묶음 단위의 연구영역을 낸다. 사람을
+ * 특정하지 않으면서 "누가 가르치나" 에는 답한다. 동의를 확보하면
+ * schools.js 의 FACULTY_NAMES_PUBLIC 하나만 돌리면 된다.
  *
  * 세 숫자(60 / 43% / 10)를 위에 두되 424 화면처럼 크게 키우지 않았다. 이
  * 절의 주인공은 숫자가 아니라 이름이다.
@@ -28,8 +37,8 @@ import { SCHOOLS, facultyOf } from '../data/schools'
 const FACULTY = NUMBERS.faculty
 
 export default function FacultyScene() {
-  const groups = SCHOOLS.map((school) => ({ school, people: facultyOf(school) })).filter(
-    (group) => group.people.length > 0,
+  const groups = SCHOOLS.map((school) => ({ school, stats: facultyStats(school) })).filter(
+    (group) => group.stats.total > 0,
   )
 
   return (
@@ -55,31 +64,42 @@ export default function FacultyScene() {
           ))}
         </ul>
 
-        {/*
-         * 이름 벽. 학부마다 제목을 두고 그 아래로 이름을 흘린다. 이름과 전공을
-         * 한 칸에 넣되 전공은 한 줄로 잘라 격자가 들쭉날쭉해지지 않게 한다.
-         */}
-        <div className="mt-14 grid gap-10 md:mt-16 md:gap-12">
-          {groups.map(({ school, people }) => (
-            <div key={school.slug} className="grid gap-4 md:grid-cols-[minmax(0,200px)_1fr] md:gap-10">
-              <h3 className="text-[15px] font-bold leading-[1.4] text-ink">
-                {school.name}
-                <span className="ml-2 font-semibold text-ink-faint">{people.length}</span>
-              </h3>
+        <div className="mt-14 grid gap-px overflow-hidden rounded-[--radius-xl] bg-line md:mt-16">
+          {groups.map(({ school, stats }) => (
+            <div
+              key={school.slug}
+              className="grid gap-4 bg-canvas-subtle px-6 py-7 md:grid-cols-[minmax(0,240px)_1fr] md:items-baseline md:gap-10 md:px-8"
+            >
+              <div>
+                <h3 className="text-[17px] font-bold leading-[1.35] text-ink">{school.name}</h3>
+                <p className="mt-1.5 flex items-baseline gap-2">
+                  <span className="text-[22px] font-extrabold leading-none tracking-[-0.02em] text-brand">
+                    {stats.total}
+                  </span>
+                  <span className="text-[13px] font-semibold text-ink-faint">명</span>
+                  <span className="text-[13px] text-ink-subtle">
+                    {stats.byRank.map((r) => `${r.rank} ${r.n}`).join(' · ')}
+                  </span>
+                </p>
+              </div>
 
-              <ul className="grid gap-x-6 gap-y-3.5 sm:grid-cols-2 lg:grid-cols-3">
-                {people.map((person) => (
-                  <li key={person.no} className="min-w-0">
-                    <p className="flex items-baseline gap-1.5">
-                      <span className="text-[15px] font-bold text-ink">{person.name}</span>
-                      <span className="text-[12px] font-medium text-ink-faint">{person.rank}</span>
-                    </p>
-                    <p className="truncate text-[13px] leading-[1.5] text-ink-subtle" title={person.major}>
-                      {person.major}
-                    </p>
-                  </li>
-                ))}
-              </ul>
+              {stats.areas.length > 0 ? (
+                <ul className="flex flex-wrap gap-1.5">
+                  {stats.areas.map((area) => (
+                    <li
+                      key={area}
+                      className="rounded-[--radius-sm] bg-canvas px-2.5 py-1 text-[13px] font-medium text-ink-muted"
+                    >
+                      {area}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                /* 인원이 적은 묶음은 연구영역만으로도 누구인지 좁혀진다. */
+                <p className="text-[14px] text-ink-faint">
+                  인원이 적어 연구영역은 따로 밝히지 않아요.
+                </p>
+              )}
             </div>
           ))}
         </div>

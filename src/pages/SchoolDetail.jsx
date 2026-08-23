@@ -1,7 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import PageHead from '../components/PageHead'
 import FacultyList from '../components/FacultyList'
-import { SCHOOLS, bySlug, facultyOf, D_AXIS_SEATS } from '../data/schools'
+import { SCHOOLS, bySlug, D_AXIS_SEATS } from '../data/schools'
 import { DEPT_INFO } from '../data/departments'
 import { revealDelay } from '../hooks/useReveal'
 import LoopMedia from '../components/LoopMedia'
@@ -11,7 +11,6 @@ export default function SchoolDetail() {
   const school = bySlug(slug)
   if (!school) return <Navigate to="/ai-college/schools" replace />
 
-  const people = facultyOf(school)
   const info = DEPT_INFO[school.slug]
   const idx = SCHOOLS.findIndex((s) => s.slug === school.slug)
   const prev = SCHOOLS[idx - 1]
@@ -145,7 +144,7 @@ export default function SchoolDetail() {
             소속 교원
           </h2>
           <div data-reveal style={revealDelay(1)} className="mt-6">
-            <FacultyList people={people} unitName={school.name} />
+            <FacultyList school={school} />
           </div>
         </div>
       </section>

@@ -112,7 +112,7 @@ function Footer() {
           <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
             {[
               { href: 'https://arise-ai.pusan.ac.kr/bymonolog', label: 'A.U.R.A 마스터플랜 및 데이터룸' },
-              { href: 'https://arise-ai.pusan.ac.kr/', label: 'PNU × Google for Education' },
+              { href: 'https://arise-ai.pusan.ac.kr/google', label: 'PNU × Google for Education' },
             ].map((item) => (
               <li key={item.href}>
                 <a
