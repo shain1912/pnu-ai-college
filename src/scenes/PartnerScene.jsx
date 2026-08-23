@@ -38,7 +38,7 @@ export default function PartnerScene() {
         <p className="text-[13px] font-bold tracking-[0.08em] text-sky-300">{PARTNERS.eyebrow}</p>
         <h2
           id="partners-title"
-          className="mt-4 max-w-[20ch] text-[clamp(1.75rem,4vw,3rem)] font-extrabold leading-[1.18] tracking-[-0.03em] text-white"
+          className="mt-4 max-w-[26ch] t-2 font-extrabold leading-[1.18] text-white"
         >
           {PARTNERS.title}
         </h2>

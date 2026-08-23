@@ -142,7 +142,7 @@ export default function ProgramScene() {
                     <p className="text-[13px] font-bold tracking-[0.12em] text-brand">
                       {String(index + 1).padStart(2, '0')}
                     </p>
-                    <h3 className="mt-4 text-[clamp(1.5rem,3.2vw,2.375rem)] font-extrabold leading-[1.25] tracking-[-0.025em] text-ink">
+                    <h3 className="mt-4 t-3 font-extrabold leading-[1.25] text-ink">
                       {item.name}
                     </h3>
                     <p className="mt-5 max-w-[34rem] text-[16px] leading-[1.7] text-ink-muted md:text-[17px]">

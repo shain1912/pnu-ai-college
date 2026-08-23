@@ -62,7 +62,7 @@ export default function ScaleScene() {
               <span className="text-[clamp(4.5rem,13vw,9rem)] font-bold leading-[0.82] tracking-[-0.045em] tabular-nums">
                 {LEAD.value}
               </span>
-              <span className="text-[clamp(1.75rem,3.4vw,2.75rem)] font-bold leading-none text-blue-100">
+              <span className="t-2 font-bold leading-none text-blue-100">
                 {LEAD.unit}
               </span>
             </p>
@@ -86,7 +86,7 @@ export default function ScaleScene() {
           {REST.map((n) => (
             <li key={n.label} className="px-6 py-8 md:px-8 md:py-10">
               <p className="flex items-baseline gap-1.5 text-ink">
-                <span className="text-[clamp(2.75rem,5.6vw,3.75rem)] font-bold leading-[0.9] tracking-[-0.035em] tabular-nums">
+                <span className="t-1 font-bold leading-[0.9] tabular-nums">
                   {n.value}
                 </span>
                 <span className="text-[20px] font-bold leading-none text-brand md:text-[22px]">

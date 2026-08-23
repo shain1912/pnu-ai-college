@@ -73,10 +73,10 @@ export default function FactSheetScene() {
           <p className="text-[15px] font-semibold text-brand">{SUMMARY.eyebrow}</p>
 
           <p className="mt-8 flex items-baseline gap-3">
-            <span className="text-[clamp(5rem,17vw,13rem)] font-extrabold leading-[0.86] tracking-[-0.045em] text-ink">
+            <span className="text-[clamp(5rem,17vw,13rem)] font-extrabold leading-[0.86] tracking-[-0.03em] text-ink">
               424
             </span>
-            <span className="text-[clamp(1.75rem,4vw,3rem)] font-bold text-ink-subtle">명</span>
+            <span className="t-2 font-bold text-ink-subtle">명</span>
           </p>
 
           {/*
@@ -86,7 +86,7 @@ export default function FactSheetScene() {
           */}
           <h2
             id="summary-title"
-            className="mt-10 max-w-[30rem] text-[clamp(1.375rem,2.8vw,2rem)] font-bold leading-[1.4] text-ink"
+            className="mt-10 max-w-[30rem] t-3 font-bold leading-[1.4] text-ink"
           >
             대학이 밝힌 국내 최대 규모의 AI 단과대학이에요.
           </h2>
@@ -94,7 +94,7 @@ export default function FactSheetScene() {
           <ul className="mt-14 grid gap-x-10 gap-y-6 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
             {BREAKDOWN.map((item) => (
               <li key={item.label}>
-                <p className="text-[clamp(1.75rem,3vw,2.25rem)] font-extrabold leading-none tracking-[-0.02em] text-ink">
+                <p className="t-3 font-extrabold leading-none text-ink">
                   {item.n}
                   <span className="ml-1 text-[15px] font-bold text-ink-faint">명</span>
                 </p>
@@ -152,7 +152,7 @@ export default function FactSheetScene() {
                   제목 목록에서 셋이 통째로 빠졌다 — 눈에 보이는 위계와 코드의
                   위계가 갈렸다. 번호는 장식이라 h3 안의 span 으로 둔다.
                 */}
-                <h3 className="flex items-baseline gap-3 text-[clamp(1.375rem,2.2vw,1.75rem)] font-extrabold tracking-[-0.02em] text-ink">
+                <h3 className="flex items-baseline gap-3 t-4 font-extrabold text-ink">
                   <span aria-hidden="true" className="text-[13px] font-bold tracking-[0.12em] text-brand">
                     {String(index + 1).padStart(2, '0')}
                   </span>
@@ -163,7 +163,7 @@ export default function FactSheetScene() {
                   {rowsOf(group).map((row) => (
                     <div key={row.k}>
                       <dt className="text-[13px] font-semibold leading-[1.5] text-ink-faint">{row.k}</dt>
-                      <dd className="mt-2 text-[clamp(1.125rem,1.7vw,1.375rem)] font-bold leading-[1.45] text-ink">
+                      <dd className="mt-2 t-4 font-bold leading-[1.45] text-ink">
                         {row.v}
                         {/*
                           소속 관계처럼 한 줄로는 다 못 담는 항목은 그림이 있는

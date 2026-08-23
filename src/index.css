@@ -109,12 +109,27 @@
   }
 
   /*
-   * Korean headlines: tracking loosens as size grows. Tightening a 64px
-   * Hangul title the way Latin display type is tightened closes the counters.
+   * 자간은 크기와 무관하게 -0.02em 하나다. toss 를 실측하면 48/40/32/28/24/
+   * 20/18/16px 어디서 재도 정확히 -0.02em 이다 (scripts/tokens.mjs).
+   *
+   * 그전에는 크기마다 -0.03 / -0.025 / -0.02 / -0.015 / -0.01 로 다르게 줬는데,
+   * 그 값들이 어디서 왔는지 근거가 없었다. 한 줄로 통일하면 브레이크포인트마다
+   * 다시 계산할 일도 없다.
    */
+  /*
+   * body 한 곳에 걸면 안 된다. em 은 그 요소의 font-size 로 풀리므로 body(16px)
+   * 에서 -0.32px 가 계산되고, 자식은 그 픽셀값을 그대로 물려받는다. 실측하면
+   * 26px 글자가 -0.012em, 22px 가 -0.015em 으로 나온다 — 비율이 깨진다.
+   *
+   * 글자를 담는 요소마다 걸어야 각자의 크기로 -0.02em 이 풀린다.
+   */
+  h1, h2, h3, h4, h5, h6,
+  p, li, dt, dd, span, a, button, label, figcaption, blockquote {
+    letter-spacing: -0.02em;
+  }
+
   h1, h2, h3 {
     font-weight: 700;
-    letter-spacing: -0.025em;
   }
 }
 
@@ -145,35 +160,80 @@
     @apply py-16 md:py-20 lg:py-24;
   }
 
+  /*
+   * ── 타입 스케일 ────────────────────────────────────────────────────────
+   * 37회차에 toss 실측(scripts/tokens.mjs)을 보고 다시 짰다.
+   *
+   * 실측 toss:  80 / 56 / 48 / 40 / 32 / 28 / 24 / 20 / 16  — 계단이 깔끔하다
+   * 실측 우리:  64 / 48 / 40 / 38 / 36 / 32 / 30 / 28       — 38·36·30 은 계단이 아니다
+   *
+   * 그 중간값들은 clamp() 가 뷰포트 폭에 따라 만들어낸 것이다. 제목마다 서로
+   * 다른 clamp 를 스물네 개 써서 실제로는 스케일이 없었다.
+   *
+   * clamp 를 걷고 브레이크포인트 세 단계로 못박는다. 어느 폭에서 재도 값이
+   * 계단 위에 있어야 다음 실측에서 확인이 된다.
+   *
+   * letter-spacing 은 전부 -0.02em 이다. toss 는 48/40/32/28/24/20/18/16px
+   * 어디서 재도 정확히 -0.02em 이었다. 크기마다 다르게 주던 것을 통일한다.
+   *
+   * line-height 는 큰 글씨일수록 좁게 — 실측 toss 가 히어로 1.2, 48px 1.28,
+   * 24~40px 1.4, 20px 1.48, 16px 1.6 이었다.
+   */
+  .t-display,
   .display {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    line-height: 1.12;
-    letter-spacing: -0.03em;
-  }
-
-  .h1 {
-    font-size: clamp(2.25rem, 4.6vw, 3.25rem);
-    line-height: 1.18;
-    letter-spacing: -0.025em;
-  }
-
-  .h2 {
-    font-size: clamp(1.875rem, 3.4vw, 2.5rem);
-    line-height: 1.25;
+    font-size: 2.75rem;
+    line-height: 1.15;
     letter-spacing: -0.02em;
   }
-
+  .t-1,
+  .h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .t-2,
+  .h2 {
+    font-size: 1.75rem;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+  }
+  .t-3,
   .h3 {
-    font-size: clamp(1.5rem, 2.2vw, 1.75rem);
-    line-height: 1.32;
-    letter-spacing: -0.015em;
+    font-size: 1.5rem;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+  .t-4 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+  .t-lead,
+  .lead {
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    letter-spacing: -0.02em;
+  }
+  .lead {
+    color: var(--color-ink-muted);
   }
 
-  .lead {
-    font-size: clamp(1.1875rem, 1.6vw, 1.375rem);
-    line-height: 1.55;
-    letter-spacing: -0.01em;
-    color: var(--color-ink-muted);
+  @media (min-width: 768px) {
+    .t-display, .display { font-size: 4rem; }
+    .t-1, .h1 { font-size: 2.75rem; }
+    .t-2, .h2 { font-size: 2.375rem; }
+    .t-3, .h3 { font-size: 1.75rem; }
+    .t-4 { font-size: 1.375rem; }
+    .t-lead, .lead { font-size: 1.125rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .t-display, .display { font-size: 5rem; }
+    .t-1, .h1 { font-size: 3.5rem; }
+    .t-2, .h2 { font-size: 3rem; }
+    .t-3, .h3 { font-size: 2rem; }
+    .t-4 { font-size: 1.5rem; }
+    .t-lead, .lead { font-size: 1.25rem; }
   }
 
   .card {

@@ -33,7 +33,7 @@ export default function FacultyList({ school }) {
   return (
     <div>
       <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <span className="text-[clamp(1.75rem,3vw,2.25rem)] font-extrabold leading-none tracking-[-0.02em] text-ink">
+        <span className="t-3 font-extrabold leading-none text-ink">
           {stats.total}
           <span className="ml-1 text-[15px] font-bold text-ink-faint">명</span>
         </span>

@@ -104,7 +104,7 @@ const CHAPTERS = [
 
 /** 챕터 제목은 h1/h2 로 갈리지만 보이는 모습은 같다. */
 const HERO_TITLE =
-  'mt-3 whitespace-pre-line text-[clamp(1.9rem,4.6vw,4rem)] font-extrabold leading-[1.1] tracking-[-0.035em] text-white'
+  'mt-3 whitespace-pre-line t-display font-extrabold leading-[1.1] text-white'
 
 const FADE = 0.25
 const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value))
@@ -301,7 +301,7 @@ export default function HeroScene() {
                 style={{ pointerEvents: weight > 0.9 ? 'auto' : 'none' }}
               >
                 <div
-                  className="max-w-[760px]"
+                  className="max-w-[62rem]"
                   style={{
                     opacity: weight,
                     filter: reduced ? 'none' : `blur(${(1 - weight) * 10}px)`,
@@ -398,7 +398,7 @@ export default function HeroScene() {
             {CHAPTERS.slice(1, 5).map((chapter) => (
               <li key={chapter.id}>
                 <p className="text-[13px] font-bold tracking-[0.08em] text-brand">{chapter.eyebrow}</p>
-                <h2 className="mt-3 text-[clamp(1.25rem,2.2vw,1.625rem)] font-bold leading-[1.35] text-ink">
+                <h2 className="mt-3 t-4 font-bold leading-[1.35] text-ink">
                   {chapter.title}
                 </h2>
                 <p className="mt-3 text-[15px] leading-[1.7] text-ink-muted">{chapter.body}</p>
@@ -409,7 +409,7 @@ export default function HeroScene() {
 
           <div className="mt-12 border-t border-line pt-10">
             <p className="text-[13px] font-bold tracking-[0.08em] text-brand">{CHAPTERS[5].eyebrow}</p>
-            <h2 className="mt-3 whitespace-pre-line text-[clamp(1.5rem,3vw,2.25rem)] font-extrabold leading-[1.2] tracking-[-0.025em] text-ink">
+            <h2 className="mt-3 whitespace-pre-line t-3 font-extrabold leading-[1.2] text-ink">
               {CHAPTERS[5].title}
             </h2>
             <p className="mt-4 max-w-[34rem] text-[16px] leading-[1.7] text-ink-muted">{CHAPTERS[5].body}</p>

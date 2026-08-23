@@ -34,7 +34,7 @@ export default function ClosingScene() {
         <p className="text-[13px] font-bold tracking-[0.08em] text-sky-300">2027년 3월</p>
         <h2
           id="closing-title"
-          className="mt-4 max-w-[26rem] text-[clamp(1.875rem,4.4vw,3.25rem)] font-extrabold leading-[1.15] tracking-[-0.03em] text-white"
+          className="mt-4 max-w-[34rem] t-1 font-extrabold leading-[1.15] text-white"
         >
           그 모든 게 강의실에서 시작해요
         </h2>

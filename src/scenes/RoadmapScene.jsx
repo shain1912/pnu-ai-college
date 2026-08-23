@@ -53,7 +53,7 @@ export default function RoadmapScene() {
                   }`}
                 >
                   <p
-                    className={`text-[clamp(1.75rem,3vw,2.25rem)] font-extrabold leading-none tracking-[-0.02em] ${
+                    className={`t-3 font-extrabold leading-none ${
                       step.highlight ? 'text-brand' : 'text-ink-faint'
                     }`}
                   >
@@ -62,7 +62,7 @@ export default function RoadmapScene() {
 
                   <div>
                     <h3
-                      className={`text-[clamp(1.125rem,1.8vw,1.375rem)] font-bold leading-[1.4] ${
+                      className={`t-lead font-bold leading-[1.4] ${
                         step.highlight ? 'text-brand-strong' : 'text-ink'
                       }`}
                     >

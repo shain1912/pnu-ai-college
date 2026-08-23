@@ -65,7 +65,7 @@ export default function ConnectScene() {
         <p className="text-[13px] font-bold tracking-[0.12em] text-sky-300">2027.03 · PNU COLLEGE OF AI</p>
         <h2
           id="connect-title"
-          className="mt-5 max-w-[22ch] text-[clamp(2rem,5.2vw,4rem)] font-extrabold leading-[1.14] tracking-[-0.035em] text-white"
+          className="mt-5 max-w-[28ch] t-display font-extrabold leading-[1.14] text-white"
         >
           연결될수록 커지는 AI의 가능성
         </h2>

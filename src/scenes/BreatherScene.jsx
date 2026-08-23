@@ -36,7 +36,7 @@ export default function BreatherScene() {
       <div className="edge grid min-h-[74svh] items-center gap-10 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] md:gap-14">
         <h2
           id="why-line"
-          className="max-w-[16ch] whitespace-pre-line text-[clamp(2rem,5vw,4rem)] font-extrabold leading-[1.18] tracking-[-0.035em] text-ink"
+          className="max-w-[20ch] whitespace-pre-line t-display font-extrabold leading-[1.18] text-ink"
         >
           {WHY.title}
         </h2>

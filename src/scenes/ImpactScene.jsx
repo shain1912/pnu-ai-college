@@ -79,7 +79,7 @@ export default function ImpactScene() {
                       <span aria-hidden="true" className="h-px w-8 bg-line" />
                       <span className="text-[13px] font-bold tracking-[0.08em] text-ink-faint">{step.key}</span>
                     </p>
-                    <p className="mt-5 text-[clamp(1.375rem,2.6vw,1.875rem)] font-bold leading-[1.4] tracking-[-0.015em] text-ink">
+                    <p className="mt-5 t-4 font-bold leading-[1.4] text-ink">
                       {step.text}
                     </p>
                   </div>

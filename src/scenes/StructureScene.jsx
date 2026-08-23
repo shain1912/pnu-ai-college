@@ -41,11 +41,11 @@ export default function StructureScene() {
       </p>
 
       <div className="edge relative flex min-h-[96svh] flex-col justify-center py-24">
-        <div className="max-w-[42rem]">
+        <div className="max-w-[54rem]">
           <p className="text-[13px] font-bold tracking-[0.12em] text-sky-300">{ADPX.eyebrow}</p>
           <h2
             id="structure-title"
-            className="mt-5 whitespace-pre-line text-[clamp(2rem,5vw,3.75rem)] font-extrabold leading-[1.14] tracking-[-0.035em] text-white"
+            className="mt-5 whitespace-pre-line t-1 font-extrabold leading-[1.14] text-white"
           >
             {ADPX.title}
           </h2>
@@ -56,7 +56,7 @@ export default function StructureScene() {
           {ADPX.axes.map((axis) => (
             <li key={axis.key} className="bg-[#0a1224]/85 p-6 backdrop-blur-sm md:p-7">
               <p className="flex items-baseline gap-2">
-                <span className="text-[26px] font-extrabold leading-none tracking-[-0.02em] text-sky-300">
+                <span className="text-[26px] font-extrabold leading-none text-sky-300">
                   {axis.key}
                 </span>
                 <span className="text-[13px] font-bold tracking-[0.08em] text-white/50">{axis.name}</span>

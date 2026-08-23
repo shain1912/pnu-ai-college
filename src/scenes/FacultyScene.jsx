@@ -45,7 +45,7 @@ export default function FacultyScene() {
     <section id="faculty" className="band scroll-mt-24 bg-canvas-subtle" aria-labelledby="faculty-title">
       <div className="edge">
         <p className="text-[15px] font-semibold text-brand">가르치는 사람들</p>
-        <h2 id="faculty-title" className="h2 mt-4 max-w-[20ch] text-ink">
+        <h2 id="faculty-title" className="h2 mt-4 max-w-[26ch] text-ink">
           학교 밖에서 문제를 풀어본 사람이
           <br />
           절반 가까이 돼요
@@ -55,7 +55,7 @@ export default function FacultyScene() {
         <ul className="mt-12 flex flex-wrap gap-x-12 gap-y-6 border-y border-line py-8">
           {FACULTY.stats.map((stat) => (
             <li key={stat.label} className="flex items-baseline gap-2">
-              <span className="text-[clamp(1.5rem,2.4vw,2rem)] font-extrabold leading-none tracking-[-0.02em] text-ink">
+              <span className="t-3 font-extrabold leading-none text-ink">
                 {stat.value}
                 <span className="ml-0.5 text-[15px] font-bold text-ink-faint">{stat.unit}</span>
               </span>
@@ -73,7 +73,7 @@ export default function FacultyScene() {
               <div>
                 <h3 className="text-[17px] font-bold leading-[1.35] text-ink">{school.name}</h3>
                 <p className="mt-1.5 flex items-baseline gap-2">
-                  <span className="text-[22px] font-extrabold leading-none tracking-[-0.02em] text-brand">
+                  <span className="text-[22px] font-extrabold leading-none text-brand">
                     {stats.total}
                   </span>
                   <span className="text-[13px] font-semibold text-ink-faint">명</span>

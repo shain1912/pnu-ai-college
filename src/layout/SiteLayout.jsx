@@ -25,7 +25,7 @@ function Header() {
     <header className="sticky top-0 z-50 border-b border-line bg-canvas/90 backdrop-blur-sm">
       <div className="edge-wide flex h-16 items-center justify-between gap-6 md:h-[72px]">
         <Link to="/" className="flex shrink-0 items-baseline gap-2.5">
-          <span className="text-[17px] font-bold tracking-[-0.02em] text-ink">
+          <span className="text-[17px] font-bold text-ink">
             부산대학교 AI대학
           </span>
           <span className="hidden text-[13px] font-medium text-ink-faint sm:inline">

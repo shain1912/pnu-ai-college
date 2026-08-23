@@ -82,7 +82,7 @@ export default function RoadmapPage() {
               <span className="text-[14px] font-semibold text-blue-700">
                 {ADMISSION.period.label}
               </span>
-              <span className="text-[19px] font-bold tracking-[-0.02em] text-blue-700">
+              <span className="text-[19px] font-bold text-blue-700">
                 {ADMISSION.period.value}
               </span>
             </div>
