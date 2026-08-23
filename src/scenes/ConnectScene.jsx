@@ -1,4 +1,5 @@
-import { SCHOOLS, D_AXIS_SEATS } from '../data/schools'
+import { Link } from 'react-router-dom'
+import { SCHOOLS, D_AXIS_SEATS, facultyOf } from '../data/schools'
 import ParticleField from '../components/ParticleField'
 
 /*
@@ -63,6 +64,26 @@ export default function ConnectScene() {
           장비, 연구가 같은 자리에서 만나요.
         </p>
 
+        {/*
+          레일에서 옮겨온 것. 다섯 학문단위의 상세로 가는 유일한 입구라
+          레일을 걷어낼 때 같이 사라지면 안 된다.
+        */}
+        <ul className="mt-auto flex flex-wrap gap-2 border-t border-white/15 pt-8">
+          {SCHOOLS.map((school) => (
+            <li key={school.slug}>
+              <Link
+                to={`/ai-college/schools/${school.slug}`}
+                className="group flex items-baseline gap-2 rounded-[--radius-pill] border border-white/20 px-4 py-2.5 transition-colors duration-[--dur-base] hover:border-white/45 hover:bg-white/5"
+              >
+                <span className="text-[14px] font-bold text-white">{school.name}</span>
+                <span className="text-[13px] text-white/50">교원 {facultyOf(school).length}명</span>
+                <span aria-hidden="true" className="text-white/45 transition-transform duration-[--dur-base] group-hover:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

@@ -4,7 +4,6 @@ import FactSheetScene from '../scenes/FactSheetScene'
 import BreatherScene from '../scenes/BreatherScene'
 import StructureScene from '../scenes/StructureScene'
 import ConnectScene from '../scenes/ConnectScene'
-import SchoolRailScene from '../scenes/SchoolRailScene'
 import FacultyScene from '../scenes/FacultyScene'
 import PartnerScene from '../scenes/PartnerScene'
 import ImpactScene from '../scenes/ImpactScene'
@@ -28,8 +27,6 @@ export default function Home() {
       <StructureScene />
 
       <BreatherScene />
-
-      <SchoolRailScene />
 
       <ConnectScene />
 
