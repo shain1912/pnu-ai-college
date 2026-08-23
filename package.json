@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender.mjs",
+    "build": "node scripts/audit.mjs && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "assets": "node scripts/optimize-assets.mjs",
     "prerender": "node scripts/prerender.mjs",
-    "serve:dist": "node scripts/serve-dist.mjs"
+    "serve:dist": "node scripts/serve-dist.mjs",
+    "audit": "node scripts/audit.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
