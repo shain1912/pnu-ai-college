@@ -10,6 +10,7 @@ import PartnerScene from '../scenes/PartnerScene'
 import ImpactScene from '../scenes/ImpactScene'
 import ProgramScene from '../scenes/ProgramScene'
 import RoadmapScene from '../scenes/RoadmapScene'
+import GalleryScene from '../scenes/GalleryScene'
 import ClosingScene from '../scenes/ClosingScene'
 
 export default function Home() {
@@ -41,6 +42,8 @@ export default function Home() {
       <ProgramScene />
 
       <RoadmapScene />
+
+      <GalleryScene />
 
       <ClosingScene />
     </>

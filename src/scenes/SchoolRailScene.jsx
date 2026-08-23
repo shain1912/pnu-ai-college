@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SCHOOLS, D_AXIS_SEATS, facultyOf } from '../data/schools'
-import { useIsMobile, useIsTouch, useReducedMotion } from '../hooks/useMedia'
+import { useScrollRail } from '../hooks/useScrollRail'
 import SceneVideo from '../components/SceneVideo'
 
 /*
@@ -26,8 +25,6 @@ import SceneVideo from '../components/SceneVideo'
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value))
-
 /*
  * D축 두 단위는 원문에 학부 단독 정원이 없고 합산 114명만 있다. 괄호에 다른
  * 단위 이름을 넣으면 통계학과 카드에 "통계학과 포함"이 찍혀 자기를 가리킨다.
@@ -37,82 +34,9 @@ const seatLabel = (school) =>
   school.seats === null ? `D축 합산 ${D_AXIS_SEATS}명` : `${school.seats}명`
 
 export default function SchoolRailScene() {
-  const reduced = useReducedMotion()
-  const mobile = useIsMobile()
-  const touch = useIsTouch()
-  const rootRef = useRef(null)
-  const railRef = useRef(null)
-  const [shift, setShift] = useState(0)
-
-  /*
-   * 좁은 화면에서는 스크롤 구동을 끄고 손가락으로 미는 평범한 가로 스크롤로
-   * 돌린다. 390px 에서 확인해 보니 카드가 264px 라 어느 위치에서도 좌우가
-   * 잘려 있고, overflow-hidden 이라 밀어도 움직이지 않는다. 손안에서는 가로로
-   * 늘어선 것을 밀어 보는 것이 먼저 나오는 동작인데 아무 반응이 없다.
-   *
-   * 데스크톱은 그대로 둔다. 마우스에는 가로로 밀 방법이 마땅치 않아서 세로
-   * 스크롤이 미는 편이 낫고, 잘린 카드가 "더 있다"는 신호도 거기서는 유효하다.
-   *
-   * 기준을 폭이 아니라 포인터로도 본다. 태블릿은 768px 를 넘어 데스크톱으로
-   * 잡히는데 손가락으로 미는 기기다. 밀 수 있느냐는 화면 크기가 아니라 포인터
-   * 종류의 문제다.
-   */
-  const driven = !reduced && !mobile && !touch
-
-  /*
-   * 레일이 실제로 넘치는 만큼만 민다. 카드 폭과 화면 폭은 뷰포트마다 달라서
-   * 이동 거리를 상수로 박아두면 좁은 화면에서는 끝까지 못 가고 넓은 화면에서는
-   * 빈 자리가 생긴다. 매번 재어서 넘치는 폭을 그대로 쓴다.
-   */
-  useEffect(() => {
-    if (!driven) return
-    let frame = 0
-    const update = () => {
-      frame = 0
-      const root = rootRef.current
-      const rail = railRef.current
-      if (!root || !rail) return
-      const overflow = Math.max(0, rail.scrollWidth - rail.clientWidth)
-      const range = root.offsetHeight - window.innerHeight
-      const progress = range > 0 ? clamp(-root.getBoundingClientRect().top / range) : 0
-      setShift(progress * overflow)
-    }
-    const requestUpdate = () => {
-      if (!frame) frame = requestAnimationFrame(update)
-    }
-    update()
-    window.addEventListener('scroll', requestUpdate, { passive: true })
-    window.addEventListener('resize', requestUpdate)
-    return () => {
-      if (frame) cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', requestUpdate)
-      window.removeEventListener('resize', requestUpdate)
-    }
-  }, [driven])
-
-  /*
-   * 탭으로 카드에 초점이 갔을 때 그 카드가 보이는 자리로 페이지를 옮긴다.
-   *
-   * 데스크톱 레일은 overflow-hidden 위에 transform 을 얹은 구조라, 초점이 밀려난
-   * 카드로 가도 브라우저가 화면 안으로 끌어올 방법이 없다 — 스크롤 컨테이너가
-   * 아니고 transform 은 페이지 스크롤이 굴리기 때문이다. 키보드로만 다니면
-   * 세 번째 카드에 초점이 있는데 화면에는 아무 표시도 안 보인다.
-   *
-   * shift = 진행률 x 넘침 이므로 역으로 필요한 진행률을 구해 페이지 스크롤을
-   * 정한다. 터치·동작 줄이기 쪽은 진짜 스크롤 컨테이너라 브라우저가 알아서 한다.
-   */
-  const revealOnFocus = (event) => {
-    if (!driven) return
-    const card = event.target.closest('li')
-    const rail = railRef.current
-    const root = rootRef.current
-    if (!card || !rail || !root) return
-    const overflow = Math.max(0, rail.scrollWidth - rail.clientWidth)
-    const range = root.offsetHeight - window.innerHeight
-    if (!overflow || range <= 0) return
-    const need = clamp(card.offsetLeft - 24, 0, overflow) / overflow
-    window.scrollTo({ top: root.offsetTop + need * range, behavior: 'instant' })
-  }
+  // 레일 동작은 useScrollRail 이 맡는다. 「AI대학의 장면들」도 같은 것을 쓰므로
+  // 여기 복사해 두면 18·20·23회차에 고친 것이 한쪽에만 남는다.
+  const { rootRef, railRef, shift, driven, revealOnFocus, nativeClass } = useScrollRail()
 
   return (
     <section
@@ -141,7 +65,7 @@ export default function SchoolRailScene() {
           ref={railRef}
           onFocusCapture={revealOnFocus}
           className={`mt-10 md:mt-12 ${
-            driven ? 'overflow-hidden' : 'snap-x snap-mandatory scroll-pl-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+            driven ? 'overflow-hidden' : nativeClass
           }`}
         >
           <ul
