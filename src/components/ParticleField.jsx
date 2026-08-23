@@ -138,7 +138,12 @@ export default function ParticleField({ kind = 'wave', className = '', nodes = [
         style={{ opacity: ready ? 1 : 0 }}
       />
       {nodes.length > 0 && (
-        <ul className="pointer-events-none absolute inset-0">
+        /*
+          좁은 화면에서는 표식을 감춘다. 자리를 비율로 박아뒀는데 390px 에서는
+          그 비율이 아래 링크 목록과 같은 자리를 가리켜 상자 넷이 서로 겹쳤다.
+          이름은 목록이 이미 말하므로 잃는 정보가 없다.
+        */
+        <ul className="pointer-events-none absolute inset-0 hidden md:block">
           {nodes.map((node) => (
             <li
               key={node.label}

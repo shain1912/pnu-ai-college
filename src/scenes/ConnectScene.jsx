@@ -51,6 +51,16 @@ export default function ConnectScene() {
     >
       <ParticleField kind="wave" nodes={nodes} className="absolute inset-0" />
 
+      {/*
+        글이 앉는 위쪽만 눌러 어둡게. 파동 마루가 제목 아래 문장과 같은 높이로
+        올라오는 순간이 있어, 점이 촘촘한 자리에서는 흰 글자가 읽히지 않는다.
+        아래쪽은 건드리지 않아 파동이 그대로 보인다.
+      */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[46%] bg-gradient-to-b from-[#050a14] via-[#050a14]/70 to-transparent"
+      />
+
       <div className="edge relative flex min-h-[96svh] flex-col justify-start pb-24 pt-24 md:pt-28">
         <p className="text-[13px] font-bold tracking-[0.12em] text-sky-300">2027.03 · PNU COLLEGE OF AI</p>
         <h2
