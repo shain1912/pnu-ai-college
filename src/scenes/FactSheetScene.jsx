@@ -135,19 +135,29 @@ export default function FactSheetScene() {
         세 칸은 lg(1024) 부터다. 여덟 줄을 셋으로 나누면 칸마다 두세 줄인데,
         태블릿 폭에서 세 칸으로 쪼개면 한 줄이 서너 글자마다 끊긴다.
       */}
-      <section className="flex min-h-svh flex-col justify-center bg-canvas py-24 md:py-28">
+      {/*
+        화면에 보이는 제목은 묶음 셋뿐이라 절 제목을 따로 두지 않는다. 그래도
+        낭독기에는 이 구역이 무엇인지 알려야 해서 aria-label 로 이름을 준다.
+      */}
+      <section
+        aria-label="한눈에 보기 — 규모·구조·준비 상황"
+        className="flex min-h-svh flex-col justify-center bg-canvas py-24 md:py-28"
+      >
         <div className="edge w-full">
           <div className="grid gap-12 lg:grid-cols-3 lg:gap-10">
             {GROUPS.map((group, index) => (
               <div key={group.title} className="border-t-2 border-ink pt-6">
-                <p className="flex items-baseline gap-3">
-                  <span className="text-[13px] font-bold tracking-[0.12em] text-brand">
+                {/*
+                  묶음 제목은 h3 다. 처음에 번호와 함께 p 안에 넣었더니 낭독기
+                  제목 목록에서 셋이 통째로 빠졌다 — 눈에 보이는 위계와 코드의
+                  위계가 갈렸다. 번호는 장식이라 h3 안의 span 으로 둔다.
+                */}
+                <h3 className="flex items-baseline gap-3 text-[clamp(1.375rem,2.2vw,1.75rem)] font-extrabold tracking-[-0.02em] text-ink">
+                  <span aria-hidden="true" className="text-[13px] font-bold tracking-[0.12em] text-brand">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-                  <span className="text-[clamp(1.375rem,2.2vw,1.75rem)] font-extrabold tracking-[-0.02em] text-ink">
-                    {group.title}
-                  </span>
-                </p>
+                  {group.title}
+                </h3>
 
                 <dl className="mt-8 grid gap-7">
                   {rowsOf(group).map((row) => (
