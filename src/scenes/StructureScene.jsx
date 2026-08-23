@@ -52,7 +52,7 @@ export default function StructureScene() {
           <p className="mt-6 text-[16px] leading-[1.75] text-white/70 md:text-[17px]">{ADPX.body}</p>
         </div>
 
-        <ul className="mt-16 grid gap-px overflow-hidden rounded-[--radius-xl] bg-white/12 md:mt-20 md:grid-cols-4">
+        <ul className="mt-16 grid gap-px overflow-hidden rounded-[var(--radius-2xl)] bg-white/12 md:mt-20 md:grid-cols-4">
           {ADPX.axes.map((axis) => (
             <li key={axis.key} className="bg-[#0a1224]/85 p-6 backdrop-blur-sm md:p-7">
               <p className="flex items-baseline gap-2">
@@ -73,7 +73,7 @@ export default function StructureScene() {
         <p className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             to="/ai-college/adpx"
-            className="rounded-[--radius-pill] bg-white px-6 py-3 text-[15px] font-bold text-gray-950 transition-transform duration-[--dur-base] hover:-translate-y-0.5"
+            className="rounded-[var(--radius-pill)] bg-white px-6 py-3 text-[15px] font-bold text-gray-950 transition-transform duration-[var(--dur-base)] hover:-translate-y-0.5"
           >
             ADP+X 구조 자세히 보기
           </Link>

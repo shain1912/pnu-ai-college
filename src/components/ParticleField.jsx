@@ -147,7 +147,7 @@ export default function ParticleField({ kind = 'wave', className = '', nodes = [
           {nodes.map((node) => (
             <li
               key={node.label}
-              className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-[--radius-pill] border border-white/20 bg-[#0a1a33]/70 px-3 py-1.5 text-[12px] font-semibold text-white/90 backdrop-blur-sm md:text-[13px]"
+              className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-[var(--radius-pill)] border border-white/20 bg-[#0a1a33]/70 px-3 py-1.5 text-[12px] font-semibold text-white/90 backdrop-blur-sm md:text-[13px]"
               style={{ left: `${node.x}%`, top: `${node.y}%` }}
             >
               {node.label}

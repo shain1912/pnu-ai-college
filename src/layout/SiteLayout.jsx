@@ -40,8 +40,8 @@ function Header() {
               to={item.to}
               end={item.to === '/ai-college'}
               className={({ isActive }) =>
-                `rounded-[--radius-sm] px-3.5 py-2 text-[15px] font-medium transition-colors
-                 duration-[--dur-fast] ${
+                `rounded-[var(--radius-sm)] px-3.5 py-2 text-[15px] font-medium transition-colors
+                 duration-[var(--dur-fast)] ${
                    isActive ? 'bg-blue-50 text-blue-700' : 'text-ink-muted hover:bg-gray-100 hover:text-ink'
                  }`
               }
@@ -61,7 +61,7 @@ function Header() {
             to={item.to}
             end={item.to === '/ai-college'}
             className={({ isActive }) =>
-              `whitespace-nowrap rounded-[--radius-sm] px-3 py-2 text-[14px] font-medium ${
+              `whitespace-nowrap rounded-[var(--radius-sm)] px-3 py-2 text-[14px] font-medium ${
                 isActive ? 'bg-blue-50 text-blue-700' : 'text-ink-muted'
               }`
             }
@@ -180,7 +180,7 @@ export default function SiteLayout() {
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100]
-          focus:rounded-[--radius-md] focus:bg-brand-strong focus:px-4 focus:py-2.5 focus:font-semibold focus:text-white"
+          focus:rounded-[var(--radius-md)] focus:bg-brand-strong focus:px-4 focus:py-2.5 focus:font-semibold focus:text-white"
       >
         본문으로 건너뛰기
       </a>

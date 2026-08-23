@@ -50,7 +50,7 @@ export default function BreatherScene() {
           없었다. 그래서 받침보다 큰 덩어리를 새로 만들었다 — 「한 학과가
           감당할 수 있는 크기를 넘었다」를 형태로 그대로 옮긴 것이다.
         */}
-        <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[--radius-xl] md:max-w-none">
+        <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[var(--radius-2xl)] md:max-w-none">
           <SceneVideo
             slug="obj_outgrow_v"
             alt="받침보다 훨씬 큰 짙은 남색 덩어리가 작은 받침 위에 얹혀 사방으로 넘쳐 있다."

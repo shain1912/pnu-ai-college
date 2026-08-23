@@ -29,14 +29,14 @@ export default function SchoolsIndex() {
                     className="card flex h-full flex-col p-6 transition-shadow hover:shadow-[0_2px_4px_rgb(25_31_40/0.06),0_8px_28px_rgb(25_31_40/0.09)] md:p-8"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="grid h-9 w-9 place-items-center rounded-[--radius-sm] bg-blue-50 text-[15px] font-bold text-blue-700">
+                      <span className="grid h-9 w-9 place-items-center rounded-[var(--radius-sm)] bg-blue-50 text-[15px] font-bold text-blue-700">
                         {s.axis}
                       </span>
                       <span className="text-[13px] font-semibold uppercase tracking-wide text-ink-faint">
                         {s.axisName}
                       </span>
                       {s.isNew && (
-                        <span className="rounded-[--radius-sm] bg-blue-50 px-2 py-0.5 text-[12px] font-bold text-blue-700">
+                        <span className="rounded-[var(--radius-sm)] bg-blue-50 px-2 py-0.5 text-[12px] font-bold text-blue-700">
                           신설
                         </span>
                       )}

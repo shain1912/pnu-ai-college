@@ -48,7 +48,7 @@ export default function PartnerScene() {
           {PARTNERS.names.map((name) => (
             <li
               key={name}
-              className="rounded-[--radius-pill] border border-white/25 px-4 py-2 text-[15px] font-semibold text-white/90"
+              className="rounded-[var(--radius-pill)] border border-white/25 px-4 py-2 text-[15px] font-semibold text-white/90"
             >
               {name}
             </li>

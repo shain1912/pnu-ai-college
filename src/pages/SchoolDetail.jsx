@@ -56,7 +56,7 @@ export default function SchoolDetail() {
               </dl>
             </div>
 
-            <figure className="mx-auto w-[170px] rounded-[--radius-xl] bg-gray-50 p-4 md:p-6 md:w-full">
+            <figure className="mx-auto w-[170px] rounded-[var(--radius-xl)] bg-gray-50 p-4 md:p-6 md:w-full">
               <LoopMedia slug={school.image} className="w-full" />
             </figure>
           </div>
@@ -81,7 +81,7 @@ export default function SchoolDetail() {
                   {info.fields.map((f) => (
                     <li
                       key={f}
-                      className="rounded-[--radius-sm] bg-canvas px-3.5 py-2 text-[15px] font-medium text-ink-muted"
+                      className="rounded-[var(--radius-sm)] bg-canvas px-3.5 py-2 text-[15px] font-medium text-ink-muted"
                     >
                       {f}
                     </li>
@@ -97,7 +97,7 @@ export default function SchoolDetail() {
                   {info.careers.map((c) => (
                     <li
                       key={c}
-                      className="rounded-[--radius-sm] bg-canvas px-3.5 py-2 text-[15px] font-medium text-ink-muted"
+                      className="rounded-[var(--radius-sm)] bg-canvas px-3.5 py-2 text-[15px] font-medium text-ink-muted"
                     >
                       {c}
                     </li>
@@ -109,7 +109,7 @@ export default function SchoolDetail() {
             {info.note && (
               <p
                 data-reveal
-                className="mt-9 max-w-[40rem] rounded-[--radius-md] bg-canvas px-5 py-4 text-[14px] leading-[1.7] text-ink-subtle"
+                className="mt-9 max-w-[40rem] rounded-[var(--radius-md)] bg-canvas px-5 py-4 text-[14px] leading-[1.7] text-ink-subtle"
               >
                 {info.note}
               </p>

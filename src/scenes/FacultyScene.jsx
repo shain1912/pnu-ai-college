@@ -64,7 +64,7 @@ export default function FacultyScene() {
           ))}
         </ul>
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-[--radius-xl] bg-line md:mt-16">
+        <div className="mt-14 grid gap-px overflow-hidden rounded-[var(--radius-2xl)] bg-line md:mt-16">
           {groups.map(({ school, stats }) => (
             <div
               key={school.slug}
@@ -88,7 +88,7 @@ export default function FacultyScene() {
                   {stats.areas.map((area) => (
                     <li
                       key={area}
-                      className="rounded-[--radius-sm] bg-canvas px-2.5 py-1 text-[13px] font-medium text-ink-muted"
+                      className="rounded-[var(--radius-sm)] bg-canvas px-2.5 py-1 text-[13px] font-medium text-ink-muted"
                     >
                       {area}
                     </li>

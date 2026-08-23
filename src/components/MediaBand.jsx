@@ -18,7 +18,7 @@ import SceneVideo from './SceneVideo'
 export default function MediaBand({ slug, ratio = 'aspect-[3/2] sm:aspect-[16/7] md:aspect-[21/7]', alt = '' }) {
   return (
     <div className="px-[10px] md:px-5">
-      <div className={`relative overflow-hidden rounded-[18px] bg-[#0a0a14] md:rounded-[28px] ${ratio}`}>
+      <div className={`relative overflow-hidden rounded-[var(--radius-xl)] bg-[#0a0a14] md:rounded-[var(--radius-2xl)] ${ratio}`}>
         <SceneVideo slug={slug} alt={alt} className="h-full w-full object-cover" />
       </div>
     </div>

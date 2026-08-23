@@ -253,7 +253,7 @@ export default function HeroScene() {
             : 'sticky top-16 px-[10px] pb-[10px] md:top-[72px] md:px-5 md:pb-5'
         }
       >
-        <div className="relative h-[calc(100svh-84px)] overflow-hidden rounded-[18px] bg-[#0a0a14] bg-cover bg-center md:h-[calc(100svh-96px)] md:rounded-[28px]"
+        <div className="relative h-[calc(100svh-84px)] overflow-hidden rounded-[var(--radius-xl)] bg-[#0a0a14] bg-cover bg-center md:h-[calc(100svh-96px)] md:rounded-[var(--radius-2xl)]"
           style={{ backgroundImage: `url(${asset('img/hero_reel@2x.webp')})` }}
         >
           {reduced ? (
@@ -351,7 +351,7 @@ export default function HeroScene() {
                     >
                       <Link
                         to="/ai-college"
-                        className="rounded-[--radius-pill] bg-white px-6 py-3 text-[15px] font-bold text-gray-950 transition-transform duration-[--dur-base] hover:-translate-y-0.5"
+                        className="rounded-[var(--radius-pill)] bg-white px-6 py-3 text-[15px] font-bold text-gray-950 transition-transform duration-[var(--dur-base)] hover:-translate-y-0.5"
                       >
                         AI대학 살펴보기
                       </Link>
@@ -372,7 +372,7 @@ export default function HeroScene() {
             {CHAPTERS.map((chapter, index) => (
               <span
                 key={chapter.id}
-                className="h-[2px] rounded-full bg-white transition-all duration-[--dur-base]"
+                className="h-[2px] rounded-full bg-white transition-all duration-[var(--dur-base)]"
                 style={{ width: index === lead ? 24 : 12, opacity: index === lead ? 0.85 : 0.28 }}
               />
             ))}
@@ -416,7 +416,7 @@ export default function HeroScene() {
             <div className="mt-7 flex flex-wrap items-center gap-4">
               <Link
                 to="/ai-college"
-                className="rounded-[--radius-pill] bg-brand-strong px-6 py-3 text-[15px] font-bold text-white"
+                className="rounded-[var(--radius-pill)] bg-brand-strong px-6 py-3 text-[15px] font-bold text-white"
               >
                 AI대학 살펴보기
               </Link>

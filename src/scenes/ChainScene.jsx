@@ -88,7 +88,7 @@ export default function ChainScene() {
             height={424}
             loading="lazy"
             decoding="async"
-            className="w-full max-w-[380px] justify-self-center rounded-[--radius-lg] md:justify-self-end"
+            className="w-full max-w-[380px] justify-self-center rounded-[var(--radius-lg)] md:justify-self-end"
           />
         </div>
 
@@ -100,7 +100,7 @@ export default function ChainScene() {
           */}
           <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
             <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[14px] leading-[1.6] text-ink-subtle">
-              <span className="inline-block rounded-[--radius-pill] bg-gray-200 px-2.5 py-1 text-[12px] font-bold text-ink-muted">
+              <span className="inline-block rounded-[var(--radius-pill)] bg-gray-200 px-2.5 py-1 text-[12px] font-bold text-ink-muted">
                 설명용 예시
               </span>
               글자 순서(A·D·P·X)가 아니라, 일이 실제로 이어지는 순서예요.
@@ -112,7 +112,7 @@ export default function ChainScene() {
                 data-chain-play
                 onClick={play}
                 aria-live="polite"
-                className="inline-flex shrink-0 items-center gap-2 rounded-[--radius-pill] border border-line bg-canvas px-4 py-2 text-[14px] font-semibold text-ink-muted transition-[color,background-color,border-color] duration-[--dur-fast] ease-[--ease-standard] hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700"
+                className="inline-flex shrink-0 items-center gap-2 rounded-[var(--radius-pill)] border border-line bg-canvas px-4 py-2 text-[14px] font-semibold text-ink-muted transition-[color,background-color,border-color] duration-[var(--dur-fast)] ease-[var(--ease-standard)] hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700"
               >
                 <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" fill="currentColor">
                   <path d="M3 1.4 10.2 6 3 10.6z" />

@@ -42,7 +42,7 @@ const MEDIA = {
 
 function Tile({ media }) {
   return (
-    <div className="relative aspect-[16/10] overflow-hidden rounded-[--radius-xl] bg-[#0a0a14]">
+    <div className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-2xl)] bg-[#0a0a14]">
       <SceneVideo slug={media.slug} alt={media.alt} className="h-full w-full object-cover" />
     </div>
   )

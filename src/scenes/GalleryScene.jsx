@@ -76,14 +76,14 @@ export default function GalleryScene() {
             {SCENES.map((scene) => (
               <li
                 key={scene.slug}
-                className={`relative shrink-0 snap-start overflow-hidden rounded-[--radius-xl] bg-[#0a0a14] ${
+                className={`relative shrink-0 snap-start overflow-hidden rounded-[var(--radius-2xl)] bg-[#0a0a14] ${
                   scene.tall ? 'h-[380px] w-[290px] md:h-[520px] md:w-[400px]' : 'h-[260px] w-[290px] md:h-[340px] md:w-[380px]'
                 }`}
               >
                 <SceneVideo slug={scene.slug} className="h-full w-full object-cover" />
 
                 {/* 사진 위에 얹히는 설명 띠. 원본과 같은 알약 모양이다. */}
-                <p className="absolute inset-x-3 bottom-3 flex flex-wrap items-baseline gap-x-2 rounded-[--radius-pill] bg-[#05050c]/75 px-4 py-2.5 backdrop-blur-sm">
+                <p className="absolute inset-x-3 bottom-3 flex flex-wrap items-baseline gap-x-2 rounded-[var(--radius-pill)] bg-[#05050c]/75 px-4 py-2.5 backdrop-blur-sm">
                   <span className="text-[13px] font-bold text-white">{scene.label}</span>
                   <span className="text-[13px] leading-[1.5] text-white/70">{scene.note}</span>
                 </p>

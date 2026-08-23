@@ -49,7 +49,7 @@ export default function FacultyList({ school }) {
             {stats.areas.map((area) => (
               <li
                 key={area}
-                className="rounded-[--radius-sm] bg-gray-100 px-3 py-1.5 text-[14px] font-medium text-ink-muted"
+                className="rounded-[var(--radius-sm)] bg-gray-100 px-3 py-1.5 text-[14px] font-medium text-ink-muted"
               >
                 {area}
               </li>

@@ -92,7 +92,7 @@ export default function AxisScene() {
         <h2 className="h2 mt-4 whitespace-pre-line text-ink">{ADPX.title}</h2>
         <p className="lead mt-6 max-w-[40rem]">{ADPX.body}</p>
 
-        <ul className="mt-10 grid gap-px overflow-hidden rounded-[--radius-lg] bg-gray-200 md:grid-cols-2">
+        <ul className="mt-10 grid gap-px overflow-hidden rounded-[var(--radius-lg)] bg-gray-200 md:grid-cols-2">
           {AXES.map((axis) => (
             <li key={axis.key} className="flex gap-4 bg-canvas px-5 py-5 md:px-7 md:py-6">
               <span className="w-7 shrink-0 text-[24px] font-bold leading-none text-brand">
@@ -127,7 +127,7 @@ export default function AxisScene() {
                   aria-controls={`axis-panel-${axis.key}`}
                   tabIndex={selected ? 0 : -1}
                   onClick={() => selectAxis(index)}
-                  className={`axis-tab rounded-[--radius-lg] border p-4 text-left md:p-5 ${
+                  className={`axis-tab rounded-[var(--radius-lg)] border p-4 text-left md:p-5 ${
                     selected
                       ? 'border-transparent bg-brand-strong text-white shadow-[0_8px_24px_rgb(27_100_218/0.22)]'
                       : 'border-line bg-canvas text-ink hover:bg-gray-100'
@@ -171,7 +171,7 @@ export default function AxisScene() {
 
                     <ul className="mt-6 flex flex-wrap gap-2">
                       {axis.majors.map((major) => (
-                        <li key={major} className="rounded-[--radius-sm] bg-gray-100 px-3 py-1.5 text-[14px] font-medium text-ink-muted">
+                        <li key={major} className="rounded-[var(--radius-sm)] bg-gray-100 px-3 py-1.5 text-[14px] font-medium text-ink-muted">
                           {major}
                         </li>
                       ))}
@@ -183,7 +183,7 @@ export default function AxisScene() {
                           key={school.slug}
                           to={`/ai-college/schools/${school.slug}`}
                           tabIndex={selected ? 0 : -1}
-                          className="rounded-[--radius-md] bg-blue-50 px-4 py-2.5 text-[15px] font-semibold text-blue-700 transition-colors duration-[--dur-base] hover:bg-blue-100"
+                          className="rounded-[var(--radius-md)] bg-blue-50 px-4 py-2.5 text-[15px] font-semibold text-blue-700 transition-colors duration-[var(--dur-base)] hover:bg-blue-100"
                         >
                           {school.name} 소개 →
                         </Link>
@@ -191,7 +191,7 @@ export default function AxisScene() {
                     </div>
                   </div>
 
-                  <div className="axis-object mx-auto aspect-square w-full max-w-[220px] overflow-hidden rounded-[--radius-lg] bg-[#0a0a14] md:max-w-[280px]">
+                  <div className="axis-object mx-auto aspect-square w-full max-w-[220px] overflow-hidden rounded-[var(--radius-lg)] bg-[#0a0a14] md:max-w-[280px]">
                     <AxisObject axis={axis} active={selected} reducedMotion={reducedMotion} />
                   </div>
                 </div>

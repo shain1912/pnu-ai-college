@@ -1,0 +1,329 @@
+{
+  "docHeight": 50718,
+  "type": [
+    {
+      "size": 80,
+      "n": 3,
+      "letterSpacing": [
+        0
+      ],
+      "em": [
+        0
+      ],
+      "lineHeight": [
+        96
+      ],
+      "weight": [
+        "700"
+      ]
+    },
+    {
+      "size": 56,
+      "n": 5,
+      "letterSpacing": [
+        0
+      ],
+      "em": [
+        0
+      ],
+      "lineHeight": [
+        67.2
+      ],
+      "weight": [
+        "700"
+      ]
+    },
+    {
+      "size": 48,
+      "n": 35,
+      "letterSpacing": [
+        -0.96
+      ],
+      "em": [
+        -0.02
+      ],
+      "lineHeight": [
+        61.44
+      ],
+      "weight": [
+        "700"
+      ]
+    },
+    {
+      "size": 40,
+      "n": 2,
+      "letterSpacing": [
+        -0.8
+      ],
+      "em": [
+        -0.02
+      ],
+      "lineHeight": [
+        56
+      ],
+      "weight": [
+        "700"
+      ]
+    },
+    {
+      "size": 32,
+      "n": 32,
+      "letterSpacing": [
+        -0.8,
+        -0.64
+      ],
+      "em": [
+        -0.025,
+        -0.02
+      ],
+      "lineHeight": [
+        44.8,
+        41.6
+      ],
+      "weight": [
+        "700"
+      ]
+    },
+    {
+      "size": 28,
+      "n": 4,
+      "letterSpacing": [
+        -0.56
+      ],
+      "em": [
+        -0.02
+      ],
+      "lineHeight": [
+        39.2
+      ],
+      "weight": [
+        "700"
+      ]
+    },
+    {
+      "size": 24,
+      "n": 8,
+      "letterSpacing": [
+        -0.48,
+        0
+      ],
+      "em": [
+        -0.02,
+        0
+      ],
+      "lineHeight": [
+        24,
+        33.6
+      ],
+      "weight": [
+        "700"
+      ]
+    },
+    {
+      "size": 21.6,
+      "n": 3,
+      "letterSpacing": [
+        -1.08
+      ],
+      "em": [
+        -0.05
+      ],
+      "lineHeight": [
+        27
+      ],
+      "weight": [
+        "300"
+      ]
+    },
+    {
+      "size": 20,
+      "n": 21,
+      "letterSpacing": [
+        -0.4,
+        0
+      ],
+      "em": [
+        -0.02,
+        0
+      ],
+      "lineHeight": [
+        29.6,
+        22
+      ],
+      "weight": [
+        "400",
+        "600",
+        "700"
+      ]
+    },
+    {
+      "size": 19,
+      "n": 15,
+      "letterSpacing": [
+        0
+      ],
+      "em": [
+        0
+      ],
+      "lineHeight": [
+        21.85
+      ],
+      "weight": [
+        "600"
+      ]
+    },
+    {
+      "size": 18,
+      "n": 9,
+      "letterSpacing": [
+        -0.36,
+        0
+      ],
+      "em": [
+        -0.02,
+        0
+      ],
+      "lineHeight": [
+        25.2,
+        26.64
+      ],
+      "weight": [
+        "700"
+      ]
+    },
+    {
+      "size": 17,
+      "n": 4,
+      "letterSpacing": [
+        -0.17,
+        0
+      ],
+      "em": [
+        -0.01,
+        0
+      ],
+      "lineHeight": [
+        22.95,
+        23.8
+      ],
+      "weight": [
+        "600",
+        "700"
+      ]
+    },
+    {
+      "size": 16.3,
+      "n": 62,
+      "letterSpacing": [
+        -0.15
+      ],
+      "em": [
+        -0.009
+      ],
+      "lineHeight": [
+        20.21
+      ],
+      "weight": [
+        "600"
+      ]
+    },
+    {
+      "size": 16,
+      "n": 215,
+      "letterSpacing": [
+        -0.32,
+        0
+      ],
+      "em": [
+        -0.02,
+        0
+      ],
+      "lineHeight": [
+        25.6,
+        16,
+        19.2,
+        18.4,
+        24
+      ],
+      "weight": [
+        "400",
+        "500",
+        "600"
+      ]
+    }
+  ],
+  "radii": [
+    {
+      "value": 33,
+      "count": 21
+    },
+    {
+      "value": 16,
+      "count": 20
+    },
+    {
+      "value": 32,
+      "count": 13
+    },
+    {
+      "value": 36,
+      "count": 11
+    },
+    {
+      "value": 136,
+      "count": 8
+    },
+    {
+      "value": 26,
+      "count": 8
+    },
+    {
+      "value": 100,
+      "count": 6
+    },
+    {
+      "value": 12,
+      "count": 6
+    }
+  ],
+  "containers": [
+    {
+      "value": 1408,
+      "count": 1
+    }
+  ],
+  "colors": [
+    {
+      "value": "rgb(0, 0, 0)",
+      "count": 19069
+    },
+    {
+      "value": "rgb(255, 255, 255)",
+      "count": 18599
+    },
+    {
+      "value": "rgb(245, 245, 245)",
+      "count": 18330
+    },
+    {
+      "value": "rgb(243, 243, 243)",
+      "count": 7079
+    },
+    {
+      "value": "rgba(255, 255, 255, 0.2)",
+      "count": 2663
+    },
+    {
+      "value": "rgba(255, 255, 255, 0.4)",
+      "count": 589
+    },
+    {
+      "value": "rgb(242, 244, 246)",
+      "count": 365
+    },
+    {
+      "value": "rgba(0, 0, 0, 0.3)",
+      "count": 241
+    }
+  ]
+}

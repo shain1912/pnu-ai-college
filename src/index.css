@@ -51,10 +51,19 @@
   --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
     system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Segoe UI', sans-serif;
 
+  /*
+   * 실측한 toss 의 반경은 큰 상자에서 32 / 33 / 36px 이다. 우리 최대값은
+   * 20px 였고, 40px 넘는 상자 중 둥근 것이 세 개뿐이었다. 큰 면이 각지면
+   * 같은 배치라도 싸구려로 보인다.
+   *
+   * xl 을 24 로 올리고 그 위에 2xl(32) 을 새로 둔다. 카드·타일처럼 큰 면이
+   * 2xl 을 쓴다. 작은 배지·칩은 그대로다 — 거기까지 키우면 알약이 된다.
+   */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
-  --radius-xl: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
   --radius-pill: 999px;
 
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -110,12 +119,21 @@
 }
 
 @layer utilities {
+  /*
+   * 36회차에 toss 를 실측해서 맞췄다 (scripts/tokens.mjs).
+   * 1440 뷰포트에서 toss 의 가운데 정렬 컨테이너는 1408px 다 — 좌우 16px 만
+   * 남기고 화면을 거의 다 쓴다. 우리는 1120px 였다. 288px 좁은 채로 모든
+   * 화면이 그려지고 있었고, 그게 "작고 답답해 보이는" 첫 번째 이유다.
+   *
+   * 글줄 길이는 이것과 별개다. 본문 문단은 각 씬에서 max-w 로 따로 잡는다 —
+   * 컨테이너를 넓히는 것과 한 줄을 길게 하는 것은 다른 얘기다.
+   */
   .edge {
-    @apply mx-auto w-full max-w-[1120px] px-5 md:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[1408px] px-5 md:px-8 lg:px-12;
   }
 
   .edge-wide {
-    @apply mx-auto w-full max-w-[1280px] px-5 md:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[1408px] px-5 md:px-8 lg:px-12;
   }
 
   /* the site's vertical rhythm — sections only ever pick one of these */
@@ -159,7 +177,7 @@
   }
 
   .card {
-    @apply rounded-[--radius-xl] bg-surface;
+    @apply rounded-[var(--radius-2xl)] bg-surface;
     box-shadow: 0 1px 2px rgb(25 31 40 / 0.04), 0 4px 16px rgb(25 31 40 / 0.06);
     transition:
       box-shadow var(--dur-base) var(--ease-standard),

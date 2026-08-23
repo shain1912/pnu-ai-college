@@ -45,14 +45,14 @@ export default function AiCollege() {
                   to={`/ai-college/schools/${s.slug}`}
                   className="card flex h-full items-start gap-5 p-6 transition-shadow hover:shadow-[0_2px_4px_rgb(25_31_40/0.06),0_8px_28px_rgb(25_31_40/0.09)] md:p-7"
                 >
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[--radius-md] bg-blue-50 text-[18px] font-bold text-blue-700">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[var(--radius-md)] bg-blue-50 text-[18px] font-bold text-blue-700">
                     {s.axis}
                   </span>
                   <span className="min-w-0">
                     <span className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
                       <span className="text-[19px] font-bold text-ink">{s.name}</span>
                       {s.isNew && (
-                        <span className="rounded-[--radius-sm] bg-blue-50 px-2 py-0.5 text-[12px] font-bold text-blue-700">
+                        <span className="rounded-[var(--radius-sm)] bg-blue-50 px-2 py-0.5 text-[12px] font-bold text-blue-700">
                           신설
                         </span>
                       )}
@@ -69,13 +69,13 @@ export default function AiCollege() {
           <div data-reveal className="mt-8 flex flex-wrap gap-3">
             <Link
               to="/ai-college/adpx"
-              className="rounded-[--radius-md] bg-brand-strong px-6 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-blue-700"
+              className="rounded-[var(--radius-md)] bg-brand-strong px-6 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-blue-700"
             >
               ADP+X 구조 자세히 보기
             </Link>
             <Link
               to="/ai-college/schools"
-              className="rounded-[--radius-md] bg-gray-100 px-6 py-3.5 text-[16px] font-semibold text-ink-muted transition-colors hover:bg-gray-200"
+              className="rounded-[var(--radius-md)] bg-gray-100 px-6 py-3.5 text-[16px] font-semibold text-ink-muted transition-colors hover:bg-gray-200"
             >
               학부·학과 전체 보기
             </Link>
@@ -124,7 +124,7 @@ export default function AiCollege() {
               {PARTNERS.names.map((n) => (
                 <li
                   key={n}
-                  className="rounded-[--radius-md] bg-gray-100 px-4 py-2.5 text-[15px] font-semibold text-ink-muted"
+                  className="rounded-[var(--radius-md)] bg-gray-100 px-4 py-2.5 text-[15px] font-semibold text-ink-muted"
                 >
                   {n}
                 </li>

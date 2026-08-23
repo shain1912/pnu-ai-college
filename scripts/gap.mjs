@@ -31,14 +31,31 @@ const shootAll = async (url) => {
   const page = await browser.newPage({ viewport: VIEW })
   await page.goto(url, { waitUntil: 'networkidle', timeout: 60_000 })
   await page.waitForTimeout(2500)
+
+  /*
+   * 먼저 페이지를 한 번 훑어 내려간다.
+   *
+   * 36회차에 toss 열이 통째로 흰 화면으로 찍혔다. toss 는 아래쪽 절을 화면에
+   * 닿을 때 불러오는데, 바로 목표 위치로 뛰면 그 절이 아직 비어 있다. 우리
+   * 사이트도 22회차부터 영상을 같은 방식으로 늦춰 받으므로 양쪽 다 해당된다.
+   *
+   * 빈 프레임을 놓고 "격차" 를 논하면 매 회차 판단이 틀어진다.
+   */
   const height = await page.evaluate(() => document.documentElement.scrollHeight)
   const span = Math.max(0, height - VIEW.height)
+  for (let y = 0; y <= span; y += Math.round(VIEW.height * 0.8)) {
+    await page.evaluate((to) => window.scrollTo({ top: to, behavior: 'instant' }), y)
+    await page.waitForTimeout(260)
+  }
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+  await page.waitForTimeout(900)
+
   const shots = []
   for (let i = 0; i < STEPS; i++) {
     // sample the readable part of the page, not the footer
     const y = Math.round((span * i) / Math.max(1, STEPS))
     await page.evaluate((to) => window.scrollTo({ top: to, behavior: 'instant' }), y)
-    await page.waitForTimeout(900)
+    await page.waitForTimeout(1400)
     shots.push(await page.screenshot())
   }
   await page.close()

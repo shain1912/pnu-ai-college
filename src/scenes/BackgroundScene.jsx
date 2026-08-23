@@ -28,7 +28,7 @@ export default function BackgroundScene() {
           <p className="lead max-w-[42rem] lg:pb-1">{WHY.body}</p>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-[--radius-xl] border border-line bg-canvas-subtle md:mt-16">
+        <div className="mt-12 overflow-hidden rounded-[var(--radius-xl)] border border-line bg-canvas-subtle md:mt-16">
           <div className="relative grid md:grid-cols-2">
             {COLUMNS.map((column) => (
               <figure
@@ -38,7 +38,7 @@ export default function BackgroundScene() {
                 }`}
               >
                 <figcaption
-                  className={`absolute left-6 top-6 rounded-[--radius-pill] px-3 py-1.5 text-[13px] font-bold md:left-8 md:top-8 ${
+                  className={`absolute left-6 top-6 rounded-[var(--radius-pill)] px-3 py-1.5 text-[13px] font-bold md:left-8 md:top-8 ${
                     column.key === 'after'
                       ? 'bg-brand-strong text-white'
                       : 'bg-gray-200 text-ink-muted'

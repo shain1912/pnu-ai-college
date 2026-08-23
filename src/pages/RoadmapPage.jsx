@@ -27,7 +27,7 @@ export default function RoadmapPage() {
 
             액자 배경도 회색이었다. 밝은 상자에 짙은 화면을 넣으면 레터박스가 생긴다.
           */}
-          <figure data-reveal className="mb-14 max-w-[560px] overflow-hidden rounded-[--radius-xl] bg-[#0a0a14]">
+          <figure data-reveal className="mb-14 max-w-[560px] overflow-hidden rounded-[var(--radius-xl)] bg-[#0a0a14]">
             <LoopMedia slug="roadmap_path_v" alt="어두운 공간에 파란 길이 안쪽으로 이어지고, 그 위에 다섯 개의 표식이 점점 커지며 놓여 있다." className="w-full" />
           </figure>
 
@@ -78,7 +78,7 @@ export default function RoadmapPage() {
             <p className="text-[15px] font-semibold text-brand">{ADMISSION.eyebrow}</p>
             <h2 className="h3 mt-3 whitespace-pre-line text-ink">{ADMISSION.title}</h2>
 
-            <div className="mt-7 inline-flex flex-col gap-1 rounded-[--radius-lg] bg-blue-50 px-6 py-4 md:flex-row md:items-baseline md:gap-4">
+            <div className="mt-7 inline-flex flex-col gap-1 rounded-[var(--radius-lg)] bg-blue-50 px-6 py-4 md:flex-row md:items-baseline md:gap-4">
               <span className="text-[14px] font-semibold text-blue-700">
                 {ADMISSION.period.label}
               </span>
@@ -95,7 +95,7 @@ export default function RoadmapPage() {
               href={ADMISSION.primary.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-block rounded-[--radius-md] bg-brand-strong px-7 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-blue-700"
+              className="mt-8 inline-block rounded-[var(--radius-md)] bg-brand-strong px-7 py-3.5 text-[16px] font-semibold text-white transition-colors hover:bg-blue-700"
             >
               {ADMISSION.primary.label} ↗
             </a>

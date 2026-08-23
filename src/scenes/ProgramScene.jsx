@@ -89,12 +89,12 @@ export default function ProgramScene() {
 
           <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center lg:gap-16">
             {/* 무대. 항목이 바뀌면 화면도 같이 넘어간다. */}
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[--radius-xl] bg-[#0a0a14] lg:order-2">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-2xl)] bg-[#0a0a14] lg:order-2">
               {PROGRAMS.items.map((item, index) => (
                 <div
                   key={item.name}
                   aria-hidden={index !== active}
-                  className="absolute inset-0 transition-[opacity,filter] duration-[600ms] ease-[--ease-enter]"
+                  className="absolute inset-0 transition-[opacity,filter] duration-[600ms] ease-[var(--ease-enter)]"
                   style={{
                     opacity: reduced ? (index === 0 ? 1 : 0) : index === active ? 1 : 0,
                     filter: index === active ? 'blur(0px)' : 'blur(14px)',
@@ -159,7 +159,7 @@ export default function ProgramScene() {
               {PROGRAMS.items.map((item, index) => (
                 <span
                   key={item.name}
-                  className="h-[3px] rounded-full bg-ink transition-all duration-[--dur-base]"
+                  className="h-[3px] rounded-full bg-ink transition-all duration-[var(--dur-base)]"
                   style={{ width: index === active ? 40 : 16, opacity: index === active ? 0.85 : 0.18 }}
                 />
               ))}

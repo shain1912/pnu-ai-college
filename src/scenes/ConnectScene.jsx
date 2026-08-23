@@ -83,11 +83,11 @@ export default function ConnectScene() {
             <li key={school.slug}>
               <Link
                 to={`/ai-college/schools/${school.slug}`}
-                className="group flex items-baseline gap-2 rounded-[--radius-pill] border border-white/20 px-4 py-2.5 transition-colors duration-[--dur-base] hover:border-white/45 hover:bg-white/5"
+                className="group flex items-baseline gap-2 rounded-[var(--radius-pill)] border border-white/20 px-4 py-2.5 transition-colors duration-[var(--dur-base)] hover:border-white/45 hover:bg-white/5"
               >
                 <span className="text-[14px] font-bold text-white">{school.name}</span>
                 <span className="text-[13px] text-white/50">교원 {facultyOf(school).length}명</span>
-                <span aria-hidden="true" className="text-white/45 transition-transform duration-[--dur-base] group-hover:translate-x-0.5">
+                <span aria-hidden="true" className="text-white/45 transition-transform duration-[var(--dur-base)] group-hover:translate-x-0.5">
                   →
                 </span>
               </Link>
