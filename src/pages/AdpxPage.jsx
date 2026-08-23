@@ -19,6 +19,7 @@ export default function AdpxPage() {
       <PageHead
         eyebrow="학사 구조"
         title={'ADP+X'}
+        path="/ai-college/adpx/"
         lead="AI가 세상에 닿기까지 필요한 네 가지 역할을, 그대로 학사조직으로 만들었어요."
         crumbs={[
           { to: '/', label: '홈' },

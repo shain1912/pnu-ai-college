@@ -9,6 +9,7 @@ export default function SchoolsIndex() {
       <PageHead
         eyebrow="편제 대상"
         title={'학부 · 학과'}
+        path="/ai-college/schools/"
         lead="2027년 3월 AI대학으로 모이는 학문단위예요. 각 학과의 기본 정보와 소속 교원을 정리했어요."
         crumbs={[
           { to: '/', label: '홈' },

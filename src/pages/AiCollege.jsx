@@ -13,6 +13,7 @@ export default function AiCollege() {
       <PageHead
         eyebrow="2027년 3월 출범"
         title={'AI대학'}
+        path="/ai-college/"
         lead="세 개 단과대학에 흩어져 있던 AI 학문단위를 하나로 모읍니다. 입학정원 424명, 국내에서 가장 큰 AI 단과대학이에요."
         crumbs={[{ to: '/', label: '홈' }]}
       />

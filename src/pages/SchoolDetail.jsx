@@ -22,6 +22,7 @@ export default function SchoolDetail() {
       <PageHead
         eyebrow={`${school.axis} · ${school.axisName}`}
         title={school.name}
+        path={`/ai-college/schools/${school.slug}/`}
         lead={school.role}
         crumbs={[
           { to: '/', label: '홈' },

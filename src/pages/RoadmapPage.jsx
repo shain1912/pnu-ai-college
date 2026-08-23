@@ -9,6 +9,7 @@ export default function RoadmapPage() {
       <PageHead
         eyebrow={ROADMAP.eyebrow}
         title={'추진 일정'}
+        path="/ai-college/roadmap/"
         lead="설계에서 출범, 그리고 성과 기반 재편까지 4년의 계획이에요."
         crumbs={[
           { to: '/', label: '홈' },
