@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "apex_core",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "One large rounded central form sits on the surface. Three short thick stems reach directly out of it, each ending in a smaller rounded form of the same family, evenly spaced. Separately, one more rounded form of a different, cooler grey stands apart to the right, joined to the central form only by a single long thin rod. The three attached forms clearly belong to the centre; the fourth clearly does not. Shot from a low three-quarter angle. Product photography look on a seamless very light warm-grey studio backdrop. Soft broad top light, long soft contact shadow, gentle gradient falloff. Every form is smooth matte deep navy with a single azure blue edge light. Clean and calm. STRICTLY NO dark background, NO neon, NO cyan, NO magenta, NO green. Absolutely no text, no lettering, no brand marks, no people.",
+      "--aspect_ratio",
+      "16:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "eb5c61bd-b663-436b-be0a-bb8ccb9a9a1b",
+    "status": "done"
+  }
+]

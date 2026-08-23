@@ -14,7 +14,16 @@ import { Link } from 'react-router-dom'
  * 실행 중에도 같이 바뀐다 — 라우트를 옮겨 다니다 주소를 복사하는 경우다.
  * 떠날 때 원래 값으로 되돌린다.
  */
-const SITE = 'https://shain1912.github.io/pnu-ai-college'
+/*
+ * 사이트 주소는 index.html 의 og:url 하나만 진짜다. 여기에 또 적어두면 도메인을
+ * 옮길 때 두 곳을 고쳐야 하고, 한쪽만 고치면 카드와 정규 주소가 갈린다.
+ * 처음 실린 값을 읽어 쓴다 — 그 값은 항상 사이트 뿌리다.
+ */
+const siteRoot = () => {
+  const el = typeof document === 'undefined' ? null : document.head.querySelector('meta[property="og:url"]')
+  return (el?.getAttribute('content') ?? '/').replace(/\/$/, '')
+}
+const SITE = siteRoot()
 
 const setAttr = (selector, attr, value) => {
   const el = document.head.querySelector(selector)

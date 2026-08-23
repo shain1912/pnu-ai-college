@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "apex_pillars",
+    "model": "nano_banana_pro",
+    "kind": "image",
+    "args": [
+      "--prompt",
+      "Four tall columns of blue light stand apart in a dark void, each rising from its own faint base ring. Thin horizontal filaments run between them at several heights, tying the four into one structure. Seen from slightly below, wide. Lit almost entirely in azure blue and deep royal blue, matching the reference palette. Pale ice-blue highlights only. STRICTLY NO cyan, NO teal, NO magenta, NO purple, NO green, NO orange. Very dark blue-black void, volumetric haze, shallow depth of field, cinematic photoreal 3D render, wide lens. Absolutely no text, no lettering, no brand marks, no people.",
+      "--image-references",
+      "assets/raw/_palette.png",
+      "--aspect_ratio",
+      "21:9",
+      "--resolution",
+      "2k"
+    ],
+    "jobId": "d5344d17-d655-43b2-a2ba-5a540aa6f579",
+    "status": "done"
+  }
+]

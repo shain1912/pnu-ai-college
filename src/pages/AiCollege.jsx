@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom'
 import PageHead from '../components/PageHead'
 import BackgroundScene from '../scenes/BackgroundScene'
 import MediaBand from '../components/MediaBand'
+import ApexScene from '../scenes/ApexScene'
 import ScaleScene from '../scenes/ScaleScene'
-import { APEX, PROGRAMS, PARTNERS } from '../data/content'
+import { PROGRAMS, PARTNERS } from '../data/content'
 import { SCHOOLS } from '../data/schools'
 import { revealDelay } from '../hooks/useReveal'
 
@@ -85,50 +86,7 @@ export default function AiCollege() {
       <ScaleScene />
 
       {/* 운영 체계 */}
-      <section id="apex" className="band bg-canvas-subtle">
-        <div className="edge">
-          <p data-reveal className="text-[15px] font-semibold text-brand">
-            {APEX.eyebrow}
-          </p>
-          <h2 data-reveal style={revealDelay(1)} className="h2 mt-4 text-ink">
-            {APEX.title}
-          </h2>
-          <p data-reveal style={revealDelay(2)} className="lead mt-6 max-w-[36rem]">
-            {APEX.body}
-          </p>
-
-          <ol className="mt-12 grid gap-3 md:mt-14 md:grid-cols-2">
-            {APEX.pillars.map((p, i) => (
-              <li
-                key={p.name}
-                data-reveal
-                style={revealDelay(i)}
-                className={`card flex items-start gap-5 p-6 md:p-7 ${
-                  i === 0 ? 'md:col-span-2 md:items-center' : ''
-                }`}
-              >
-                <span
-                  className={`grid shrink-0 place-items-center rounded-[--radius-md] text-[13px] font-bold ${
-                    i === 0 ? 'h-14 w-14 bg-brand-strong text-white' : 'h-12 w-12 bg-blue-50 text-blue-700'
-                  }`}
-                >
-                  {p.role}
-                </span>
-                <div>
-                  <h3 className={`font-bold text-ink ${i === 0 ? 'text-[22px]' : 'text-[18px]'}`}>
-                    {p.name}
-                  </h3>
-                  <p className="mt-1.5 text-[15px] leading-[1.6] text-ink-subtle">{p.detail}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <p data-reveal className="mt-7 text-center text-[14px] font-medium text-ink-faint">
-            {APEX.full}
-          </p>
-        </div>
-      </section>
+      <ApexScene />
 
       <MediaBand slug="studio_team_v" alt="어두운 스튜디오에서 학생 넷이 뒷모습으로 서서 대형 화면의 파란 네트워크 도표를 가리키고 있다." />
 
