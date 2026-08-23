@@ -3,15 +3,17 @@
     "slug": "t_da",
     "model": "seedance_2_5",
     "kind": "video",
-    "jobId": "b2aab08b-3c46-42d1-92f1-17293a71f694",
-    "args": []
+    "jobId": null,
+    "args": [],
+    "status": "gone"
   },
   {
     "slug": "t_ap",
     "model": "seedance_2_5",
     "kind": "video",
-    "jobId": "302ea4c2-ff5c-47a8-99c7-e2e7c10edd8f",
-    "args": []
+    "jobId": null,
+    "args": [],
+    "status": "gone"
   },
   {
     "slug": "port_crane",

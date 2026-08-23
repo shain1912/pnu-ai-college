@@ -122,47 +122,61 @@ export default function FactSheetScene() {
         </div>
       </div>
 
-      {/* 표 — 세 묶음, 전부 또렷하게 */}
-      <section className="bg-canvas pb-8 pt-20 md:pt-28 lg:pt-40">
-        <div className="edge">
-          {GROUPS.map((group) => (
-            <div
-              key={group.title}
-              className="grid gap-6 border-t border-line py-10 md:grid-cols-[minmax(0,200px)_1fr] md:gap-12 md:py-14"
-            >
-              <h3 className="text-[clamp(1.25rem,2vw,1.5rem)] font-bold tracking-[-0.015em] text-ink">
-                {group.title}
-              </h3>
+      {/*
+        표 — 세 묶음을 세 칸으로.
 
-              <dl className="grid gap-8 md:gap-10">
-                {rowsOf(group).map((row) => (
-                  <div key={row.k} className="grid gap-2 sm:grid-cols-[minmax(0,148px)_1fr] sm:gap-6">
-                    <dt className="text-[14px] font-semibold leading-[1.5] text-ink-faint">{row.k}</dt>
-                    <dd className="text-[clamp(1.0625rem,1.5vw,1.25rem)] font-bold leading-[1.5] text-ink">
-                      {row.v}
-                      {/*
-                        소속 관계처럼 한 줄로는 다 못 담는 항목은 그림이 있는
-                        자리로 보낸다. 홈에 조직도를 한 번 더 그리면 같은 그림이
-                        두 페이지에 생긴다.
-                      */}
-                      {row.to && (
-                        <Link
-                          to={row.to}
-                          className="ml-2 whitespace-nowrap align-middle text-[14px] font-semibold text-brand-strong underline-offset-4 hover:underline"
-                        >
-                          {row.toLabel} →
-                        </Link>
-                      )}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          ))}
+        35회차에 다시 짰다. 그전에는 묶음마다 제목이 왼쪽에 서고 값이 오른쪽에
+        늘어지는 목록이었는데, 주변 절이 전면 캔버스와 전면 영상으로 강해지면서
+        이 화면만 미완성으로 읽혔다. 값 사이가 벌어져 시선이 붙들 데가 없었다.
 
-          <p className="mt-10 border-t border-line pt-8 text-[14px] leading-[1.7] text-ink-faint">
-            {SUMMARY.note}
-          </p>
+        고친 방향은 둘이다. 화면 하나를 온전히 쓰고(min-h-svh), 묶음마다 번호를
+        붙여 셋이 나란한 것을 눈에 보이게 한다. 값도 키웠다.
+
+        세 칸은 lg(1024) 부터다. 여덟 줄을 셋으로 나누면 칸마다 두세 줄인데,
+        태블릿 폭에서 세 칸으로 쪼개면 한 줄이 서너 글자마다 끊긴다.
+      */}
+      <section className="flex min-h-svh flex-col justify-center bg-canvas py-24 md:py-28">
+        <div className="edge w-full">
+          <div className="grid gap-12 lg:grid-cols-3 lg:gap-10">
+            {GROUPS.map((group, index) => (
+              <div key={group.title} className="border-t-2 border-ink pt-6">
+                <p className="flex items-baseline gap-3">
+                  <span className="text-[13px] font-bold tracking-[0.12em] text-brand">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-[clamp(1.375rem,2.2vw,1.75rem)] font-extrabold tracking-[-0.02em] text-ink">
+                    {group.title}
+                  </span>
+                </p>
+
+                <dl className="mt-8 grid gap-7">
+                  {rowsOf(group).map((row) => (
+                    <div key={row.k}>
+                      <dt className="text-[13px] font-semibold leading-[1.5] text-ink-faint">{row.k}</dt>
+                      <dd className="mt-2 text-[clamp(1.125rem,1.7vw,1.375rem)] font-bold leading-[1.45] text-ink">
+                        {row.v}
+                        {/*
+                          소속 관계처럼 한 줄로는 다 못 담는 항목은 그림이 있는
+                          자리로 보낸다. 홈에 조직도를 한 번 더 그리면 같은 그림이
+                          두 페이지에 생긴다.
+                        */}
+                        {row.to && (
+                          <Link
+                            to={row.to}
+                            className="ml-2 whitespace-nowrap align-middle text-[14px] font-semibold text-brand-strong underline-offset-4 hover:underline"
+                          >
+                            {row.toLabel} →
+                          </Link>
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-16 max-w-[46rem] text-[14px] leading-[1.7] text-ink-faint">{SUMMARY.note}</p>
         </div>
       </section>
     </>
