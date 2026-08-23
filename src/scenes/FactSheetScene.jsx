@@ -104,11 +104,18 @@ export default function FactSheetScene() {
           </ul>
           </div>
 
-          {/* 다섯 덩이가 맞물려 하나가 된다 — 「424명이 이 다섯 곳으로」의 형태 */}
-          <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[var(--radius-xl)] md:max-w-none">
+          {/*
+            다섯 덩이가 맞물려 하나가 된다 — 「424명이 이 다섯 곳으로」의 형태.
+
+            38회차에 상자를 걷었다. 렌더 바탕이 크림색이라 흰 절 위에서 네모로
+            보였고, 그걸 가리려고 둥근 상자에 넣어 둔 것이었다. 바탕을 페이지
+            흰색까지 밀어 놓으니(scripts/regrade.mjs) 가릴 것이 없어졌다.
+            남는 것은 물체와 그림자뿐이라 상자가 오히려 테두리를 만든다.
+          */}
+          <div className="mx-auto w-full max-w-[420px] md:max-w-none">
             <SceneVideo
               slug="obj_gather_v"
-              alt="크기가 다른 짙은 남색 덩어리 다섯이 맞물려 하나의 윤곽을 이룬다."
+              alt="크기가 다른 짙은 파란색 덩어리 다섯이 맞물려 하나의 윤곽을 이룬다."
               className="h-full w-full"
             />
           </div>
