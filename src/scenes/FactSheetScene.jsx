@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { SUMMARY } from '../data/content'
 import SceneVideo from '../components/SceneVideo'
 
@@ -139,6 +140,19 @@ export default function FactSheetScene() {
                     <dt className="text-[14px] font-semibold leading-[1.5] text-ink-faint">{row.k}</dt>
                     <dd className="text-[clamp(1.0625rem,1.5vw,1.25rem)] font-bold leading-[1.5] text-ink">
                       {row.v}
+                      {/*
+                        소속 관계처럼 한 줄로는 다 못 담는 항목은 그림이 있는
+                        자리로 보낸다. 홈에 조직도를 한 번 더 그리면 같은 그림이
+                        두 페이지에 생긴다.
+                      */}
+                      {row.to && (
+                        <Link
+                          to={row.to}
+                          className="ml-2 whitespace-nowrap align-middle text-[14px] font-semibold text-brand-strong underline-offset-4 hover:underline"
+                        >
+                          {row.toLabel} →
+                        </Link>
+                      )}
                     </dd>
                   </div>
                 ))}
